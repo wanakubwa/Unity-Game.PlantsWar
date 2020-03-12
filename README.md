@@ -1,2 +1,2 @@
-# Unity-Game.PlantsWar
+# Plants War
 Gra będzie klonem oryginalnej gry “Plants vs Zombies”, w której wykorzystamy istniejące w oryginale mechaniki rozgrywki. Gra będzie rozgrywała się na płaskiej mapie, na której po jednej stronie umieszczone zostaną nasze obiekty broniące, a po drugiej spawnowane będą potwory lub inni przeciwnicy. Całość gry polegać będzie na wykorzystaniu obiektów broniących, aby nie pozwolić przeciwnikom przedostać się na drugą stronę mapy.
