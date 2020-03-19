@@ -35,6 +35,7 @@ public class GameManager : ManagerSingletonBase<GameManager>
         toSpawnOnAwake = GetObjectsToSpawnOnAwake();
         SpawnAllObjects(toSpawnOnAwake);
 
+        Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.cyan), this.GetType());
     }
 
     private List<GameObject> GetObjectsToSpawnOnAwake()

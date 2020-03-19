@@ -40,7 +40,7 @@ public class MapManager : ManagerSingletonBase<MapManager>
         MapController = map.GetComponent<MapController>();
         MapController.MapCanvas.worldCamera = Camera.main;
 
-        Debug.LogFormat("Map Manager enabled.".SetColor(Color.green));
+        Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
     }
 
     public Transform GetGridStartPosition()
