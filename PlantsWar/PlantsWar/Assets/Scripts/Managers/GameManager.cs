@@ -47,12 +47,12 @@ public class GameManager : ManagerSingletonBase<GameManager>
         // Najpierw spawnowane są eventy pozniej dopiero managery.
         if(eventsToSpawn != null)
         {
-            toSpawnObjects.AddRange(eventsToSpawn);
+            toSpawnObjects.AddRange(EventsToSpawn);
         }
 
         if(managersToSpawn != null)
         {
-            toSpawnObjects.AddRange(managersToSpawn);
+            toSpawnObjects.AddRange(ManagersToSpawn);
         }
 
         return toSpawnObjects;

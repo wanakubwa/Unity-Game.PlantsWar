@@ -51,7 +51,8 @@ class GridCell : MonoBehaviour
         {
             if (hit.collider == ChildCollider)
             {
-
+                // Wywolanie eventu zwiazanego z kliknieciem elementu siatki.
+                GridSelectorManager.Instance.OnGridCellClickCall(Id);
             }
 
         }

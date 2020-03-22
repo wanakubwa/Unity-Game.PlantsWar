@@ -72,6 +72,22 @@ class GridManager : ManagerSingletonBase<GridManager>
     #endregion
     #region Methods
 
+    public GridCell GetCellByID(int id)
+    {
+        for(int i = 0; i < Grid.GetLength(0); i++)
+        {
+            for(int y = 0; y < Grid.GetLength(1); y++)
+            {
+                if(Grid[i,y].Id == id)
+                {
+                    return Grid[i, y];
+                }
+            }
+        }
+
+        return null;
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -86,7 +102,7 @@ class GridManager : ManagerSingletonBase<GridManager>
 
     protected override void AttachEvents()
     {
-        Debug.Log("Attached");
+        GridSelectorManager.Instance.OnGridCellClick += OnCellSelectedHandler;
     }
 
     private void SetGridCellSize()
@@ -145,6 +161,13 @@ class GridManager : ManagerSingletonBase<GridManager>
 
     #endregion
     #region Handlers
+
+    private void OnCellSelectedHandler(int id)
+    {
+        GridCell selectedCell = GetCellByID(id);
+
+        Debug.LogFormat("Transfrom: {0}, For cell id: {1}.", selectedCell.transform, selectedCell.Id);
+    }
 
     #endregion
 }

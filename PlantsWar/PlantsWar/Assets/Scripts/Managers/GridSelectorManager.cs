@@ -9,7 +9,7 @@ class GridSelectorManager : ManagerSingletonBase<GridSelectorManager>
 {
     #region Fields
 
-    public Action<int> OnGridCellClick = delegate { };
+    public event Action<int> OnGridCellClick = delegate { };
 
 
     #endregion
@@ -25,6 +25,8 @@ class GridSelectorManager : ManagerSingletonBase<GridSelectorManager>
     protected override void OnEnable()
     {
         base.OnEnable();
+
+        Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
     }
 
     public void OnGridCellClickCall(int id)
