@@ -37,6 +37,16 @@ public class ManagerSingletonBase<T> : MonoBehaviour where T : MonoBehaviour
 		instance = GetComponent<T>();
 	}
 
+	protected virtual void OnEnable()
+	{
+		AttachEvents();
+	}
+
+	protected virtual void AttachEvents()
+	{
+
+	}
+
 	#endregion
 	#region Handlers
 

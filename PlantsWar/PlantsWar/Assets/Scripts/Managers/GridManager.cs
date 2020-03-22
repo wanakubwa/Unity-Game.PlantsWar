@@ -72,8 +72,10 @@ class GridManager : ManagerSingletonBase<GridManager>
     #endregion
     #region Methods
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+
         SetGridStartPostion();
 
         SetGridCellSize();
@@ -82,9 +84,14 @@ class GridManager : ManagerSingletonBase<GridManager>
         Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
     }
 
+    protected override void AttachEvents()
+    {
+        Debug.Log("Attached");
+    }
+
     private void SetGridCellSize()
     {
-        int childs = SingleCell.transform.GetChildCount();
+        int childs = SingleCell.transform.childCount;
         if(childs == 0)
         {
             Debug.LogErrorFormat("Can't find childs for cell object!");

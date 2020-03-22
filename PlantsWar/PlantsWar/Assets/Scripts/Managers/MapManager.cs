@@ -31,8 +31,10 @@ public class MapManager : ManagerSingletonBase<MapManager>
     #endregion
     #region Methods
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+
         GameObject map = Instantiate(GameMap, GameMap.transform.position, Quaternion.identity);
         map.transform.SetParent(this.transform);
 

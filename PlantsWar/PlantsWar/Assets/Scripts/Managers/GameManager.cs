@@ -29,8 +29,10 @@ public class GameManager : ManagerSingletonBase<GameManager>
     #endregion
     #region Methods
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+
         List<GameObject> toSpawnOnAwake;
         toSpawnOnAwake = GetObjectsToSpawnOnAwake();
         SpawnAllObjects(toSpawnOnAwake);
