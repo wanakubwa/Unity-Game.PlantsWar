@@ -18,12 +18,12 @@ public class GameManager : ManagerSingletonBase<GameManager>
     public List<GameObject> ManagersToSpawn
     {
         get => managersToSpawn; 
-        set => managersToSpawn = value;
+        private set => managersToSpawn = value;
     }
 
     public List<GameObject> EventsToSpawn { 
         get => eventsToSpawn; 
-        set => eventsToSpawn = value; 
+        private set => eventsToSpawn = value; 
     }
 
     #endregion
