@@ -18,6 +18,8 @@ public class ShopElement : MonoBehaviour
     private Button selectButton;
     [SerializeField]
     private Button unselectButton;
+    [SerializeField]
+    private Image selectedMask;
 
     private string key;
 
@@ -43,6 +45,11 @@ public class ShopElement : MonoBehaviour
     public TextMeshProUGUI Prize { 
         get => prize; 
         private set => prize = value; 
+    }
+
+    public Image SelectedMask { 
+        get => selectedMask; 
+        private set => selectedMask = value; 
     }
 
     #endregion
