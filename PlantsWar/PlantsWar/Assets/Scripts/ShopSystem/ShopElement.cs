@@ -42,7 +42,7 @@ public class ShopElement : MonoBehaviour
         ShopManager shop = ShopManager.Instance;
         if(shop != null)
         {
-            // TODO: Zrobic wywolanie kupna w sklepie.
+            shop.SetSelectedCharacterBykey(Key);
         }
     }
 

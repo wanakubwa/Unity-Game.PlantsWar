@@ -13,21 +13,14 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
 
     [Space]
     [SerializeField]
-    private GameObject characterPrefab;
-
-    [SerializeField]
     private ShopUIController shopUIPrefab;
 
+    private SelectedCharacter positiveCharacter;
     private ShopUIController shopUIController;
 
     #endregion
 
     #region Propeties
-
-    public GameObject CharacterPrefab {
-        get => characterPrefab;
-        private set => characterPrefab = value;
-    }
 
     public ShopUIController ShopUIPrefab { 
         get => shopUIPrefab; 
@@ -39,9 +32,41 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
         private set => shopUIController = value; 
     }
 
+    public SelectedCharacter PositiveCharacter { 
+        get => positiveCharacter; 
+        private set => positiveCharacter = value; 
+    }
+
     #endregion
 
     #region Methods
+
+    public void SetSelectedCharacterBykey(string key)
+    {
+        CharactersContainerSetup charactersContainer = CharactersContainerSetup.Instance;
+        if(charactersContainer != null)
+        {
+            SingleCharacter character = charactersContainer.GetPositiveCharacterByKey(key);
+            if(character != null)
+            {
+                PositiveCharacter = new SelectedCharacter(character.Key, character.Prize, character.CharacterPrefab);
+            }
+        }
+    }
+
+    public void UnselectCharacter()
+    {
+        PositiveCharacter = null;
+    }
+
+    public bool TryBuySelectedCharacter()
+    {
+        bool canBuy = true;
+
+        // TODO: Zrobic portfel i logike kupowania.
+
+        return canBuy;
+    }
 
     protected override void OnEnable()
     {
@@ -86,4 +111,51 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
 
 
     #endregion
+
+    public class SelectedCharacter
+    {
+        #region Fields
+
+        private string key;
+        private int prize;
+        private GameObject characterObject;
+
+        #endregion
+
+        #region Propeties
+
+        public string Key { 
+            get => key; 
+            private set => key = value; 
+        }
+
+        public int Prize { 
+            get => prize; 
+            private set => prize = value; 
+        }
+
+        public GameObject CharacterObject { 
+            get => characterObject; 
+            private set => characterObject = value; 
+        }
+
+        #endregion
+
+        #region Methods
+
+        public SelectedCharacter(string key, int prize, GameObject characterObj)
+        {
+            Key = key;
+            Prize = prize;
+            CharacterObject = characterObj;
+        }
+
+        #endregion
+
+        #region Handlers
+
+
+
+        #endregion
+    }
 }
