@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28322562e49d31c4ea13283aa97d1b11, type: 3}
+  m_Name: PositiveCharactersContainerSetup
+  m_EditorClassIdentifier: 
+  characters:
+  - key: FIRST_CHAR
+    prize: 100
+    characterPrefab: {fileID: 8113526142541975384, guid: d1e238a302439e3429a3dff853d475f2,
+      type: 3}
+  - key: SECOND_CHAR
+    prize: 69
+    characterPrefab: {fileID: 8113526142541975384, guid: d1e238a302439e3429a3dff853d475f2,
+      type: 3}
