@@ -46,5 +46,7 @@ MonoBehaviour:
   managersToSpawn:
   - {fileID: 4321145931570707286, guid: 74be6b003db5f1544a00ee88072c2e88, type: 3}
   - {fileID: 3914546964367380828, guid: ea4f7ebdc986d9143a9985469e0faea5, type: 3}
+  - {fileID: 6612649655551659016, guid: 4ba6c9cdf2741564381e43ec75492dce, type: 3}
+  - {fileID: 5368755757764719592, guid: 0b7e18d4f1640a8438c2808f2b7ad3c8, type: 3}
   eventsToSpawn:
   - {fileID: 1093284087251743287, guid: ad9bf27e26abf06408e88c15df35635c, type: 3}

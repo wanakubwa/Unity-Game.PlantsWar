@@ -32,6 +32,15 @@ class GridSelectorManager : ManagerSingletonBase<GridSelectorManager>
     public void OnGridCellClickCall(int id)
     {
         OnGridCellClick.Invoke(id);
+
+        GridManager gridManager = GridManager.Instance;
+        PositiveCharactersManager positiveCharacters = PositiveCharactersManager.Instance;
+
+        if(positiveCharacters != null && gridManager != null)
+        {
+            GridCell cell = gridManager.GetCellByID(id);
+            positiveCharacters.SpawnCharacterInCell(cell);
+        }
     }
 
     #endregion
