@@ -12,6 +12,8 @@ public class ShopElement : MonoBehaviour
     [SerializeField]
     private Image characterImage;
 
+    private string key;
+
     #endregion
 
     #region Propeties
@@ -24,6 +26,11 @@ public class ShopElement : MonoBehaviour
     public Image CharacterImage { 
         get => characterImage; 
         private set => characterImage = value; 
+    }
+
+    public string Key { 
+        get => key; 
+        private set => key = value; 
     }
 
     #endregion
@@ -48,6 +55,11 @@ public class ShopElement : MonoBehaviour
     {
         CharacterImage.sprite = sprite;
         //CharacterImage.SetNativeSize();
+    }
+
+    public void SetLocalizeKey(string key)
+    {
+        Key = key;
     }
 
     #endregion

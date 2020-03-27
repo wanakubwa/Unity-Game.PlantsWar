@@ -30,9 +30,9 @@ public class ShopUIController : MonoBehaviour
 
     #region Methods
 
-    public void CreateShopElement(string name, Sprite characterSprite, int prize)
+    public void CreateShopElement(string name, string key, Sprite characterSprite, int prize)
     {
-        View.AddShopElement(name, characterSprite, prize);
+        View.AddShopElement(name, key, characterSprite, prize);
     }
 
     public void SetCanvasCamera(Camera camera)

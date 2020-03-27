@@ -30,16 +30,17 @@ public class ShopUIView : MonoBehaviour
 
     #region Methods
 
-    public void AddShopElement(string name, Sprite characterSprite, int prize)
+    public void AddShopElement(string name, string key, Sprite characterSprite, int prize)
     {
         ShopElement element = Instantiate(ShopItemElement);
         element.transform.SetParent(ContentElement.transform);
         element.gameObject.transform.localScale = ShopItemElement.transform.localScale;
 
         element.SetName(name);
+        element.SetLocalizeKey(key);
         element.SetImage(characterSprite);
 
-        // TODO: ustawic cene postaci.
+        // TODO: Cena.
     }
 
     #endregion
