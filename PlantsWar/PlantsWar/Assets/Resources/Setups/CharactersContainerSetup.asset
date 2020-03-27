@@ -15,7 +15,7 @@ MonoBehaviour:
   positiveCharacters:
   - key: FIRST
     prize: 100
-    characterPrefab: {fileID: 8113526142541975384, guid: d1e238a302439e3429a3dff853d475f2,
+    characterPrefab: {fileID: 8113526142541975384, guid: 7b7049b9139e0d2429f220c88174aa69,
       type: 3}
   - key: SECOND
     prize: 69
