@@ -25,7 +25,21 @@ public class CharactersContainerSetup : SingletonScriptableBase<CharactersContai
 
     #region Methods
 
+    public SingleCharacter GetPositiveCharacterByKey(string key)
+    {
+        if(PositiveCharacters != null)
+        {
+            foreach (SingleCharacter character in PositiveCharacters)
+            {
+                if(character.Key == key)
+                {
+                    return character;
+                }
+            }
+        }
 
+        return null;
+    }
 
     #endregion
 
