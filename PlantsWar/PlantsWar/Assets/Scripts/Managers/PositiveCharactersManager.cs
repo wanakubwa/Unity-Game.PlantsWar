@@ -37,18 +37,22 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
             return;
         }
 
-        GameObject characterToSpawn = shopManager.CharacterPrefab;
+        ShopManager.SelectedCharacter characterToSpawn = shopManager.PositiveCharacter;
         if(characterToSpawn == null)
         {
             return;
         }
 
-        GameObject newCharacter = Instantiate(characterToSpawn);
-        newCharacter.transform.position = cell.SpawnPosition.position;
-        newCharacter.transform.SetParent(transform);
+        // Kupienie jezeli garcza stac na aktualnie wybrana postac.
+        if(shopManager.TryBuySelectedCharacter() == true)
+        {
+            GameObject newCharacter = Instantiate(characterToSpawn.CharacterObject);
+            newCharacter.transform.position = cell.SpawnPosition.position;
+            newCharacter.transform.SetParent(transform);
 
-        cell.IsEmpty = false;
-        Characters.Add(newCharacter);
+            cell.IsEmpty = false;
+            Characters.Add(newCharacter);
+        }
     }
 
     protected override void OnEnable()
