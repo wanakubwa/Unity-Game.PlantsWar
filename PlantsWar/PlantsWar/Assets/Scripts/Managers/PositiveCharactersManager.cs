@@ -44,7 +44,7 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         }
 
         GameObject newCharacter = Instantiate(characterToSpawn);
-        newCharacter.transform.position = cell.transform.position;
+        newCharacter.transform.position = cell.SpawnPosition.position;
         newCharacter.transform.SetParent(transform);
 
         cell.IsEmpty = false;

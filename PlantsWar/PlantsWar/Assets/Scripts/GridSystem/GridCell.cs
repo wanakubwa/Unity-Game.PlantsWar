@@ -5,14 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-class GridCell : MonoBehaviour
+public class GridCell : MonoBehaviour
 {
     #region Fields
 
     [SerializeField]
     BoxCollider2D childCollider;
 
+    [SerializeField]
+    Transform spawnPosition;
+
     private int id = 0;
+    private bool isEmpty = true;
 
     #endregion
 
@@ -27,6 +31,16 @@ class GridCell : MonoBehaviour
     {
         get => childCollider;
         set => childCollider = value;
+    }
+
+    public bool IsEmpty { 
+        get => isEmpty; 
+        set => isEmpty = value; 
+    }
+
+    public Transform SpawnPosition { 
+        get => spawnPosition; 
+        set => spawnPosition = value; 
     }
 
     #endregion
