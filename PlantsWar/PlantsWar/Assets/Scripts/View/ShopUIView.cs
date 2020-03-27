@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ShopUIView : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class ShopUIView : MonoBehaviour
     private ShopElement shopItemElement;
     [SerializeField]
     private GameObject contentElement;
+
+    private List<ShopElement> shopElements = new List<ShopElement>();
 
     #endregion
 
@@ -26,6 +29,11 @@ public class ShopUIView : MonoBehaviour
         private set => contentElement = value; 
     }
 
+    public List<ShopElement> ShopElements { 
+        get => shopElements; 
+        set => shopElements = value; 
+    }
+
     #endregion
 
     #region Methods
@@ -39,8 +47,10 @@ public class ShopUIView : MonoBehaviour
         element.SetName(name);
         element.SetLocalizeKey(key);
         element.SetImage(characterSprite);
+        element.SetPrize(prize);
 
-        // TODO: Cena.
+        // Zapamietanie stworzonego na swiezo elementu.
+        ShopElements.Add(element);
     }
 
     #endregion
