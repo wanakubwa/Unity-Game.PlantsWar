@@ -4,21 +4,21 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
-[CreateAssetMenu(fileName = "PositiveCharactersContainerSetup.asset", menuName = "Settings/PositiveCharactersContainerSetup")]
-public class PositiveCharactersContainerSetup : SingletonScriptableBase<PositiveCharactersContainerSetup>
+[CreateAssetMenu(fileName = "CharactersContainerSetup.asset", menuName = "Settings/CharactersContainerSetup")]
+public class CharactersContainerSetup : SingletonScriptableBase<CharactersContainerSetup>
 {
     #region Fields
 
     [SerializeField]
-    private List<SingleCharacter> characters;
+    private List<SingleCharacter> positiveCharacters;
 
     #endregion
 
     #region Propeties
 
-    public List<SingleCharacter> Characters { 
-        get => characters; 
-        private set => characters = value; 
+    public List<SingleCharacter> PositiveCharacters { 
+        get => positiveCharacters; 
+        private set => positiveCharacters = value; 
     }
 
     #endregion
