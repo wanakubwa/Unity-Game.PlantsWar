@@ -41,6 +41,11 @@ public class ShopUIController : MonoBehaviour
         Canvas.worldCamera = camera;
     }
 
+    public void UnselectAllShopElements()
+    {
+        View.UnselectAllElements();
+    }
+
     #endregion
 
     #region Handlers

@@ -79,7 +79,7 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
 
     private void InitializeShopUI()
     {
-        ShopUIController = Instantiate(shopUIPrefab);
+        ShopUIController = Instantiate(ShopUIPrefab);
         ShopUIController.transform.SetParent(transform);
         ShopUIController.SetCanvasCamera(Camera.main);
 

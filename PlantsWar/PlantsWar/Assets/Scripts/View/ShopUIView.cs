@@ -31,7 +31,7 @@ public class ShopUIView : MonoBehaviour
 
     public List<ShopElement> ShopElements { 
         get => shopElements; 
-        set => shopElements = value; 
+        private set => shopElements = value; 
     }
 
     #endregion
@@ -51,6 +51,14 @@ public class ShopUIView : MonoBehaviour
 
         // Zapamietanie stworzonego na swiezo elementu.
         ShopElements.Add(element);
+    }
+
+    public void UnselectAllElements()
+    {
+        foreach (ShopElement element in ShopElements)
+        {
+            element.SetUnselectStatus();
+        }
     }
 
     #endregion

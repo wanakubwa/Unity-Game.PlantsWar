@@ -64,7 +64,13 @@ public class ShopElement : MonoBehaviour
             shop.SetSelectedCharacterBykey(Key);
         }
 
-        ButtonsToggle();
+        ShopManager shopManager = ShopManager.Instance;
+        if (shopManager != null)
+        {
+            shopManager.ShopUIController.UnselectAllShopElements();
+        }
+
+        SetSelectStatus();
     }
 
     public void OnUnselectButtonClick()
@@ -75,7 +81,11 @@ public class ShopElement : MonoBehaviour
             shop.UnselectCharacter();
         }
 
-        ButtonsToggle();
+        ShopManager shopManager = ShopManager.Instance;
+        if (shopManager != null)
+        {
+            shopManager.ShopUIController.UnselectAllShopElements();
+        }
     }
 
     public void ButtonsToggle()
@@ -92,6 +102,26 @@ public class ShopElement : MonoBehaviour
         }
     }
 
+    public void SetUnselectStatus()
+    {
+        Color transparent = SelectedMask.color;
+        transparent.a = 0;
+
+        SelectedMask.color = transparent;
+        unselectButton.gameObject.SetActive(false);
+        selectButton.gameObject.SetActive(true);
+    }
+
+    public void SetSelectStatus()
+    {
+        Color transparent = SelectedMask.color;
+        transparent.a = 0.75f;
+
+        SelectedMask.color = transparent;
+        unselectButton.gameObject.SetActive(true);
+        selectButton.gameObject.SetActive(false);
+    }
+
     public void SetName(string name)
     {
         Name.text = name;
@@ -100,7 +130,6 @@ public class ShopElement : MonoBehaviour
     public void SetImage(Sprite sprite)
     {
         CharacterImage.sprite = sprite;
-        //CharacterImage.SetNativeSize();
     }
 
     public void SetLocalizeKey(string key)
