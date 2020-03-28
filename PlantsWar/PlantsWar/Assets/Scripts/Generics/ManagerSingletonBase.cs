@@ -37,6 +37,11 @@ public class ManagerSingletonBase<T> : MonoBehaviour where T : MonoBehaviour
 		instance = GetComponent<T>();
 	}
 
+	protected virtual void Start() 
+	{
+		BrodcastEvents();
+	}
+
 	protected virtual void OnEnable()
 	{
 		AttachEvents();
@@ -53,6 +58,11 @@ public class ManagerSingletonBase<T> : MonoBehaviour where T : MonoBehaviour
 	}
 
 	protected virtual void DettachEvents()
+	{
+
+	}
+
+	protected virtual void BrodcastEvents()
 	{
 
 	}
