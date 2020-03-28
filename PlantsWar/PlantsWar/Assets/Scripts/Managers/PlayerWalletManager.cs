@@ -33,7 +33,7 @@ public class PlayerWalletManager : ManagerSingletonBase<PlayerWalletManager>
         }
         else
         {
-            if (Money - value < 0)
+            if (Money + value < 0)
             {
                 isSuccess = false;
             }

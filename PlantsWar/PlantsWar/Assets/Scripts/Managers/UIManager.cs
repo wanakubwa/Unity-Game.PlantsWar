@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class UIManager : ManagerSingletonBase<UIManager>
@@ -20,9 +21,11 @@ public class UIManager : ManagerSingletonBase<UIManager>
 
     #region Methods
 
-    protected override void OnEnable() 
+    protected override void OnEnable()
     {
         base.OnEnable();
+
+        InitializeTopBarUI();
 
         Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
     }
@@ -57,6 +60,12 @@ public class UIManager : ManagerSingletonBase<UIManager>
         }
     }
     
+    private void InitializeTopBarUI()
+    {
+        TopBarController = Instantiate(TopBarController);
+        TopBarController.SetCanvasCamera(Camera.main);
+    }
+
     #endregion
     
     #region Handlers
