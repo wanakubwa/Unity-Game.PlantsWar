@@ -45,8 +45,6 @@ public class CharactersContainerSetup : SingletonScriptableBase<CharactersContai
 
     #region Handlers
 
-
-
     #endregion
 
     [Serializable]
