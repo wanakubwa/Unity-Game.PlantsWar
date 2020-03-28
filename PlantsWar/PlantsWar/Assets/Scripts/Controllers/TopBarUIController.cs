@@ -27,6 +27,11 @@ public class TopBarUIController : MonoBehaviour
     #endregion
     #region Methods
 
+    public void SetCanvasCamera(Camera camera)
+    {
+        Canvas.worldCamera = camera;
+    }
+    
     public void SetCoinsText(string text)
     {
         View.SetCoinsText(text);
