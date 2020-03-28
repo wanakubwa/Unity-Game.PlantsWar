@@ -42,7 +42,17 @@ public class ManagerSingletonBase<T> : MonoBehaviour where T : MonoBehaviour
 		AttachEvents();
 	}
 
+	protected virtual void OnDisable() 
+	{
+		DettachEvents();
+	}
+
 	protected virtual void AttachEvents()
+	{
+
+	}
+
+	protected virtual void DettachEvents()
 	{
 
 	}
