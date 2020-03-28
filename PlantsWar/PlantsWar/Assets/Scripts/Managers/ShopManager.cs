@@ -61,10 +61,8 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
 
     public bool TryBuySelectedCharacter()
     {
-        bool canBuy = true;
-
-        // TODO: Zrobic portfel i logike kupowania.
-
+        PlayerWalletManager walletManager = PlayerWalletManager.Instance;
+        bool canBuy = walletManager.TryAddMoney(-1 * PositiveCharacter.Prize);
         return canBuy;
     }
 
@@ -74,7 +72,7 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
 
         InitializeShopUI();
 
-        Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
+        Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), GetType());
     }
 
     private void InitializeShopUI()

@@ -51,7 +51,4 @@ public class MapController : MonoBehaviour
     #region Handlers
 
     #endregion
-
-
-
 }

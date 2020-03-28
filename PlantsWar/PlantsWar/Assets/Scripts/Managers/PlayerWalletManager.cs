@@ -51,7 +51,21 @@ public class PlayerWalletManager : ManagerSingletonBase<PlayerWalletManager>
     {
         OnMoneyChange.Invoke(Money);
     }
-    
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
+    }
+
+    protected override void BrodcastEvents()
+    {
+        base.BrodcastEvents();
+
+        OnMoneyChangeCall();
+    }
+
     #endregion
     
     #region Handlers
