@@ -15,6 +15,7 @@ public class SingletonScriptableBase<T> : ScriptableObject where T : ScriptableO
             if (instance ==  null)
             {
                 instance = Resources.FindObjectsOfTypeAll<T>().FirstOrDefault();
+                //instance = Resources.Load<T>("Setups/" + T);
             }
 
             return instance;

@@ -80,24 +80,27 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
         ShopUIController = Instantiate(ShopUIPrefab);
         ShopUIController.SetCanvasCamera(Camera.main);
 
-        CharactersContainerSetup charactersContainer = CharactersContainerSetup.Instance;
-        if(charactersContainer != null)
-        {
-            CreateAllPositiveShopCharacters(charactersContainer.PositiveCharacters);
-        }
-        else
-        {
-            Debug.LogErrorFormat("Watchout! [{0}] Was null!", charactersContainer.GetType());
-        }
+        CreateAllPositiveShopCharacters();
     }
 
-    private void CreateAllPositiveShopCharacters(List<SingleCharacter> characters)
+    private void CreateAllPositiveShopCharacters()
     {
-        foreach (SingleCharacter character in characters)
+        CharactersContainerSetup charactersContainer = CharactersContainerSetup.Instance;
+        if(charactersContainer == null)
+        {
+            Debug.LogErrorFormat("Watchout! [{0}] Was null!", typeof(CharactersContainerSetup));
+            return;
+        }
+
+        foreach (CharacterType characterType in Enum.GetValues(typeof(CharacterType)))
         {
             // TODO: Dalej trzeba zrobic normalnie - Fabian.
-            SpriteRenderer sprite = character.CharacterPrefab.GetComponentInChildren<SpriteRenderer>();
-            ShopUIController.CreateShopElement("Postac_tmp", character.Key, sprite.sprite, character.Prize);
+            CharactersContainerSetup.CharacterSet set = charactersContainer.GetPositiveCharacterSetOfType(characterType);
+            if(set != null)
+            {
+                SpriteRenderer sprite = set.Characters[0].CharacterPrefab.GetComponentInChildren<SpriteRenderer>();
+                ShopUIController.CreateShopElement("Postac_tmp", set.Characters[0].Key, sprite.sprite, set.Characters[0].Prize);
+            }
         }
     }
 

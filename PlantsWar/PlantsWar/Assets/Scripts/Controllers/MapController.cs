@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class MapController : MonoBehaviour
 {
     #region Fields
-
     [SerializeField]
     private Image background;
 

@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerWalletManager : ManagerSingletonBase<PlayerWalletManager> 
 {
     #region Fields
-
     [SerializeField]
     private int money;
 
