@@ -48,6 +48,7 @@ public class ShopUIView : MonoBehaviour
         element.SetCharacterId(id);
         element.SetImage(characterSprite);
         element.SetPrize(prize);
+        element.SetCharacterType(type);
 
         // Zapamietanie stworzonego na swiezo elementu.
         ShopElements.Add(element);

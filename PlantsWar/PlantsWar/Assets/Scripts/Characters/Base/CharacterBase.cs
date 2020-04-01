@@ -10,6 +10,7 @@ public class CharacterBase : MonoBehaviour
     #region Fields
 
     [Space]
+    [SerializeField]
     private int id;
 
     [Space]

@@ -132,3 +132,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 8e717bdaf33be5047a1d5f3a8f63af8d, type: 3}
   spriteRenderer: {fileID: 4599689831964934178}
   spriteScale: {x: 0.5, y: 0.5, z: 1}
+  shopCardBackground: {fileID: 21300000, guid: 349e68b495dfba64a89d28b493d94a4b, type: 3}
