@@ -43,14 +43,14 @@ public class CharactersContainerSetup : ScriptableObject
 
     #region Methods
 
-    public PositiveCharacterElement GetPositiveCharacterByKeyOfType(string key, CharacterType type)
+    public CharacterElement GetPositiveCharacterByIdAndType(int id, CharacterType type)
     {
         CharacterSet characterSet = GetPositiveCharacterSetOfType(type);
         if(characterSet != null)
         {
-            foreach (PositiveCharacterElement character in characterSet.Characters)
+            foreach (CharacterElement character in characterSet.Characters)
             {
-                if(character.LocalizeKey == key)
+                if(character.CharacterPrefab.Id == id)
                 {
                     return character;
                 }
@@ -58,6 +58,29 @@ public class CharactersContainerSetup : ScriptableObject
         }
 
         return null;
+    }
+
+    public List<SingleCharacter> GetAllAwaiblePositiveCharacters()
+    {
+        List<SingleCharacter> characters = new List<SingleCharacter>();
+
+        foreach (CharacterSet set in PositiveCharactersSet)
+        {
+            List<CharacterBase> characterBases = new List<CharacterBase>();
+            foreach (CharacterElement element in set.Characters)
+            {
+                characterBases.Add(element.CharacterPrefab);
+            }
+
+            characters.Add(new SingleCharacter(set.Type, characterBases));
+        }
+
+        if(characters.Count == 0)
+        {
+            characters = null;
+        }
+
+        return characters;
     }
 
     public CharacterSet GetPositiveCharacterSetOfType(CharacterType type)
@@ -69,22 +92,6 @@ public class CharactersContainerSetup : ScriptableObject
                 if (set.Type == type)
                 {
                     return set;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    public PositiveCharacterElement GetPositiveCharacterByKey(string key)
-    {
-        for(int i = 0 ; i< PositiveCharactersSet.Count; i++)
-        {
-            for(int y = 0; y < PositiveCharactersSet[i].Characters.Count; y++)
-            {
-                if(PositiveCharactersSet[i].Characters[y].LocalizeKey == key)
-                {
-                    return PositiveCharactersSet[i].Characters[y];
                 }
             }
         }
@@ -107,7 +114,7 @@ public class CharactersContainerSetup : ScriptableObject
         private CharacterType type;
 
         [SerializeField]
-        private List<PositiveCharacterElement> characters;
+        private List<CharacterElement> characters;
 
         #endregion
 
@@ -118,7 +125,7 @@ public class CharactersContainerSetup : ScriptableObject
             private set => type = value; 
         }
 
-        public List<PositiveCharacterElement> Characters { 
+        public List<CharacterElement> Characters { 
             get => characters; 
             private set => characters = value; 
         }
@@ -145,7 +152,7 @@ public class CharactersContainerSetup : ScriptableObject
     }
 
     [Serializable]
-    public class PositiveCharacterElement
+    public class CharacterElement
     {
         #region Fields
 
@@ -153,10 +160,7 @@ public class CharactersContainerSetup : ScriptableObject
         private string localizeKey;
 
         [SerializeField]
-        private Sprite shopCardBackground; 
-
-        [SerializeField]
-        private PositiveCharacterBase characterPrefab;
+        private CharacterBase characterPrefab;
 
         #endregion
 
@@ -167,7 +171,7 @@ public class CharactersContainerSetup : ScriptableObject
             private set => localizeKey = value; 
         }
 
-        public PositiveCharacterBase CharacterPrefab { 
+        public CharacterBase CharacterPrefab { 
             get => characterPrefab; 
             private set => characterPrefab = value; 
         }

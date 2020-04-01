@@ -15,9 +15,6 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
     [SerializeField]
     private ShopUIController shopUIPrefab;
 
-    private SelectedCharacter positiveCharacter;
-    private ShopUIController shopUIController;
-
     #endregion
 
     #region Propeties
@@ -27,42 +24,49 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
         private set => shopUIPrefab = value; 
     }
 
-    public ShopUIController ShopUIController { 
-        get => shopUIController; 
-        private set => shopUIController = value; 
+    public ShopUIController ShopUIController {
+        get;
+        private set;
     }
 
-    public SelectedCharacter PositiveCharacter { 
-        get => positiveCharacter; 
-        private set => positiveCharacter = value; 
+    //public SelectedCharacter PositiveCharacter { 
+    //    get => positiveCharacter; 
+    //    private set => positiveCharacter = value; 
+    //}
+
+    public CharacterBase SelectedCharacter {
+        get;
+        private set;
     }
 
     #endregion
 
     #region Methods
 
-    public void SetSelectedCharacterBykey(string key)
+    public void SetSelectedCharacterByIdAndType(int id, CharacterType type)
     {
-        CharactersContainerSetup charactersContainer = CharactersContainerSetup.Instance;
-        if(charactersContainer != null)
-        {
-            PositiveCharacterElement character = charactersContainer.GetPositiveCharacterByKey(key);
-            if(character != null)
-            {
-                //PositiveCharacter = new SelectedCharacter(character.LocalizeKey, character.Prize, character.CharacterPrefab);
-            }
-        }
+        SelectedCharacter = PositiveCharactersManager.Instance.GetCharacterByIdAndType(id, type);
+
+        //CharactersContainerSetup charactersContainer = CharactersContainerSetup.Instance;
+        //if(charactersContainer != null)
+        //{
+        //    CharacterElement character = charactersContainer.GetPositiveCharacterByKey(key);
+        //    if(character != null)
+        //    {
+        //        //PositiveCharacter = new SelectedCharacter(character.LocalizeKey, character.Prize, character.CharacterPrefab);
+        //    }
+        //}
     }
 
     public void UnselectCharacter()
     {
-        PositiveCharacter = null;
+        SelectedCharacter = null;
     }
 
     public bool TryBuySelectedCharacter()
     {
         PlayerWalletManager walletManager = PlayerWalletManager.Instance;
-        bool canBuy = walletManager.TryAddMoney(-1 * PositiveCharacter.Prize);
+        bool canBuy = walletManager.TryAddMoney(-1 * (int)SelectedCharacter.Prize);
         return canBuy;
     }
 
@@ -80,27 +84,16 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
         ShopUIController = Instantiate(ShopUIPrefab);
         ShopUIController.SetCanvasCamera(Camera.main);
 
-        CreateAllPositiveShopCharacters();
+        UpdateAllPositiveShopCharacters();
     }
 
-    private void CreateAllPositiveShopCharacters()
+    private void UpdateAllPositiveShopCharacters()
     {
-        CharactersContainerSetup charactersContainer = CharactersContainerSetup.Instance;
-        if(charactersContainer == null)
+        // Pobranie wszystkich postaci tym razem bierzemy z managera postaci.
+        PositiveCharactersManager charactersManager = PositiveCharactersManager.Instance;
+        foreach (Tuple<CharacterBase, CharacterType> character in charactersManager.GetCharactersAwaibleToBuy())
         {
-            Debug.LogErrorFormat("Watchout! [{0}] Was null!", typeof(CharactersContainerSetup));
-            return;
-        }
-
-        foreach (CharacterType characterType in Enum.GetValues(typeof(CharacterType)))
-        {
-            // TODO: Dalej trzeba zrobic normalnie - Fabian.
-            CharactersContainerSetup.CharacterSet set = charactersContainer.GetPositiveCharacterSetOfType(characterType);
-            if(set != null)
-            {
-                //SpriteRenderer sprite = set.Characters[0].CharacterPrefab.GetComponentInChildren<SpriteRenderer>();
-                //ShopUIController.CreateShopElement("Postac_tmp", set.Characters[0].LocalizeKey, sprite.sprite, set.Characters[0].Prize);
-            }
+            ShopUIController.CreateShopElement(character.Item1, character.Item2);
         }
     }
 
@@ -112,50 +105,50 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
 
     #endregion
 
-    public class SelectedCharacter
-    {
-        #region Fields
+    //public class SelectedCharacter
+    //{
+    //    #region Fields
 
-        private string key;
-        private int prize;
-        private GameObject characterObject;
+    //    private string key;
+    //    private int prize;
+    //    private GameObject characterObject;
 
-        #endregion
+    //    #endregion
 
-        #region Propeties
+    //    #region Propeties
 
-        public string Key { 
-            get => key; 
-            private set => key = value; 
-        }
+    //    public string Key { 
+    //        get => key; 
+    //        private set => key = value; 
+    //    }
 
-        public int Prize { 
-            get => prize; 
-            private set => prize = value; 
-        }
+    //    public int Prize { 
+    //        get => prize; 
+    //        private set => prize = value; 
+    //    }
 
-        public GameObject CharacterObject { 
-            get => characterObject; 
-            private set => characterObject = value; 
-        }
+    //    public GameObject CharacterObject { 
+    //        get => characterObject; 
+    //        private set => characterObject = value; 
+    //    }
 
-        #endregion
+    //    #endregion
 
-        #region Methods
+    //    #region Methods
 
-        public SelectedCharacter(string key, int prize, GameObject characterObj)
-        {
-            Key = key;
-            Prize = prize;
-            CharacterObject = characterObj;
-        }
+    //    public SelectedCharacter(string key, int prize, GameObject characterObj)
+    //    {
+    //        Key = key;
+    //        Prize = prize;
+    //        CharacterObject = characterObj;
+    //    }
 
-        #endregion
+    //    #endregion
 
-        #region Handlers
+    //    #region Handlers
 
 
 
-        #endregion
-    }
+    //    #endregion
+    //}
 }

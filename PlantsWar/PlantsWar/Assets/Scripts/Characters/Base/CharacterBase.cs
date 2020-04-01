@@ -5,9 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class PositiveCharacterBase : MonoBehaviour
+public class CharacterBase : MonoBehaviour
 {
     #region Fields
+
+    [Space]
+    private int id;
 
     [Space]
     [SerializeField]
@@ -21,13 +24,13 @@ public class PositiveCharacterBase : MonoBehaviour
     [SerializeField]
     private float attackDelay;
     [SerializeField]
-    private float attackDamage;
-    [SerializeField]
     private Sprite sprite;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
     [SerializeField]
     private Vector3 spriteScale = new Vector3(1f, 1f, 1f);
+    [SerializeField]
+    private Sprite shopCardBackground;
 
     #endregion
 
@@ -78,9 +81,14 @@ public class PositiveCharacterBase : MonoBehaviour
         private set => spriteScale = value; 
     }
 
-    public float AttackDamage { 
-        get => attackDamage; 
-        private set => attackDamage = value; 
+    public int Id { 
+        get => id; 
+        private set => id = value; 
+    }
+
+    public Sprite ShopCardBackground { 
+        get => shopCardBackground; 
+        private set => shopCardBackground = value; 
     }
 
     #endregion

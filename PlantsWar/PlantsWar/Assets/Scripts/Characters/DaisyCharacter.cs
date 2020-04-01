@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-class DaisyCharacter : PositiveCharacterBase
+class DaisyCharacter : CharacterBase
 {
     #region Fields
 

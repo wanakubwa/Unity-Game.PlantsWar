@@ -21,8 +21,6 @@ public class ShopElement : MonoBehaviour
     [SerializeField]
     private Image selectedMask;
 
-    private string key;
-
     #endregion
 
     #region Propeties
@@ -37,11 +35,6 @@ public class ShopElement : MonoBehaviour
         private set => characterImage = value; 
     }
 
-    public string Key { 
-        get => key; 
-        private set => key = value; 
-    }
-
     public TextMeshProUGUI Prize { 
         get => prize; 
         private set => prize = value; 
@@ -50,6 +43,16 @@ public class ShopElement : MonoBehaviour
     public Image SelectedMask { 
         get => selectedMask; 
         private set => selectedMask = value; 
+    }
+
+    public int CharacterId {
+        get;
+        private set;
+    }
+
+    public CharacterType Type {
+        get;
+        private set;
     }
 
     #endregion
@@ -61,7 +64,7 @@ public class ShopElement : MonoBehaviour
         ShopManager shop = ShopManager.Instance;
         if(shop != null)
         {
-            shop.SetSelectedCharacterBykey(Key);
+            shop.SetSelectedCharacterByIdAndType(CharacterId, Type);
         }
 
         ShopManager shopManager = ShopManager.Instance;
@@ -132,14 +135,19 @@ public class ShopElement : MonoBehaviour
         CharacterImage.sprite = sprite;
     }
 
-    public void SetLocalizeKey(string key)
-    {
-        Key = key;
-    }
-
     public void SetPrize(int prize)
     {
         Prize.text = prize.ToString();
+    }
+
+    public void SetCharacterId(int id)
+    {
+        CharacterId = id;
+    }
+
+    public void SetCharacterType(CharacterType type)
+    {
+        Type = type;
     }
 
     private void Awake()

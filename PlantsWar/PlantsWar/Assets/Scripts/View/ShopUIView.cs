@@ -38,14 +38,14 @@ public class ShopUIView : MonoBehaviour
 
     #region Methods
 
-    public void AddShopElement(string name, string key, Sprite characterSprite, int prize)
+    public void AddShopElement(string name, CharacterType type, int id, Sprite characterSprite, int prize)
     {
         ShopElement element = Instantiate(ShopItemElement);
         element.transform.SetParent(ContentElement.transform);
         element.gameObject.transform.localScale = ShopItemElement.transform.localScale;
 
         element.SetName(name);
-        element.SetLocalizeKey(key);
+        element.SetCharacterId(id);
         element.SetImage(characterSprite);
         element.SetPrize(prize);
 

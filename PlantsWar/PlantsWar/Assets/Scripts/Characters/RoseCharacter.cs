@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class RoseCharacter : PositiveCharacterBase
+class RoseCharacter : CharacterBase
 {
     #region Fields
 
