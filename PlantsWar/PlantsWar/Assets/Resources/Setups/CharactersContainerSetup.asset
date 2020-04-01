@@ -12,12 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28322562e49d31c4ea13283aa97d1b11, type: 3}
   m_Name: CharactersContainerSetup
   m_EditorClassIdentifier: 
-  positiveCharacters:
-  - key: FIRST
-    prize: 100
-    characterPrefab: {fileID: 8113526142541975384, guid: 7b7049b9139e0d2429f220c88174aa69,
-      type: 3}
-  - key: SECOND
-    prize: 69
-    characterPrefab: {fileID: 8113526142541975384, guid: d1e238a302439e3429a3dff853d475f2,
-      type: 3}
+  postiveCharactersSet:
+  - type: 0
+    characters:
+    - localizeKey: FRIENDPLANT_DAISY_0
+      shopCardBackground: {fileID: 21300000, guid: 349e68b495dfba64a89d28b493d94a4b,
+        type: 3}
+      characterPrefab: {fileID: 445227335854625588, guid: 7b7049b9139e0d2429f220c88174aa69,
+        type: 3}
+  - type: 1
+    characters:
+    - localizeKey: FRIENDPLANT_ROSE_0
+      shopCardBackground: {fileID: 21300000, guid: d37b89e6b1ba87b4a9e3ed873330c65b,
+        type: 3}
+      characterPrefab: {fileID: 4317001178422401976, guid: d1e238a302439e3429a3dff853d475f2,
+        type: 3}

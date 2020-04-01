@@ -43,14 +43,14 @@ public class CharactersContainerSetup : ScriptableObject
 
     #region Methods
 
-    public SingleCharacter GetPositiveCharacterByKeyOfType(string key, CharacterType type)
+    public PositiveCharacterElement GetPositiveCharacterByKeyOfType(string key, CharacterType type)
     {
         CharacterSet characterSet = GetPositiveCharacterSetOfType(type);
         if(characterSet != null)
         {
-            foreach (SingleCharacter character in characterSet.Characters)
+            foreach (PositiveCharacterElement character in characterSet.Characters)
             {
-                if(character.Key == key)
+                if(character.LocalizeKey == key)
                 {
                     return character;
                 }
@@ -76,13 +76,13 @@ public class CharactersContainerSetup : ScriptableObject
         return null;
     }
 
-    public SingleCharacter GetPositiveCharacterByKey(string key)
+    public PositiveCharacterElement GetPositiveCharacterByKey(string key)
     {
         for(int i = 0 ; i< PositiveCharactersSet.Count; i++)
         {
             for(int y = 0; y < PositiveCharactersSet[i].Characters.Count; y++)
             {
-                if(PositiveCharactersSet[i].Characters[y].Key == key)
+                if(PositiveCharactersSet[i].Characters[y].LocalizeKey == key)
                 {
                     return PositiveCharactersSet[i].Characters[y];
                 }
@@ -107,7 +107,7 @@ public class CharactersContainerSetup : ScriptableObject
         private CharacterType type;
 
         [SerializeField]
-        private List<SingleCharacter> characters;
+        private List<PositiveCharacterElement> characters;
 
         #endregion
 
@@ -118,7 +118,7 @@ public class CharactersContainerSetup : ScriptableObject
             private set => type = value; 
         }
 
-        public List<SingleCharacter> Characters { 
+        public List<PositiveCharacterElement> Characters { 
             get => characters; 
             private set => characters = value; 
         }
@@ -145,44 +145,31 @@ public class CharactersContainerSetup : ScriptableObject
     }
 
     [Serializable]
-    public class SingleCharacter
+    public class PositiveCharacterElement
     {
         #region Fields
 
         [SerializeField]
-        private string key;
-
-        [SerializeField]
-        private int prize;
+        private string localizeKey;
 
         [SerializeField]
         private Sprite shopCardBackground; 
 
         [SerializeField]
-        private GameObject characterPrefab;
+        private PositiveCharacterBase characterPrefab;
 
         #endregion
 
         #region Propeties
 
-        public string Key { 
-            get => key; 
-            private set => key = value; 
+        public string LocalizeKey { 
+            get => localizeKey; 
+            private set => localizeKey = value; 
         }
 
-        public int Prize { 
-            get => prize; 
-            private set => prize = value; 
-        }
-
-        public GameObject CharacterPrefab { 
+        public PositiveCharacterBase CharacterPrefab { 
             get => characterPrefab; 
             private set => characterPrefab = value; 
-        }
-
-        public Sprite ShopCardBackground { 
-            get => shopCardBackground; 
-            private set => shopCardBackground = value; 
         }
 
         #endregion

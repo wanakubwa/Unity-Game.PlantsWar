@@ -46,10 +46,10 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
         CharactersContainerSetup charactersContainer = CharactersContainerSetup.Instance;
         if(charactersContainer != null)
         {
-            SingleCharacter character = charactersContainer.GetPositiveCharacterByKey(key);
+            PositiveCharacterElement character = charactersContainer.GetPositiveCharacterByKey(key);
             if(character != null)
             {
-                PositiveCharacter = new SelectedCharacter(character.Key, character.Prize, character.CharacterPrefab);
+                //PositiveCharacter = new SelectedCharacter(character.LocalizeKey, character.Prize, character.CharacterPrefab);
             }
         }
     }
@@ -98,8 +98,8 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
             CharactersContainerSetup.CharacterSet set = charactersContainer.GetPositiveCharacterSetOfType(characterType);
             if(set != null)
             {
-                SpriteRenderer sprite = set.Characters[0].CharacterPrefab.GetComponentInChildren<SpriteRenderer>();
-                ShopUIController.CreateShopElement("Postac_tmp", set.Characters[0].Key, sprite.sprite, set.Characters[0].Prize);
+                //SpriteRenderer sprite = set.Characters[0].CharacterPrefab.GetComponentInChildren<SpriteRenderer>();
+                //ShopUIController.CreateShopElement("Postac_tmp", set.Characters[0].LocalizeKey, sprite.sprite, set.Characters[0].Prize);
             }
         }
     }
