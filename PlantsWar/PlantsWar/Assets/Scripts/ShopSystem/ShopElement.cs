@@ -15,10 +15,6 @@ public class ShopElement : MonoBehaviour
     [SerializeField]
     private Image characterImage;
     [SerializeField]
-    private Button selectButton;
-    [SerializeField]
-    private Button unselectButton;
-    [SerializeField]
     private Image selectedMask;
 
     #endregion
@@ -54,6 +50,12 @@ public class ShopElement : MonoBehaviour
         get;
         private set;
     }
+
+    public bool IsSelected
+    {
+        get;
+        private set;
+    } = false;
 
     #endregion
 
@@ -91,17 +93,27 @@ public class ShopElement : MonoBehaviour
         }
     }
 
-    public void ButtonsToggle()
+    public void OnClick()
     {
-        if(selectButton.gameObject.activeInHierarchy == true)
+        if(IsSelected == true)
         {
-            unselectButton.gameObject.SetActive(true);
-            selectButton.gameObject.SetActive(false);
+            ShopManager shop = ShopManager.Instance;
+            if (shop != null)
+            {
+                shop.UnselectCharacter();
+                shop.ShopUIController.UnselectAllShopElements();
+            }
         }
         else
         {
-            unselectButton.gameObject.SetActive(false);
-            selectButton.gameObject.SetActive(true);
+            ShopManager shop = ShopManager.Instance;
+            if (shop != null)
+            {
+                shop.SetSelectedCharacterByIdAndType(CharacterId, Type);
+                shop.ShopUIController.UnselectAllShopElements();
+            }
+
+            SetSelectStatus();
         }
     }
 
@@ -111,8 +123,7 @@ public class ShopElement : MonoBehaviour
         transparent.a = 0;
 
         SelectedMask.color = transparent;
-        unselectButton.gameObject.SetActive(false);
-        selectButton.gameObject.SetActive(true);
+        IsSelected = false;
     }
 
     public void SetSelectStatus()
@@ -121,8 +132,7 @@ public class ShopElement : MonoBehaviour
         transparent.a = 0.75f;
 
         SelectedMask.color = transparent;
-        unselectButton.gameObject.SetActive(true);
-        selectButton.gameObject.SetActive(false);
+        IsSelected = true;
     }
 
     public void SetName(string name)
@@ -148,12 +158,6 @@ public class ShopElement : MonoBehaviour
     public void SetCharacterType(CharacterType type)
     {
         Type = type;
-    }
-
-    private void Awake()
-    {
-        selectButton.gameObject.SetActive(true);
-        unselectButton.gameObject.SetActive(false);
     }
 
     #endregion
