@@ -11,7 +11,9 @@ public class CharacterBase : MonoBehaviour
 
     [Space]
     [SerializeField]
-    private int id;
+    private int id = -1;
+    [SerializeField]
+    private int upgradeLvl;
 
     [Space]
     [SerializeField]

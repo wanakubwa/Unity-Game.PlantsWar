@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  upgradeLvl: 0
   type: 0
   prize: 75
   healthPoints: 50
