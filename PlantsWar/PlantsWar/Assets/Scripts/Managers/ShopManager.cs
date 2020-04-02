@@ -86,9 +86,9 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
     {
         // Pobranie wszystkich postaci tym razem bierzemy z managera postaci.
         PositiveCharactersManager charactersManager = PositiveCharactersManager.Instance;
-        foreach (Tuple<CharacterBase, CharacterType> character in charactersManager.GetCharactersAwaibleToBuy())
+        foreach (CharacterBase character in charactersManager.GetCharactersAwaibleToBuy())
         {
-            ShopUIController.CreateShopElement(character.Item1, character.Item2);
+            ShopUIController.CreateShopElement(character);
         }
     }
 

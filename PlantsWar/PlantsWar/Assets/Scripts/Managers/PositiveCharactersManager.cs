@@ -37,13 +37,13 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         SpawnedCharacters.Add(newCharacter);
     }
 
-    public List<Tuple<CharacterBase, CharacterType>> GetCharactersAwaibleToBuy()
+    public List<CharacterBase> GetCharactersAwaibleToBuy()
     {
-        List<Tuple<CharacterBase, CharacterType>> output = new List<Tuple<CharacterBase, CharacterType>>();
-
+        // TODO:
+        List<CharacterBase> output = new List<CharacterBase>();
         for(int i = 0; i < InGameCharacters.Count; i++)
         {
-            output.Add(new Tuple<CharacterBase, CharacterType>(InGameCharacters[i].Characters[0], InGameCharacters[i].Type));
+            output.Add(InGameCharacters[i].Characters[0]);
         }
 
         return output;
