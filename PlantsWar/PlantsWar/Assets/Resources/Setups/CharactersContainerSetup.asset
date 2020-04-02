@@ -16,14 +16,15 @@ MonoBehaviour:
   - type: 0
     characters:
     - localizeKey: FRIENDPLANT_DAISY_0
-      shopCardBackground: {fileID: 21300000, guid: 349e68b495dfba64a89d28b493d94a4b,
-        type: 3}
       characterPrefab: {fileID: 445227335854625588, guid: 7b7049b9139e0d2429f220c88174aa69,
         type: 3}
   - type: 1
     characters:
     - localizeKey: FRIENDPLANT_ROSE_0
-      shopCardBackground: {fileID: 21300000, guid: d37b89e6b1ba87b4a9e3ed873330c65b,
-        type: 3}
       characterPrefab: {fileID: 4317001178422401976, guid: d1e238a302439e3429a3dff853d475f2,
+        type: 3}
+  - type: 2
+    characters:
+    - localizeKey: FRIENDPLANT_CACTUS_0
+      characterPrefab: {fileID: 4317001178422401976, guid: 04721468f8ce9fd4bad003df389e5a81,
         type: 3}
