@@ -28,3 +28,9 @@ MonoBehaviour:
     - localizeKey: FRIENDPLANT_CACTUS_0
       characterPrefab: {fileID: 4317001178422401976, guid: 04721468f8ce9fd4bad003df389e5a81,
         type: 3}
+  enemieCharactersCollection:
+  - type: 7
+    characters:
+    - localizeKey: ENEMY_SPIDER
+      characterPrefab: {fileID: 4317001178422401976, guid: 2aa221557724eda458d0124cfb25cb72,
+        type: 3}

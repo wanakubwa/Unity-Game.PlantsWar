@@ -13,6 +13,9 @@ public class CharactersContainerSetup : ScriptableObject
     [SerializeField]
     private List<CharacterSet> postiveCharactersSet;
 
+    [SerializeField]
+    private List<CharacterSet> enemieCharactersCollection;
+
     #endregion
 
     #region Propeties
@@ -37,6 +40,11 @@ public class CharactersContainerSetup : ScriptableObject
     public List<CharacterSet> PositiveCharactersSet { 
         get => postiveCharactersSet; 
         private set => postiveCharactersSet = value; 
+    }
+
+    public List<CharacterSet> EnemieCharactersCollection { 
+        get => enemieCharactersCollection; 
+        private set => enemieCharactersCollection = value; 
     }
 
     #endregion
@@ -97,6 +105,29 @@ public class CharactersContainerSetup : ScriptableObject
         }
 
         return null;
+    }
+
+    public List<SingleCharacter> GetAllAwaibleEnemiesCharacters()
+    {
+        List<SingleCharacter> characters = new List<SingleCharacter>();
+
+        foreach (CharacterSet set in EnemieCharactersCollection)
+        {
+            List<CharacterBase> characterBases = new List<CharacterBase>();
+            foreach (CharacterElement element in set.Characters)
+            {
+                characterBases.Add(element.CharacterPrefab);
+            }
+
+            characters.Add(new SingleCharacter(set.Type, characterBases));
+        }
+
+        if(characters.Count == 0)
+        {
+            characters = null;
+        }
+
+        return characters;
     }
 
     #endregion
