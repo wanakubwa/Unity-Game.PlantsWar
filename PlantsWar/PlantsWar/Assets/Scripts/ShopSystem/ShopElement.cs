@@ -16,6 +16,8 @@ public class ShopElement : MonoBehaviour
     private Image characterImage;
     [SerializeField]
     private Image selectedMask;
+    [SerializeField]
+    private Image backgroundImage;
 
     #endregion
 
@@ -56,6 +58,11 @@ public class ShopElement : MonoBehaviour
         get;
         private set;
     } = false;
+
+    public Image BackgroundImage { 
+        get => backgroundImage; 
+        private set => backgroundImage = value; 
+    }
 
     #endregion
 
@@ -158,6 +165,11 @@ public class ShopElement : MonoBehaviour
     public void SetCharacterType(CharacterType type)
     {
         Type = type;
+    }
+
+    public void SetBackgroundImagaSprite(Sprite sprite)
+    {
+        BackgroundImage.sprite = sprite;
     }
 
     #endregion

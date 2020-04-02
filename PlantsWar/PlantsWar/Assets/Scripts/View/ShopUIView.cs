@@ -38,7 +38,7 @@ public class ShopUIView : MonoBehaviour
 
     #region Methods
 
-    public void AddShopElement(string name, CharacterType type, int id, Sprite characterSprite, int prize)
+    public void AddShopElement(string name, CharacterType type, int id, Sprite characterSprite, Sprite backgroundSprite, int prize)
     {
         ShopElement element = Instantiate(ShopItemElement);
         element.transform.SetParent(ContentElement.transform);
@@ -49,6 +49,7 @@ public class ShopUIView : MonoBehaviour
         element.SetImage(characterSprite);
         element.SetPrize(prize);
         element.SetCharacterType(type);
+        element.SetBackgroundImagaSprite(backgroundSprite);
 
         // Zapamietanie stworzonego na swiezo elementu.
         ShopElements.Add(element);

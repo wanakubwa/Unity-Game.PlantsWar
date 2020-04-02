@@ -33,7 +33,7 @@ public class ShopUIController : MonoBehaviour
 
     public void CreateShopElement(CharacterBase character)
     {
-        View.AddShopElement("tmp", character.Type, character.Id, character.Sprite, (int)character.Prize);
+        View.AddShopElement("tmp", character.Type, character.Id, character.Sprite, character.ShopCardBackground, (int)character.Prize);
     }
 
     public void SetCanvasCamera(Camera camera)

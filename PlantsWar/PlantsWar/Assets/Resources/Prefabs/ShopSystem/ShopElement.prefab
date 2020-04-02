@@ -610,6 +610,7 @@ MonoBehaviour:
   prize: {fileID: 8717482695294815939}
   characterImage: {fileID: 6959289542880854299}
   selectedMask: {fileID: 6465136465181903908}
+  backgroundImage: {fileID: 6959289544007849668}
 --- !u!114 &4813001009925645895
 MonoBehaviour:
   m_ObjectHideFlags: 0
