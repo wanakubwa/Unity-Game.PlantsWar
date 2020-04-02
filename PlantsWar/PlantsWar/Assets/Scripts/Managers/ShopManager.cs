@@ -46,16 +46,6 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
     public void SetSelectedCharacterByIdAndType(int id, CharacterType type)
     {
         SelectedCharacter = PositiveCharactersManager.Instance.GetCharacterByIdAndType(id, type);
-
-        //CharactersContainerSetup charactersContainer = CharactersContainerSetup.Instance;
-        //if(charactersContainer != null)
-        //{
-        //    CharacterElement character = charactersContainer.GetPositiveCharacterByKey(key);
-        //    if(character != null)
-        //    {
-        //        //PositiveCharacter = new SelectedCharacter(character.LocalizeKey, character.Prize, character.CharacterPrefab);
-        //    }
-        //}
     }
 
     public void UnselectCharacter()
@@ -65,6 +55,11 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
 
     public bool TryBuySelectedCharacter()
     {
+        if (SelectedCharacter == null)
+        {
+            return false;
+        }
+
         PlayerWalletManager walletManager = PlayerWalletManager.Instance;
         bool canBuy = walletManager.TryAddMoney(-1 * (int)SelectedCharacter.Prize);
         return canBuy;

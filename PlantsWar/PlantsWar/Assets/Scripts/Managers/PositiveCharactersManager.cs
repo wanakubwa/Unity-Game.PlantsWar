@@ -27,36 +27,14 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
 
     #region Methods
 
-    public void SpawnCharacterInCell(GridCell cell)
+    public void SpawnCharacterInCell(CharacterBase character, GridCell cell)
     {
-        if(cell.IsEmpty == false)
-        {
-            return;
-        }
+        GameObject newCharacter = Instantiate(character.gameObject);
+        newCharacter.transform.position = cell.SpawnPosition.position;
+        newCharacter.transform.SetParent(transform);
 
-        ShopManager shopManager = ShopManager.Instance;
-        if(shopManager == null)
-        {
-            return;
-        }
-
-        CharacterBase characterToSpawn = shopManager.SelectedCharacter;
-        if(characterToSpawn == null)
-        {
-            Debug.Log("Postac wybrana w sklepie to null!".SetColor(Color.red));
-            return;
-        }
-
-        // Kupienie jezeli garcza stac na aktualnie wybrana postac.
-        if(shopManager.TryBuySelectedCharacter() == true)
-        {
-            GameObject newCharacter = Instantiate(characterToSpawn.gameObject);
-            newCharacter.transform.position = cell.SpawnPosition.position;
-            newCharacter.transform.SetParent(transform);
-
-            cell.IsEmpty = false;
-            SpawnedCharacters.Add(newCharacter);
-        }
+        cell.IsEmpty = false;
+        SpawnedCharacters.Add(newCharacter);
     }
 
     public List<Tuple<CharacterBase, CharacterType>> GetCharactersAwaibleToBuy()

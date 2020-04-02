@@ -88,6 +88,16 @@ class GridManager : ManagerSingletonBase<GridManager>
         return null;
     }
 
+    public bool CanSpawnCharacterInCell(GridCell cell)
+    {
+        if(cell.IsEmpty == false)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();

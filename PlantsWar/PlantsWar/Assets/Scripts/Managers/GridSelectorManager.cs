@@ -39,7 +39,13 @@ class GridSelectorManager : ManagerSingletonBase<GridSelectorManager>
         if(positiveCharacters != null && gridManager != null)
         {
             GridCell cell = gridManager.GetCellByID(id);
-            positiveCharacters.SpawnCharacterInCell(cell);
+            if(gridManager.CanSpawnCharacterInCell(cell) == true)
+            {
+                if(ShopManager.Instance?.TryBuySelectedCharacter() == true)
+                {
+                    positiveCharacters.SpawnCharacterInCell(ShopManager.Instance?.SelectedCharacter, cell);
+                }
+            }
         }
     }
 
