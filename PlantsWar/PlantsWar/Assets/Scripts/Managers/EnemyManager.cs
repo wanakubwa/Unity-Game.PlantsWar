@@ -57,6 +57,12 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager> {
         return null;
     }
 
+    public CharacterType GetRandomCharacterType()
+    {
+        int index = UnityEngine.Random.Range(0, EnemyCharactersDefinitions.Count -1);
+        return EnemyCharactersDefinitions[index].Type;
+    }
+
     protected override void OnEnable () {
         base.OnEnable ();
 
@@ -68,9 +74,9 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager> {
             Debug.LogError("UWAGA! - Brak przeciwnikow do pobrania!");
         }
 
-        // Do usuniecia tylko dla testow.
-        SpawnCharacterOfTypeAtPosition(CharacterType.SPIDER, GridManager.Instance.GetRandomSpawnPosition());
-        SpawnCharacterOfTypeAtPosition(CharacterType.SPIDER, GridManager.Instance.GetRandomSpawnPosition());
+        // // Do usuniecia tylko dla testow.
+        // SpawnCharacterOfTypeAtPosition(CharacterType.SPIDER, GridManager.Instance.GetRandomSpawnPosition());
+        // SpawnCharacterOfTypeAtPosition(CharacterType.SPIDER, GridManager.Instance.GetRandomSpawnPosition());
     }
 
     #endregion
