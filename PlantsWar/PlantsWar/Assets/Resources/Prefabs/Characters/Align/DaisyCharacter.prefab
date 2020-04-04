@@ -130,7 +130,7 @@ MonoBehaviour:
   upgradeLvl: 0
   type: 0
   prize: 75
-  healthPoints: 50
+  healthPoints: 150
   range: 0
   attackDelay: 0
   attackDamage: 0

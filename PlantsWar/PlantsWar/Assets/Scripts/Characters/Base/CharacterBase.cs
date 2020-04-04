@@ -130,7 +130,7 @@ public class CharacterBase : MonoBehaviour
 
     public virtual void ReciveDamage(float damage)
     {
-        
+
     }
 
     protected virtual bool CanMove()
@@ -156,6 +156,11 @@ public class CharacterBase : MonoBehaviour
     protected virtual void OnEnable()
     {
         SpriteRendererInitialize();
+    }
+
+    public void AddHealthPoints(float value)
+    {
+        HealthPoints += value;
     }
 
     private void SpriteRendererInitialize()

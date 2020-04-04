@@ -12,7 +12,7 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
     #endregion
 
     #region Propeties
-    public List<GameObject> SpawnedCharacters {
+    public List<CharacterBase> SpawnedCharacters {
         get;
         private set;
     }
@@ -28,7 +28,7 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
 
     public void SpawnCharacterInCell(CharacterBase character, GridCell cell)
     {
-        GameObject newCharacter = Instantiate(character.gameObject);
+        CharacterBase newCharacter = Instantiate(character);
         newCharacter.transform.position = cell.SpawnPosition.position;
         newCharacter.transform.SetParent(transform);
 
@@ -81,12 +81,50 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         return null;
     }
 
+    public CharacterBase GetSpawnedCharacterById(int id)
+    {
+        if(SpawnedCharacters != null)
+        {
+            foreach(CharacterBase character in SpawnedCharacters)
+            {
+                if(character.Id == id)
+                {
+                    return character;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public void RemoveSpawnedCharacterById(int id)
+    {
+        CharacterBase character = GetSpawnedCharacterById(id);
+
+        if(character != null)
+        {
+            SpawnedCharacters.Remove(character);
+            Destroy(character.gameObject);
+        }
+
+        // TODO: INFO ZE LISTA SIE ZMIENILA.
+    }
+
+    public void KillSpawnedCharacterOfId(int id)
+    {
+        CharacterBase character = GetSpawnedCharacterById(id);
+
+        // TODO;
+        //character?.kill
+        RemoveSpawnedCharacterById(id);
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
 
         // todo: przerobic na normalne wywoalnie.
-        SpawnedCharacters = new List<GameObject>();
+        SpawnedCharacters = new List<CharacterBase>();
 
         // Pobranie wszystkich dostepnych characterow.
         InGameCharacters = GetPositiveCharacters();

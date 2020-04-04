@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 
-class DaisyCharacter : CharacterBase
+public class DaisyCharacter : CharacterBase
 {
     #region Fields
 
@@ -21,7 +22,14 @@ class DaisyCharacter : CharacterBase
 
     #region Methods
 
-
+    public override void ReciveDamage(float damage)
+    {
+        AddHealthPoints(-damage);
+        if(HealthPoints <= 0f)
+        {
+            PositiveCharactersManager.Instance?.KillSpawnedCharacterOfId(Id);
+        }
+    }
 
     #endregion
 
