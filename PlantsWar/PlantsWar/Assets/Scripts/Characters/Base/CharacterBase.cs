@@ -27,6 +27,10 @@ public class CharacterBase : MonoBehaviour
     [SerializeField]
     private float attackDelay;
     [SerializeField]
+    private float attackDamage;
+    [SerializeField]
+    private float moveSpeed;
+    [SerializeField]
     private Sprite sprite;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -94,9 +98,60 @@ public class CharacterBase : MonoBehaviour
         private set => shopCardBackground = value; 
     }
 
+    public float AttackDamage { 
+        get => attackDamage; 
+        private set => attackDamage = value; 
+    }
+
+    public float MoveSpeed { 
+        get => moveSpeed; 
+        private set => moveSpeed = value; 
+    }
+
     #endregion
 
     #region Methods
+
+    public void Move(float time)
+    {
+        if(CanMove() == true)
+        {
+            OnMoveAction(time);
+        }
+    }
+
+    public void Attack(float time)
+    {
+        if(CanAttack() == true)
+        {
+            OnAttackAction(time);
+        }
+    }
+
+    public virtual void ReciveDamage(float damage)
+    {
+        
+    }
+
+    protected virtual bool CanMove()
+    {
+        return false;
+    }
+
+    protected virtual void OnMoveAction(float time)
+    {
+
+    }
+
+    protected virtual bool CanAttack()
+    {
+        return false;
+    }
+
+    protected virtual void OnAttackAction(float time)
+    {
+        
+    }
 
     protected virtual void OnEnable()
     {

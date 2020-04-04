@@ -110,7 +110,7 @@ class GridManager : ManagerSingletonBase<GridManager> {
         List<Vector3> output = new List<Vector3> ();
 
         for (int i = 0; i < Grid.GetLength (1); i++) {
-            output.Add (Grid[Grid.GetLength (0) - 1, i].transform.position);
+            output.Add (Grid[Grid.GetLength (0) - 1, i].SpawnPosition.position);
         }
 
         return output;

@@ -73,10 +73,16 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager> {
         {
             Debug.LogError("UWAGA! - Brak przeciwnikow do pobrania!");
         }
+    }
 
-        // // Do usuniecia tylko dla testow.
-        // SpawnCharacterOfTypeAtPosition(CharacterType.SPIDER, GridManager.Instance.GetRandomSpawnPosition());
-        // SpawnCharacterOfTypeAtPosition(CharacterType.SPIDER, GridManager.Instance.GetRandomSpawnPosition());
+    private void Update() 
+    {
+        float deltaMilis = Time.deltaTime * 1000f;
+        for(int i = 0; i < EnemyCharactersSpawned.Count; i++)
+        {
+            EnemyCharactersSpawned[i].Move(deltaMilis);
+            EnemyCharactersSpawned[i].Attack(deltaMilis);
+        }
     }
 
     #endregion

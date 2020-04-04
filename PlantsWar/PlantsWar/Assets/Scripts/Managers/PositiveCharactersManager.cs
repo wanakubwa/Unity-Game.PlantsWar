@@ -12,7 +12,6 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
     #endregion
 
     #region Propeties
-
     public List<GameObject> SpawnedCharacters {
         get;
         private set;

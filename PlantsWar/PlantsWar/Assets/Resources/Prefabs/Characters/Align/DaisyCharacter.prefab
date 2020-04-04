@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5408042184212263843}
   - component: {fileID: 4599689831964934178}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite.Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4754585554797763013}
   - component: {fileID: 445227335854625588}
-  m_Layer: 0
+  - component: {fileID: 5740880977546123858}
+  - component: {fileID: 1818207974721855059}
+  m_Layer: 10
   m_Name: DaisyCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +133,56 @@ MonoBehaviour:
   healthPoints: 50
   range: 0
   attackDelay: 0
+  attackDamage: 0
+  moveSpeed: 0
   sprite: {fileID: 21300000, guid: 8e717bdaf33be5047a1d5f3a8f63af8d, type: 3}
   spriteRenderer: {fileID: 4599689831964934178}
   spriteScale: {x: 0.9, y: 0.9, z: 1}
   shopCardBackground: {fileID: 21300000, guid: 349e68b495dfba64a89d28b493d94a4b, type: 3}
+--- !u!61 &5740880977546123858
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8113526142541975384}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.024200283, y: -0.0026889741}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.49986035, y: 0.48910457}
+  m_EdgeRadius: 0
+--- !u!50 &1818207974721855059
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8113526142541975384}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

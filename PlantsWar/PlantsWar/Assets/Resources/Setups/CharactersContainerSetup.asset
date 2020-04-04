@@ -32,5 +32,5 @@ MonoBehaviour:
   - type: 7
     characters:
     - localizeKey: ENEMY_SPIDER
-      characterPrefab: {fileID: 4317001178422401976, guid: 2aa221557724eda458d0124cfb25cb72,
+      characterPrefab: {fileID: 7654303614708601806, guid: 2aa221557724eda458d0124cfb25cb72,
         type: 3}
