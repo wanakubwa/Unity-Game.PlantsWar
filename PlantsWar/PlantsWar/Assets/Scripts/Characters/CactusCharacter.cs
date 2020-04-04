@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-class RoseCharacter : CharacterBase
+public class CactusCharacter : CharacterBase
 {
     #region Fields
 
@@ -40,32 +40,13 @@ class RoseCharacter : CharacterBase
 
     protected override bool CanAttack(float time)
     {
-        if(IsColliding == true)
-        {
-            if (AttackDelayCounter > AttackDelay)
-            {
-                AttackDelayCounter = 0f;
-                return true;
-            }
-            else
-            {
-                AttackDelayCounter += time;
-                return false;
-            }
-        }
-        else
-        {
-            AttackDelayCounter = 0f;
-            return false;
-        }
+        //TODO:
+        return base.CanAttack(time);
     }
 
     protected override void OnAttackAction(float time)
     {
-        if (Character != null)
-        {
-            Character.ReciveDamage(AttackDamage);
-        }
+        // TODO:
     }
 
     #endregion

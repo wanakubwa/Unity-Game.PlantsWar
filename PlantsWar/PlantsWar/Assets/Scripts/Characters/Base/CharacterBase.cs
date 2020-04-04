@@ -108,6 +108,11 @@ public class CharacterBase : MonoBehaviour
         private set => moveSpeed = value; 
     }
 
+    public float AttackDelayCounter{
+        get; 
+        protected set;
+    } = 0f;
+
     #endregion
 
     #region Methods
@@ -122,7 +127,7 @@ public class CharacterBase : MonoBehaviour
 
     public void Attack(float time)
     {
-        if(CanAttack() == true)
+        if(CanAttack(time) == true)
         {
             OnAttackAction(time);
         }
@@ -143,7 +148,7 @@ public class CharacterBase : MonoBehaviour
 
     }
 
-    protected virtual bool CanAttack()
+    protected virtual bool CanAttack(float time)
     {
         return false;
     }

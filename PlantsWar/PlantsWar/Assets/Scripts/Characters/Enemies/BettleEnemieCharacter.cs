@@ -15,11 +15,6 @@ public class BettleEnemieCharacter : CharacterBase
         private set;
     }
 
-    public float AttackDelayCounter{
-        get; 
-        private set;
-    } = 0f;
-
     public CharacterBase PlayerCharacter {
         get;
         private set;
@@ -29,14 +24,33 @@ public class BettleEnemieCharacter : CharacterBase
     
     #region Methods
     
-    protected override bool CanAttack()
+    public override void ReciveDamage(float damage)
+    {
+        AddHealthPoints(-damage);
+        if(HealthPoints <= 0f)
+        {
+            EnemyManager.Instance?.KillSpawnedCharacter(this);
+        }
+    }
+
+    protected override bool CanAttack(float time)
     {
         if(IsColliding == true)
         {
-            return true;
+            if (AttackDelayCounter > AttackDelay)
+            {
+                AttackDelayCounter = 0f;
+                return true;
+            }
+            else
+            {
+                AttackDelayCounter += time;
+                return false;
+            }
         }
         else
         {
+            AttackDelayCounter = 0f;
             return false;
         }
     }
@@ -55,18 +69,9 @@ public class BettleEnemieCharacter : CharacterBase
 
     protected override void OnAttackAction(float time)
     {
-        if (AttackDelayCounter > AttackDelay)
+        if (PlayerCharacter != null)
         {
-            if (PlayerCharacter != null)
-            {
-                PlayerCharacter.ReciveDamage(AttackDamage);
-            }
-
-            AttackDelayCounter = 0f;
-        }
-        else
-        {
-            AttackDelayCounter += time;
+            PlayerCharacter.ReciveDamage(AttackDamage);
         }
     }
 

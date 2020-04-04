@@ -132,6 +132,15 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
     }
 
+    private void Update() 
+    {
+        float deltaMilis = Time.deltaTime * 1000f;
+        for(int i = 0; i < SpawnedCharacters.Count; i++)
+        {
+            SpawnedCharacters[i].Attack(deltaMilis);
+        }
+    }
+
     private List<SingleCharacter> GetPositiveCharacters()
     {
         CharactersContainerSetup charactersContainer = CharactersContainerSetup.Instance;

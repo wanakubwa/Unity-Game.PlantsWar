@@ -132,12 +132,12 @@ MonoBehaviour:
   prize: 100
   healthPoints: 200
   range: 1
-  attackDelay: 100
-  attackDamage: 0
+  attackDelay: 750
+  attackDamage: 100
   moveSpeed: 0
   sprite: {fileID: 21300000, guid: 0f1c5336cec9b94488d59072cd57a728, type: 3}
   spriteRenderer: {fileID: 4599689831964934178}
-  spriteScale: {x: 0.9, y: 0.9, z: 1}
+  spriteScale: {x: 1, y: 1, z: 1}
   shopCardBackground: {fileID: 21300000, guid: d37b89e6b1ba87b4a9e3ed873330c65b, type: 3}
 --- !u!61 &4574922381811350697
 BoxCollider2D:

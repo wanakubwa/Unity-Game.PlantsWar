@@ -63,6 +63,24 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager> {
         return EnemyCharactersDefinitions[index].Type;
     }
 
+    public void RemoveSpawnedCharacter(CharacterBase character)
+    {
+        if(character != null)
+        {
+            EnemyCharactersSpawned.Remove(character);
+            Destroy(character.gameObject);
+        }
+
+        // TODO: INFO ZE LISTA SIE ZMIENILA.
+    }
+    public void KillSpawnedCharacter(CharacterBase character)
+    {
+        if(EnemyCharactersSpawned != null)
+        {
+            RemoveSpawnedCharacter(character);
+        }
+    }
+
     protected override void OnEnable () {
         base.OnEnable ();
 

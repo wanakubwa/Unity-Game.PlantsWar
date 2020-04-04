@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-
 public class DaisyCharacter : CharacterBase
 {
     #region Fields
@@ -29,6 +28,25 @@ public class DaisyCharacter : CharacterBase
         {
             PositiveCharactersManager.Instance?.KillSpawnedCharacterOfId(Id);
         }
+    }
+
+    protected override bool CanAttack(float time)
+    {
+        if(AttackDelayCounter > AttackDelay)
+        {
+            AttackDelayCounter = 0f;
+            return true;
+        }
+        else
+        {
+            AttackDelayCounter += time;
+            return false;
+        }
+    }
+
+    protected override void OnAttackAction(float time)
+    {
+        PlayerWalletManager.Instance?.TryAddMoney((int)AttackDamage);
     }
 
     #endregion
