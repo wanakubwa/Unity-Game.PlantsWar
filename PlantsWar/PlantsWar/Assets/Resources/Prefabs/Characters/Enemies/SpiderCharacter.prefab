@@ -189,3 +189,5 @@ MonoBehaviour:
   triggerLayer:
     serializedVersion: 2
     m_Bits: 1024
+  spawnBullet: {fileID: 643015199219972638, guid: 3aa2c96748be7b847ab5a2424cd0f724,
+    type: 3}

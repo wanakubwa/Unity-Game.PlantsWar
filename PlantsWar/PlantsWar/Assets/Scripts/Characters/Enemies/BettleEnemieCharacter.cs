@@ -86,15 +86,16 @@ public class BettleEnemieCharacter : CharacterBase
     
     private void OnTriggerEnter2D(Collider2D positiveCharacter) 
     {
-        IsColliding = true;
-
         PlayerCharacter = positiveCharacter.gameObject.GetComponent<CharacterBase>();
+        if(PlayerCharacter != null)
+        {
+            IsColliding = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D positiveCharacter) 
     {
         IsColliding = false;
-
         PlayerCharacter = null;
     }
     

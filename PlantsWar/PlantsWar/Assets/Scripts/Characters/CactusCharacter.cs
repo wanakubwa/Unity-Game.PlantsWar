@@ -12,6 +12,8 @@ public class CactusCharacter : CharacterBase
     [Space]
     [SerializeField]
     private LayerMask triggerLayer;
+    [SerializeField]
+    private Bullet spawnBullet;
 
     #endregion
 
@@ -30,6 +32,11 @@ public class CactusCharacter : CharacterBase
     public LayerMask TriggerLayer { 
         get => triggerLayer; 
         private set => triggerLayer = value; 
+    }
+
+    public Bullet SpawnBullet { 
+        get => spawnBullet; 
+        private set => spawnBullet = value; 
     }
 
     #endregion
@@ -69,7 +76,11 @@ public class CactusCharacter : CharacterBase
 
     protected override void OnAttackAction(float time)
     {
-        // TODO:
+        Bullet bullet = Instantiate(SpawnBullet, transform.position, Quaternion.identity);
+        bullet.transform.SetParent(transform);
+        bullet.Damage = AttackDamage;
+        bullet.Direction = Vector3.right;
+        bullet.Speed = 90f;
     }
 
     private bool IsEnemieInRange()
@@ -77,9 +88,8 @@ public class CactusCharacter : CharacterBase
         Debug.DrawRay(transform.position, Vector3.right * Range, Color.green);
         RaycastHit2D hit =  Physics2D.Raycast(transform.position,  Vector3.right, Range, TriggerLayer.value);
 
-        if(hit.collider)
+        if(hit.collider && hit.collider.tag != "bullet")
         {
-            Debug.Log("Cactus fire!".SetColor(Color.magenta));
             return true;
         }
 
@@ -89,7 +99,6 @@ public class CactusCharacter : CharacterBase
     #endregion
 
     #region Handlers
-
 
 
     #endregion

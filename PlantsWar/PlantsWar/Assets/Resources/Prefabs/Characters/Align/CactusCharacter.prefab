@@ -127,7 +127,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009856455, y: 0.008206427}
+  m_Offset: {x: 0.0069732442, y: 0.008206427}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -138,7 +138,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.34482133, y: 0.382676}
+  m_Size: {x: 0.37848073, y: 0.382676}
   m_EdgeRadius: 0
 --- !u!50 &-6344089765559380300
 Rigidbody2D:
@@ -179,7 +179,7 @@ MonoBehaviour:
   prize: 200
   healthPoints: 100
   range: 4
-  attackDelay: 1550
+  attackDelay: 2800
   attackDamage: 50
   moveSpeed: 0
   sprite: {fileID: 21300000, guid: 2add9841186c98344b07297f018a8b78, type: 3}
@@ -189,3 +189,5 @@ MonoBehaviour:
   triggerLayer:
     serializedVersion: 2
     m_Bits: 256
+  spawnBullet: {fileID: 643015199219972638, guid: ec3fc51747d75a3498f8d197f2474e3c,
+    type: 3}
