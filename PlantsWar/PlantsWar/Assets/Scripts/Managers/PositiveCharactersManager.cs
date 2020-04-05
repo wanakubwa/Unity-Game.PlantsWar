@@ -31,6 +31,7 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         CharacterBase newCharacter = Instantiate(character);
         newCharacter.transform.position = cell.SpawnPosition.position;
         newCharacter.transform.SetParent(transform);
+        newCharacter.CellId = cell.Id;
 
         cell.IsEmpty = false;
         SpawnedCharacters.Add(newCharacter);

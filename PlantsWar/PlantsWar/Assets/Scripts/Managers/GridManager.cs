@@ -87,6 +87,12 @@ class GridManager : ManagerSingletonBase<GridManager> {
     #region Methods
 
     public GridCell GetCellByID (int id) {
+
+        if(id == -1)
+        {
+            return null;
+        }
+
         for (int i = 0; i < Grid.GetLength (0); i++) {
             for (int y = 0; y < Grid.GetLength (1); y++) {
                 if (Grid[i, y].Id == id) {
@@ -120,6 +126,15 @@ class GridManager : ManagerSingletonBase<GridManager> {
     {
         int index = UnityEngine.Random.Range(0, SpawnPositions.Count -1);
         return SpawnPositions[index];
+    }
+
+    public void FreeCellById(int id)
+    {
+        GridCell cell = GetCellByID(id);
+        if(cell != null)
+        {
+            cell.IsEmpty = true;
+        }
     }
 
     protected override void OnEnable () {
@@ -199,7 +214,6 @@ class GridManager : ManagerSingletonBase<GridManager> {
 
     private void OnCellSelectedHandler (int id) {
         GridCell selectedCell = GetCellByID (id);
-
         Debug.LogFormat ("Transfrom: {0}, For cell id: {1}.", selectedCell.transform, selectedCell.Id);
     }
 

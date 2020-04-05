@@ -113,6 +113,11 @@ public class CharacterBase : MonoBehaviour
         protected set;
     } = 0f;
 
+    public int CellId{
+        get;
+        set;
+    } = -1;
+
     #endregion
 
     #region Methods
@@ -161,6 +166,11 @@ public class CharacterBase : MonoBehaviour
     protected virtual void OnEnable()
     {
         SpriteRendererInitialize();
+    }
+
+    protected virtual void OnDisable() 
+    {
+        GridManager.Instance?.FreeCellById(CellId);
     }
 
     public void AddHealthPoints(float value)
