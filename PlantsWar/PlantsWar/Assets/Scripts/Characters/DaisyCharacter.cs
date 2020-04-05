@@ -26,7 +26,7 @@ public class DaisyCharacter : CharacterBase
         AddHealthPoints(-damage);
         if(HealthPoints <= 0f)
         {
-            PositiveCharactersManager.Instance?.KillSpawnedCharacterOfId(Id);
+            PositiveCharactersManager.Instance?.KillSpawnedCharacter(this);
         }
     }
 

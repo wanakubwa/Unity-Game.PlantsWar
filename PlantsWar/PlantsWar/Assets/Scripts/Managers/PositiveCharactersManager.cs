@@ -97,26 +97,15 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         return null;
     }
 
-    public void RemoveSpawnedCharacterById(int id)
+    public void KillSpawnedCharacter(CharacterBase character)
     {
-        CharacterBase character = GetSpawnedCharacterById(id);
-
-        if(character != null)
+        if (character != null)
         {
-            SpawnedCharacters.Remove(character);
+            // TODO;
+            //character?.kill
+            RemoveSpawnedCharacter(character);
             Destroy(character.gameObject);
         }
-
-        // TODO: INFO ZE LISTA SIE ZMIENILA.
-    }
-
-    public void KillSpawnedCharacterOfId(int id)
-    {
-        CharacterBase character = GetSpawnedCharacterById(id);
-
-        // TODO;
-        //character?.kill
-        RemoveSpawnedCharacterById(id);
     }
 
     protected override void OnEnable()
@@ -138,6 +127,14 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         for(int i = 0; i < SpawnedCharacters.Count; i++)
         {
             SpawnedCharacters[i].Attack(deltaMilis);
+        }
+    }
+
+    private void RemoveSpawnedCharacter(CharacterBase character)
+    {
+        if(SpawnedCharacters != null)
+        {
+            SpawnedCharacters.Remove(character);
         }
     }
 
