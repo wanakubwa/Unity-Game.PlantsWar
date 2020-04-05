@@ -37,7 +37,7 @@ public class BettleEnemieCharacter : CharacterBase
     {
         if(IsColliding == true)
         {
-            if (AttackDelayCounter > AttackDelay)
+            if (AttackDelayCounter >= AttackDelay)
             {
                 AttackDelayCounter = 0f;
                 return true;
@@ -50,7 +50,10 @@ public class BettleEnemieCharacter : CharacterBase
         }
         else
         {
-            AttackDelayCounter = 0f;
+            if(AttackDelayCounter < AttackDelay)
+            {
+                AttackDelayCounter += time;
+            }
             return false;
         }
     }

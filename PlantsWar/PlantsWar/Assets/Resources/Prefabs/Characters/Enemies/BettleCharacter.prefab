@@ -157,7 +157,7 @@ MonoBehaviour:
   type: 6
   prize: 0
   healthPoints: 100
-  range: 10
+  range: 1
   attackDelay: 2000
   attackDamage: 50
   moveSpeed: 100

@@ -56,7 +56,7 @@ public class CactusCharacter : CharacterBase
     {
         if (IsEnemieInRange() == true)
         {
-            if (AttackDelayCounter > AttackDelay)
+            if (AttackDelayCounter >= AttackDelay)
             {
                 AttackDelayCounter = 0f;
                 return true;
@@ -69,7 +69,10 @@ public class CactusCharacter : CharacterBase
         }
         else
         {
-            AttackDelayCounter = 0f;
+            if(AttackDelayCounter < AttackDelay)
+            {
+                AttackDelayCounter += time;
+            }
             return false;
         }
     }

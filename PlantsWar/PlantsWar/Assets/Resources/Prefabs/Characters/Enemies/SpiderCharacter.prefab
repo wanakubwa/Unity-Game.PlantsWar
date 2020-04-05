@@ -179,7 +179,7 @@ MonoBehaviour:
   prize: 0
   healthPoints: 150
   range: 3
-  attackDelay: 1350
+  attackDelay: 2500
   attackDamage: 75
   moveSpeed: 75
   sprite: {fileID: 21300000, guid: 8a083127762fc6b42a37122147e94e3d, type: 3}
