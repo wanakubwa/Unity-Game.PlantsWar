@@ -39,3 +39,8 @@ MonoBehaviour:
     - localizeKey: ENEMY_SPIDER
       characterPrefab: {fileID: -1460079085453598790, guid: ec46adf8130b11f4cb5305cfb9f7f1aa,
         type: 3}
+  - type: 8
+    characters:
+    - localizeKey: ENEMY_DRAGONFLY
+      characterPrefab: {fileID: -6525325442538010782, guid: 777e44e6d41606e4a8aac957daa23f96,
+        type: 3}

@@ -137,6 +137,82 @@ class GridManager : ManagerSingletonBase<GridManager> {
         }
     }
 
+    public List<GridCell> GetNeighboursInCrossCellsById(int id)
+    {
+        List<GridCell> cells = new List<GridCell>();
+        Vector2Int cellIndex = GetCellIndexById(id);
+
+        if(cellIndex.x == -1 || cellIndex.y == -1)
+        {
+            return null;
+        }
+
+        GridCell upperCell = GetCellByindex(cellIndex.x, cellIndex.y - 1);
+        GridCell bottomCell = GetCellByindex(cellIndex.x, cellIndex.y + 1);
+        GridCell leftCell = GetCellByindex(cellIndex.x - 1, cellIndex.y);
+        GridCell rightCell = GetCellByindex(cellIndex.x + 1, cellIndex.y);
+
+        if (upperCell != null)
+        {
+            cells.Add(upperCell);
+        }
+        if (bottomCell != null)
+        {
+            cells.Add(bottomCell);
+        }
+        if (leftCell != null)
+        {
+            cells.Add(leftCell);
+        }
+        if (rightCell != null)
+        {
+            cells.Add(rightCell);
+        }
+
+        if(cells.Count == 0)
+        {
+            return null;
+        }
+        
+        return cells;
+    }
+
+    public GridCell GetCellByindex(int x, int y)
+    {
+        bool isWidth = (x < Grid.GetLength(0)) && (x != -1);
+        bool isHeight = (y < Grid.GetLength(1)) && (y != -1);
+
+        if(isWidth == true && isHeight == true)
+        {
+            return Grid[x, y];
+        }
+
+        return null;
+    }
+
+    public Vector2Int GetCellIndexById(int id)
+    {
+        Vector2Int output = new Vector2Int(-1, -1);
+        if (id == -1)
+        {
+            return output;
+        }
+
+        for (int i = 0; i < Grid.GetLength(0); i++)
+        {
+            for (int y = 0; y < Grid.GetLength(1); y++)
+            {
+                if (Grid[i, y].Id == id)
+                {
+                    output.x = i;
+                    output.y = y;
+                }
+            }
+        }
+
+        return output;
+    }
+
     protected override void OnEnable () {
         base.OnEnable ();
 

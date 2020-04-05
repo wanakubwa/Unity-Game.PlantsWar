@@ -109,6 +109,22 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         }
     }
 
+    public CharacterBase GetCharacterInCellByCellId(int cellId)
+    {
+        if(SpawnedCharacters != null)
+        {
+            foreach (CharacterBase character in SpawnedCharacters)
+            {
+                if(character.CellId == cellId)
+                {
+                    return character;
+                }
+            }
+        }
+
+        return null;
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
