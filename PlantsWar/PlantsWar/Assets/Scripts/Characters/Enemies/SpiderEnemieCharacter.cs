@@ -64,14 +64,21 @@ public class SpiderEnemieCharacter : CharacterBase
 
     protected override bool CanMove()
     {
-        return IsEnemieInRange();
+        if(IsEnemieInRange() == false)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     protected override void OnAttackAction(float time)
     {
         if (PlayerCharacter != null)
         {
-            PlayerCharacter.ReciveDamage(AttackDamage);
+            // tofo;
         }
     }
 
@@ -82,12 +89,11 @@ public class SpiderEnemieCharacter : CharacterBase
 
     private bool IsEnemieInRange()
     {
-        Debug.DrawRay(transform.position, Vector3.right * Range, Color.magenta);
+        Debug.DrawRay(transform.position, Vector3.left * Range, Color.magenta);
         RaycastHit2D hit =  Physics2D.Raycast(transform.position,  Vector3.left, Range, TriggerLayer.value);
 
         if(hit.collider)
         {
-            Debug.Log("Cactus fire!".SetColor(Color.magenta));
             return true;
         }
 

@@ -59,7 +59,7 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager> {
 
     public CharacterType GetRandomCharacterType()
     {
-        int index = UnityEngine.Random.Range(0, EnemyCharactersDefinitions.Count -1);
+        int index = UnityEngine.Random.Range(0, EnemyCharactersDefinitions.Count);
         return EnemyCharactersDefinitions[index].Type;
     }
 
