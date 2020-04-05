@@ -173,7 +173,7 @@ class GridManager : ManagerSingletonBase<GridManager> {
         {
             return null;
         }
-        
+
         return cells;
     }
 
@@ -230,6 +230,21 @@ class GridManager : ManagerSingletonBase<GridManager> {
 
     protected override void AttachEvents () {
         GridSelectorManager.Instance.OnGridCellClick += OnCellSelectedHandler;
+    }
+
+    private void Update() 
+    {
+        float deltaInMs = Time.deltaTime * 1000f;
+        if(Grid != null)
+        {
+            for(int i = 0; i < Grid.GetLength(0); i++)
+            {
+                for(int x = 0; x < grid.GetLength(1); x++)
+                {
+                    Grid[i, x].Refresh(deltaInMs);
+                }
+            }
+        }
     }
 
     private void SetGridCellSize () {
