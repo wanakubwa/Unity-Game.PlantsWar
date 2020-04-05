@@ -27,6 +27,10 @@ class GridManager : ManagerSingletonBase<GridManager> {
     [SerializeField]
     private int gridHeightCells;
 
+    [Space, Header ("Highlights Settings")]
+    [SerializeField]
+    private float blastHighlightDuration;
+
     private Transform gridStartPosition;
     private GridCell[, ] grid;
     private List<Vector3> spawnPositions = new List<Vector3> ();
@@ -81,6 +85,11 @@ class GridManager : ManagerSingletonBase<GridManager> {
     public GridCell[, ] Grid {
         get => grid;
         private set => grid = value;
+    }
+
+    public float BlastHighlightDuration { 
+        get => blastHighlightDuration; 
+        private set => blastHighlightDuration = value; 
     }
 
     #endregion
@@ -211,6 +220,15 @@ class GridManager : ManagerSingletonBase<GridManager> {
         }
 
         return output;
+    }
+
+    public void HighlightCellById(int id)
+    {
+        GridCell cell = GetCellByID(id);
+        if(cell != null)
+        {
+            cell.SetHighlight(BlastHighlightDuration);
+        }
     }
 
     protected override void OnEnable () {

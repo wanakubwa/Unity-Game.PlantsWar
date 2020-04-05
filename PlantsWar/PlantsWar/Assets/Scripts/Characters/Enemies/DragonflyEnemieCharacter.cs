@@ -94,7 +94,7 @@ public class DragonflyEnemieCharacter : CharacterBase
 
             ApplyDamageToCharacters(neighbourCharacters);
             EnemyManager.Instance?.KillSpawnedCharacter(this);
-            //TODO: podswietlenie komorek.
+
             //TODO: animacja wybuchu.
         }
     }
@@ -104,6 +104,7 @@ public class DragonflyEnemieCharacter : CharacterBase
         foreach (CharacterBase character in neighbourCharacters)
         {
             character.ReciveDamage(AttackDamage);
+            GridManager.Instance?.HighlightCellById(character.CellId);
         }
     }
 

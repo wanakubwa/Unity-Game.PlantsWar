@@ -50,3 +50,4 @@ MonoBehaviour:
     type: 3}
   gridWithCells: 8
   gridHeightCells: 6
+  blastHighlightDuration: 600
