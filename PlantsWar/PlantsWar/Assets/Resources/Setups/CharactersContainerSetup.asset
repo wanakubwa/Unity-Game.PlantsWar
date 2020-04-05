@@ -29,8 +29,13 @@ MonoBehaviour:
       characterPrefab: {fileID: 3676011925380756061, guid: 04721468f8ce9fd4bad003df389e5a81,
         type: 3}
   enemieCharactersCollection:
+  - type: 6
+    characters:
+    - localizeKey: ENEMY_BEETLE
+      characterPrefab: {fileID: 7654303614708601806, guid: 2aa221557724eda458d0124cfb25cb72,
+        type: 3}
   - type: 7
     characters:
     - localizeKey: ENEMY_SPIDER
-      characterPrefab: {fileID: 7654303614708601806, guid: 2aa221557724eda458d0124cfb25cb72,
+      characterPrefab: {fileID: -1460079085453598790, guid: ec46adf8130b11f4cb5305cfb9f7f1aa,
         type: 3}
