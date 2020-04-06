@@ -40,6 +40,21 @@ public class GameManager : ManagerSingletonBase<GameManager>
         Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.cyan), this.GetType());
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        GameManager[] objs = FindObjectsOfType<GameManager>();
+
+        if (objs.Length > 1)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     private List<GameObject> GetObjectsToSpawnOnAwake()
     {
         List<GameObject> toSpawnObjects = new List<GameObject>();
@@ -66,9 +81,9 @@ public class GameManager : ManagerSingletonBase<GameManager>
             return;
         }
 
-        foreach (GameObject @object in toSpawnObjects)
+        foreach (GameObject toSpawn in toSpawnObjects)
         {
-            GameObject spawnedObject = Instantiate(@object, transform.position, Quaternion.identity);
+            GameObject spawnedObject = Instantiate(toSpawn);
             spawnedObject.transform.SetParent(this.transform);
         }
     }
