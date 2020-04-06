@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : ManagerSingletonBase<EnemyManager> {
+public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
+{
     #region Fields
 
     private List<SingleCharacter> enemyCharactersDefinitions;
@@ -77,8 +78,29 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager> {
     {
         if(EnemyCharactersSpawned != null)
         {
+            //TODO: wywolac animacje smierci zamast destroy.
             RemoveSpawnedCharacter(character);
         }
+    }
+
+    public void ResetFields()
+    {
+        for(int i = 0; i < EnemyCharactersSpawned.Count; i++)
+        {
+            Destroy(EnemyCharactersSpawned[i]);
+        }
+
+        EnemyCharactersSpawned.Clear();
+    }
+
+    public void Load()
+    {
+        //TODO  
+    }
+
+    public void Save()
+    {
+        //TODO
     }
 
     protected override void OnEnable () {
@@ -91,6 +113,8 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager> {
         {
             Debug.LogError("UWAGA! - Brak przeciwnikow do pobrania!");
         }
+
+        Debug.LogFormat ("[{0}] Zainicjalizowany.".SetColor (Color.green), this.GetType ());
     }
 
     private void Update() 

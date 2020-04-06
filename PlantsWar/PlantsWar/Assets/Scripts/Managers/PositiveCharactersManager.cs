@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharactersManager>
+public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharactersManager>, ISaveable
 {
     #region Fields
 
@@ -125,6 +125,25 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         return null;
     }
 
+    public void ResetFields()
+    {
+        for(int i = 0; i < SpawnedCharacters.Count; i++)
+        {
+            Destroy(SpawnedCharacters[i]);
+        }
+        SpawnedCharacters.Clear();
+    }
+
+    public void Load()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Save()
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -160,6 +179,7 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         CharactersContainerSetup charactersContainer = CharactersContainerSetup.Instance;
         return charactersContainer.GetAllAwaiblePositiveCharacters();
     }
+
     #endregion
 
     #region Handlers

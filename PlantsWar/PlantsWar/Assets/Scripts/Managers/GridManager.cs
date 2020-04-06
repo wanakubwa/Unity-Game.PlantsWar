@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-class GridManager : ManagerSingletonBase<GridManager> {
+class GridManager : ManagerSingletonBase<GridManager>, ISaveable
+{
     #region Fields
 
     [Space]
@@ -146,6 +147,21 @@ class GridManager : ManagerSingletonBase<GridManager> {
         }
     }
 
+    public List<int> GetAllCellsId()
+    {
+        List<int> output = new List<int>();
+
+        for(int i = 0; i < Grid.GetLength(0); i++)
+        {
+            for(int x = 0; x < Grid.GetLength(1); x++)
+            {
+                output.Add(Grid[i, x].Id);
+            }
+        }
+
+        return output;
+    }
+
     public List<GridCell> GetNeighboursInCrossCellsById(int id)
     {
         List<GridCell> cells = new List<GridCell>();
@@ -229,6 +245,26 @@ class GridManager : ManagerSingletonBase<GridManager> {
         {
             cell.SetHighlight(BlastHighlightDuration);
         }
+    }
+
+    public void ResetFields()
+    {
+        List<int> ids = GetAllCellsId();
+
+        foreach (int id in ids)
+        {
+            FreeCellById(id);
+        }
+    }
+
+    public void Load()
+    {
+        //TODO
+    }
+
+    public void Save()
+    {
+        //TODO
     }
 
     protected override void OnEnable () {

@@ -29,11 +29,6 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
         private set;
     }
 
-    //public SelectedCharacter PositiveCharacter { 
-    //    get => positiveCharacter; 
-    //    private set => positiveCharacter = value; 
-    //}
-
     public CharacterBase SelectedCharacter {
         get;
         private set;
@@ -99,51 +94,4 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
 
 
     #endregion
-
-    //public class SelectedCharacter
-    //{
-    //    #region Fields
-
-    //    private string key;
-    //    private int prize;
-    //    private GameObject characterObject;
-
-    //    #endregion
-
-    //    #region Propeties
-
-    //    public string Key { 
-    //        get => key; 
-    //        private set => key = value; 
-    //    }
-
-    //    public int Prize { 
-    //        get => prize; 
-    //        private set => prize = value; 
-    //    }
-
-    //    public GameObject CharacterObject { 
-    //        get => characterObject; 
-    //        private set => characterObject = value; 
-    //    }
-
-    //    #endregion
-
-    //    #region Methods
-
-    //    public SelectedCharacter(string key, int prize, GameObject characterObj)
-    //    {
-    //        Key = key;
-    //        Prize = prize;
-    //        CharacterObject = characterObj;
-    //    }
-
-    //    #endregion
-
-    //    #region Handlers
-
-
-
-    //    #endregion
-    //}
 }

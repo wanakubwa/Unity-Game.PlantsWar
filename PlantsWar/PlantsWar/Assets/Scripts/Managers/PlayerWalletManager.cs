@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
 
-public class PlayerWalletManager : ManagerSingletonBase<PlayerWalletManager> 
+public class PlayerWalletManager : ManagerSingletonBase<PlayerWalletManager>, ISaveable
 {
     #region Fields
     [SerializeField]
     private int money;
+    [SerializeField]
+    private int startMoney;
 
     #endregion
 
@@ -15,7 +17,12 @@ public class PlayerWalletManager : ManagerSingletonBase<PlayerWalletManager>
         get => money;
         private set => money = value;
     }
-    
+
+    public int StartMoney { 
+        get => startMoney; 
+        private set => startMoney = value; 
+    }
+
     public event Action<int> OnMoneyChange = delegate{};
 
     #endregion
@@ -51,10 +58,27 @@ public class PlayerWalletManager : ManagerSingletonBase<PlayerWalletManager>
         OnMoneyChange.Invoke(Money);
     }
 
+    public void ResetFields()
+    {
+        Money = StartMoney;
+        OnMoneyChangeCall();
+    }
+
+    public void Load()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Save()
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
 
+        Money = StartMoney;
         Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
     }
 
@@ -66,15 +90,15 @@ public class PlayerWalletManager : ManagerSingletonBase<PlayerWalletManager>
     }
 
     #endregion
-    
+
     #region Handlers
-    
-    
+
+
     #endregion
-    
+
     #region Enums
-    
-    
-    
+
+
+
     #endregion
 }

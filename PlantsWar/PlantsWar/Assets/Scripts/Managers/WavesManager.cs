@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using OdinSerializer;
 using System;
 
-public class WavesManager : ManagerSingletonBase<WavesManager>
+public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
 {
     #region Fields
 
@@ -81,6 +81,26 @@ public class WavesManager : ManagerSingletonBase<WavesManager>
 
     #region Methods
 
+    public void ResetFields()
+    {
+        CharactersInRowCounter = 0;
+        RowDelayCounter = 0f;
+        RowsCounter = 0;
+        SpawnCharacterDelayCounter = 0f;
+        StartDelayCounter = 0f;
+        WavesCounter = 0;
+    }
+
+    public void Load()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Save()
+    {
+        throw new NotImplementedException();
+    }
+    
     protected override void OnEnable()
     {
         StartDelayCounter = 0f;

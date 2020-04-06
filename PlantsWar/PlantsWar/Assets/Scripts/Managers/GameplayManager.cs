@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class GameplayManager : ManagerSingletonBase<GameplayManager>
+public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
 {
     #region Fields
     
@@ -44,6 +44,21 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>
     #endregion
 
     #region Methods
+
+    public void ResetFields()
+    {
+        EnemiesLimitCounter = 0;
+    }
+
+    public void Load()
+    {
+        //TODO
+    }
+
+    public void Save()
+    {
+        //TODO
+    }
 
     protected override void AttachEvents()
     {
