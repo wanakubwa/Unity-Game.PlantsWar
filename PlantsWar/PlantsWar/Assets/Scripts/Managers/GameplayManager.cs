@@ -18,6 +18,8 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>
     #region Propeties
 
     public event Action<int> OnEnemiesLimitCounterChange = delegate{};
+    public event Action OnGameOver = delegate{};
+    public event Action OnGameWin = delegate{};
 
     public EndPoint RightEndPoint { 
         get => rightEndPoint; 
@@ -97,7 +99,7 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>
     {
         if(counter >= EnemiesLimit)
         {
-            Debug.Log("FAIL!".SetColor(Color.red));
+            OnGameOver.Invoke();
         }
     }
 
