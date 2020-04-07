@@ -53,6 +53,6 @@ MonoBehaviour:
   - {fileID: 7936059095218287403, guid: 8dc7152410310f747abc7b53ff4078b3, type: 3}
   - {fileID: 4345437639555046705, guid: b5579b2024965c04485eaf5af1d6af86, type: 3}
   eventsToSpawn:
+  - {fileID: 8190002521541972339, guid: 6f953572f3a6de04cbaaac6f51a1f50d, type: 3}
   - {fileID: 1093284087251743287, guid: ad9bf27e26abf06408e88c15df35635c, type: 3}
   - {fileID: 1320737829201641750, guid: 150620191e0f8bb4684a03f0ba3df7bb, type: 3}
-  - {fileID: 8190002521541972339, guid: 6f953572f3a6de04cbaaac6f51a1f50d, type: 3}

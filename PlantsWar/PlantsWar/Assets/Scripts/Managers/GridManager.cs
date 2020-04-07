@@ -282,8 +282,20 @@ class GridManager : ManagerSingletonBase<GridManager>, ISaveable
         Debug.LogFormat ("[{0}] Zainicjalizowany.".SetColor (Color.green), this.GetType ());
     }
 
-    protected override void AttachEvents () {
+    protected override void AttachEvents () 
+    {
+        base.AttachEvents();
+
         GridSelectorManager.Instance.OnGridCellClick += OnCellSelectedHandler;
+        SaveLoadManager.Instance.OnResetGame += ResetFields;
+    }
+
+    protected override void DettachEvents()
+    {
+        base.DettachEvents();
+
+        GridSelectorManager.Instance.OnGridCellClick -= OnCellSelectedHandler;
+        SaveLoadManager.Instance.OnResetGame -= ResetFields;
     }
 
     private void Update() 

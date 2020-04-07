@@ -89,6 +89,20 @@ public class PlayerWalletManager : ManagerSingletonBase<PlayerWalletManager>, IS
         OnMoneyChangeCall();
     }
 
+    protected override void AttachEvents()
+    {
+        base.AttachEvents();
+
+        SaveLoadManager.Instance.OnResetGame += ResetFields;
+    }
+
+    protected override void DettachEvents()
+    {
+        base.DettachEvents();
+
+        SaveLoadManager.Instance.OnResetGame -= ResetFields;
+    }
+
     #endregion
 
     #region Handlers

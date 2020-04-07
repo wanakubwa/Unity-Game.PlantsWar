@@ -122,6 +122,7 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         base.AttachEvents();
 
         GameplayManager.Instance.OnGameFreez += OnGameFreezHandler;
+        SaveLoadManager.Instance.OnResetGame += ResetFields;
     }
 
     protected override void DettachEvents()
@@ -129,6 +130,7 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         base.DettachEvents();
 
         GameplayManager.Instance.OnGameFreez -= OnGameFreezHandler;
+        SaveLoadManager.Instance.OnResetGame -= ResetFields;
     }
 
     private void Update()

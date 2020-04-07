@@ -70,9 +70,11 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
     {
         base.AttachEvents();
 
-        rightEndPoint.OnTrigger += OnRightTrigger;
-        leftEndPoint.OnTrigger += OnLeftTrigger;
+        RightEndPoint.OnTrigger += OnRightTrigger;
+        LeftEndPoint.OnTrigger += OnLeftTrigger;
         OnEnemiesLimitCounterChange += EnemiesLimitCounterHandler;
+
+        SaveLoadManager.Instance.OnResetGame += ResetFields;
     }
 
     protected override void DettachEvents()
@@ -82,6 +84,8 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
         rightEndPoint.OnTrigger -= OnRightTrigger;
         leftEndPoint.OnTrigger -= OnLeftTrigger;
         OnEnemiesLimitCounterChange -= EnemiesLimitCounterHandler;
+
+        SaveLoadManager.Instance.OnResetGame -= ResetFields;
     }
 
     #endregion
