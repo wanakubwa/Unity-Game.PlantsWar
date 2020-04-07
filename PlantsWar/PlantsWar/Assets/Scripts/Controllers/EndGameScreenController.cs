@@ -9,16 +9,34 @@ class EndGameScreenController : MonoBehaviour
 {
     #region Fields
 
+    [Space]
+    [SerializeField]
+    private EndGameScreenView view;
+    [SerializeField]
+    private Canvas canvas;
 
     #endregion
 
     #region Propeties
 
+    public EndGameScreenView View { 
+        get => view; 
+        private set => view = value; 
+    }
 
+    public Canvas Canvas { 
+        get => canvas; 
+        private set => canvas = value; 
+    }
 
     #endregion
 
     #region Methods
+
+    public void SetCanvasCamera(Camera camera)
+    {
+        Canvas.worldCamera = camera;
+    }
 
     public void ToggleView()
     {
