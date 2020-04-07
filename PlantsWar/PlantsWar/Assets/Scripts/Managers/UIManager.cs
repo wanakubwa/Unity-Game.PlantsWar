@@ -7,6 +7,10 @@ public class UIManager : ManagerSingletonBase<UIManager>
     
     [SerializeField]
     private TopBarUIController topBarController;
+    [SerializeField]
+    private EndGameScreenController gameOverScreenController;
+    [SerializeField]
+    private EndGameScreenController gameWinScreenController;
 
     #endregion
 
@@ -15,6 +19,15 @@ public class UIManager : ManagerSingletonBase<UIManager>
     public TopBarUIController TopBarController { 
         get => topBarController; 
         private set => topBarController = value; 
+    }
+    public EndGameScreenController GameOverScreenController { 
+        get => gameOverScreenController; 
+        private set => gameOverScreenController = value; 
+    }
+
+    public EndGameScreenController GameWinScreenController { 
+        get => gameWinScreenController; 
+        private set => gameWinScreenController = value; 
     }
 
     #endregion
@@ -25,7 +38,10 @@ public class UIManager : ManagerSingletonBase<UIManager>
     {
         base.OnEnable();
 
+        // Inicjalizacja kontrollerow.
         InitializeTopBarUI();
+        InitializeGameOverScreen();
+        InitializeGameWinScreen();
 
         Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
     }
@@ -43,6 +59,8 @@ public class UIManager : ManagerSingletonBase<UIManager>
         {
             Debug.LogErrorFormat("[{0}] Was null! in [{1}]", typeof(PlayerWalletManager), GetType());
         }
+
+        GameplayManager.Instance.OnGameOver += OnGameOverHandler;
     }
 
     protected override void DettachEvents()
@@ -58,6 +76,8 @@ public class UIManager : ManagerSingletonBase<UIManager>
         {
             Debug.LogErrorFormat("[{0}] Was null! in [{1}]", typeof(PlayerWalletManager), GetType());
         }
+
+        GameplayManager.Instance.OnGameOver -= OnGameOverHandler;
     }
     
     private void InitializeTopBarUI()
@@ -66,13 +86,32 @@ public class UIManager : ManagerSingletonBase<UIManager>
         TopBarController.SetCanvasCamera(Camera.main);
     }
 
+    private void InitializeGameOverScreen()
+    {
+        GameOverScreenController = Instantiate(GameOverScreenController);
+        GameOverScreenController.SetCanvasCamera(Camera.main);
+        GameOverScreenController.ToggleView();
+    }
+
+    private void InitializeGameWinScreen()
+    {
+        GameWinScreenController = Instantiate(GameWinScreenController);
+        GameWinScreenController.SetCanvasCamera(Camera.main);
+        GameWinScreenController.ToggleView();
+    }
+
     #endregion
-    
+
     #region Handlers
-    
+
     private void OnMoneyChangeHandler(int value)
     {
         TopBarController.SetCoinsNumber(value);
+    }
+
+    private void OnGameOverHandler()
+    {
+        GameOverScreenController.ToggleView();
     }
     
     #endregion

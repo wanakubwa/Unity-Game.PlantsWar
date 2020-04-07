@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-class EndGameScreenController : MonoBehaviour
+public class EndGameScreenController : MonoBehaviour
 {
     #region Fields
 
@@ -52,13 +52,14 @@ class EndGameScreenController : MonoBehaviour
 
     public void ResetGame()
     {
-        Debug.Log("Reset");
+        Debug.Log("Reset".SetColor(Color.blue));
+        GameplayManager.Instance.CallGameFreez(false);
         ToggleView();
     }
 
     public void NextLvl()
     {
-
+        //TODO;
     }
 
     #endregion

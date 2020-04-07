@@ -20,6 +20,7 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
     public event Action<int> OnEnemiesLimitCounterChange = delegate{};
     public event Action OnGameOver = delegate{};
     public event Action OnGameWin = delegate{};
+    public event Action<bool> OnGameFreez = delegate { };
 
     public EndPoint RightEndPoint { 
         get => rightEndPoint; 
@@ -58,6 +59,11 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
     public void Save()
     {
         //TODO
+    }
+
+    public void CallGameFreez(bool isFreezed)
+    {
+        OnGameFreez.Invoke(isFreezed);
     }
 
     protected override void AttachEvents()
@@ -114,6 +120,7 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
     {
         if(counter >= EnemiesLimit)
         {
+            OnGameFreez.Invoke(true);
             OnGameOver.Invoke();
         }
     }

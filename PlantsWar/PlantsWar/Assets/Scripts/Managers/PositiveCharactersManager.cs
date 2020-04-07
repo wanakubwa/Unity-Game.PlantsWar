@@ -22,6 +22,11 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         private set;
     }
 
+    public bool IsGameFreezed {
+        get;
+        private set;
+    }
+
     #endregion
 
     #region Methods
@@ -157,13 +162,30 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
     }
 
+    protected override void AttachEvents()
+    {
+        base.AttachEvents();
+
+        GameplayManager.Instance.OnGameFreez += OnGameFreezHandler;
+    }
+
+    protected override void DettachEvents()
+    {
+        base.DettachEvents();
+
+        GameplayManager.Instance.OnGameFreez -= OnGameFreezHandler;
+    }
+
     private void Update() 
     {
-        float deltaMilis = Time.deltaTime * 1000f;
-        for(int i = 0; i < SpawnedCharacters.Count; i++)
+        if (IsGameFreezed == false)
         {
-            SpawnedCharacters[i].Attack(deltaMilis);
-        }
+            float deltaMilis = Time.deltaTime * 1000f;
+            for (int i = 0; i < SpawnedCharacters.Count; i++)
+            {
+                SpawnedCharacters[i].Attack(deltaMilis);
+            }
+        } 
     }
 
     private void RemoveSpawnedCharacter(CharacterBase character)
@@ -184,7 +206,10 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
 
     #region Handlers
 
-
+    private void OnGameFreezHandler(bool isFreezed)
+    {
+        IsGameFreezed = isFreezed;
+    }
 
     #endregion
 }

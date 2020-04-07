@@ -77,6 +77,11 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         private set;
     }
 
+    public bool IsGameFreezed {
+        get;
+        private set;
+    }
+
     #endregion
 
     #region Methods
@@ -112,15 +117,32 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         WavesCounter = 0;
     }
 
+    protected override void AttachEvents()
+    {
+        base.AttachEvents();
+
+        GameplayManager.Instance.OnGameFreez += OnGameFreezHandler;
+    }
+
+    protected override void DettachEvents()
+    {
+        base.DettachEvents();
+
+        GameplayManager.Instance.OnGameFreez -= OnGameFreezHandler;
+    }
+
     private void Update()
     {
-        if(StartDelayCounter >= FirstWaveDelay)
+        if (IsGameFreezed == false)
         {
-            SpawnEnemiesInWave(Time.deltaTime * 1000);
-        }
-        else
-        {
-            StartDelayCounter += (Time.deltaTime * 1000);
+            if (StartDelayCounter >= FirstWaveDelay)
+            {
+                SpawnEnemiesInWave(Time.deltaTime * 1000);
+            }
+            else
+            {
+                StartDelayCounter += (Time.deltaTime * 1000);
+            }
         }
     }
 
@@ -178,7 +200,10 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
 
     #region Handlers
 
-
+    private void OnGameFreezHandler(bool isFreezed)
+    {
+        IsGameFreezed = isFreezed;
+    }
 
     #endregion
 }

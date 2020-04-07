@@ -45,3 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topBarController: {fileID: 6138928043046362948, guid: 356b3cba09a770544bd85a12ec0f6cac,
     type: 3}
+  gameOverScreenController: {fileID: 6513088597302545438, guid: 75a01769928708642b5a4222b6f05483,
+    type: 3}
+  gameWinScreenController: {fileID: 2333426440371265105, guid: c09ac3a1d528c434ab2496db0cd35cf8,
+    type: 3}

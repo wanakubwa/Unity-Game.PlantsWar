@@ -23,6 +23,12 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
         private set => enemyCharactersSpawned = value; 
     }
 
+    public bool IsGameFreezed
+    {
+        get;
+        private set;
+    }
+
     #endregion
 
     #region Methods
@@ -117,14 +123,36 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
         Debug.LogFormat ("[{0}] Zainicjalizowany.".SetColor (Color.green), this.GetType ());
     }
 
+    protected override void AttachEvents()
+    {
+        base.AttachEvents();
+
+        GameplayManager.Instance.OnGameFreez += OnGameFreezHandler;
+    }
+
+    protected override void DettachEvents()
+    {
+        base.DettachEvents();
+
+        GameplayManager.Instance.OnGameFreez -= OnGameFreezHandler;
+    }
+
     private void Update() 
     {
-        float deltaMilis = Time.deltaTime * 1000f;
-        for(int i = 0; i < EnemyCharactersSpawned.Count; i++)
+        if (IsGameFreezed == false)
         {
-            EnemyCharactersSpawned[i].Move(deltaMilis);
-            EnemyCharactersSpawned[i].Attack(deltaMilis);
+            float deltaMilis = Time.deltaTime * 1000f;
+            for (int i = 0; i < EnemyCharactersSpawned.Count; i++)
+            {
+                EnemyCharactersSpawned[i].Move(deltaMilis);
+                EnemyCharactersSpawned[i].Attack(deltaMilis);
+            }
         }
+    }
+
+    private void OnGameFreezHandler(bool isFreezed)
+    {
+        IsGameFreezed = isFreezed;
     }
 
     #endregion
