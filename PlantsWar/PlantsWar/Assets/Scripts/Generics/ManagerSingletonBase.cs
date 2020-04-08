@@ -39,12 +39,13 @@ public class ManagerSingletonBase<T> : MonoBehaviour where T : MonoBehaviour
 
 	protected virtual void Start() 
 	{
+		AttachEvents();
 		BrodcastEvents();
 	}
 
 	protected virtual void OnEnable()
 	{
-		AttachEvents();
+		
 	}
 
 	protected virtual void OnDisable() 

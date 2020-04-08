@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
     #endregion
 
     #region Propeties
+
+    public event Action OnSpawnedEnemiesChanged = delegate { };
 
     public List<SingleCharacter> EnemyCharactersDefinitions { 
         get => enemyCharactersDefinitions; 
@@ -43,6 +46,8 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
             spawnedCharacter.transform.position = position;
 
             EnemyCharactersSpawned.Add(spawnedCharacter);
+
+            OnSpawnedEnemiesChanged.Invoke();
         }
         else
         {
@@ -76,10 +81,11 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
         {
             EnemyCharactersSpawned.Remove(character);
             Destroy(character.gameObject);
-        }
 
-        // TODO: INFO ZE LISTA SIE ZMIENILA.
+            OnSpawnedEnemiesChanged.Invoke();
+        }
     }
+
     public void KillSpawnedCharacter(CharacterBase character)
     {
         if(EnemyCharactersSpawned != null)

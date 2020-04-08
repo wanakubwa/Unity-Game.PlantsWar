@@ -7,6 +7,7 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
 {
     #region Fields
 
+    [Space]
     [SerializeField]
     private int enemiesInRow;
     [SerializeField]
@@ -17,6 +18,10 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     private float spawnCharactersDelay;
     [SerializeField]
     private float rowsDelay;
+
+    [Space]
+    [SerializeField]
+    private int wavesLimit;
 
     #endregion
 
@@ -80,6 +85,11 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     public bool IsGameFreezed {
         get;
         private set;
+    }
+
+    public int WavesLimit { 
+        get => wavesLimit; 
+        private set => wavesLimit = value; 
     }
 
     #endregion
@@ -153,7 +163,7 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     // TODO:
     private void SpawnEnemiesInWave(float time)
     {
-        if(WavesCounter == 1)
+        if(WavesCounter == WavesLimit)
         {
             return;
         }

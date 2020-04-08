@@ -75,6 +75,7 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
         OnEnemiesLimitCounterChange += EnemiesLimitCounterHandler;
 
         SaveLoadManager.Instance.OnResetGame += ResetFields;
+        EnemyManager.Instance.OnSpawnedEnemiesChanged += OnEnemiesSpawnedChangedHandler;
     }
 
     protected override void DettachEvents()
@@ -86,6 +87,7 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
         OnEnemiesLimitCounterChange -= EnemiesLimitCounterHandler;
 
         SaveLoadManager.Instance.OnResetGame -= ResetFields;
+        EnemyManager.Instance.OnSpawnedEnemiesChanged -= OnEnemiesSpawnedChangedHandler;
     }
 
     #endregion
@@ -126,6 +128,18 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
         {
             OnGameFreez.Invoke(true);
             OnGameOver.Invoke();
+        }
+    }
+
+    private void OnEnemiesSpawnedChangedHandler()
+    {
+        if(EnemyManager.Instance.EnemyCharactersSpawned.Count == 0)
+        {
+            WavesManager wavesManager = WavesManager.Instance;
+            if(wavesManager.WavesCounter == wavesManager.WavesLimit)
+            {
+                OnGameWin.Invoke();
+            }
         }
     }
 
