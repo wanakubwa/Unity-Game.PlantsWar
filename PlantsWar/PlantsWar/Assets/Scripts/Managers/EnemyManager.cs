@@ -93,7 +93,7 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
     {
         for(int i = 0; i < EnemyCharactersSpawned.Count; i++)
         {
-            Destroy(EnemyCharactersSpawned[i]);
+            Destroy(EnemyCharactersSpawned[i].gameObject);
         }
 
         EnemyCharactersSpawned.Clear();

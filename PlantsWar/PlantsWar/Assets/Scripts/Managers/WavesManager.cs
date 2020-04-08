@@ -108,6 +108,8 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     
     protected override void OnEnable()
     {
+        base.OnEnable();
+
         StartDelayCounter = 0f;
         RowDelayCounter = 0f;
         SpawnCharacterDelayCounter = 0f;

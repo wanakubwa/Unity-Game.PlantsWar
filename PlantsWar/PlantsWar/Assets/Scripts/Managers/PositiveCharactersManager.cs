@@ -134,7 +134,7 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
     {
         for(int i = 0; i < SpawnedCharacters.Count; i++)
         {
-            Destroy(SpawnedCharacters[i]);
+            Destroy(SpawnedCharacters[i].gameObject);
         }
         SpawnedCharacters.Clear();
     }
