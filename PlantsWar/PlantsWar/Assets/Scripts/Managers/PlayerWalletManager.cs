@@ -96,9 +96,9 @@ public class PlayerWalletManager : ManagerSingletonBase<PlayerWalletManager>, IS
         SaveLoadManager.Instance.OnResetGame += ResetFields;
     }
 
-    protected override void DettachEvents()
+    protected override void DetachEvents()
     {
-        base.DettachEvents();
+        base.DetachEvents();
 
         SaveLoadManager.Instance.OnResetGame -= ResetFields;
     }

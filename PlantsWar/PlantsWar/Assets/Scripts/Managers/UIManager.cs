@@ -65,9 +65,9 @@ public class UIManager : ManagerSingletonBase<UIManager>
         GameplayManager.Instance.OnGameWin += OnGameWinHandler;
     }
 
-    protected override void DettachEvents()
+    protected override void DetachEvents()
     {
-        base.DettachEvents();
+        base.DetachEvents();
 
         PlayerWalletManager walletManager = PlayerWalletManager.Instance;
         if(walletManager != null)

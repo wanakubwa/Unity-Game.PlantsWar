@@ -290,9 +290,9 @@ class GridManager : ManagerSingletonBase<GridManager>, ISaveable
         SaveLoadManager.Instance.OnResetGame += ResetFields;
     }
 
-    protected override void DettachEvents()
+    protected override void DetachEvents()
     {
-        base.DettachEvents();
+        base.DetachEvents();
 
         GridSelectorManager.Instance.OnGridCellClick -= OnCellSelectedHandler;
         SaveLoadManager.Instance.OnResetGame -= ResetFields;

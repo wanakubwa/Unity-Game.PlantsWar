@@ -170,9 +170,9 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         SaveLoadManager.Instance.OnResetGame += ResetFields;
     }
 
-    protected override void DettachEvents()
+    protected override void DetachEvents()
     {
-        base.DettachEvents();
+        base.DetachEvents();
 
         GameplayManager.Instance.OnGameFreez -= OnGameFreezHandler;
         SaveLoadManager.Instance.OnResetGame -= ResetFields;

@@ -78,9 +78,9 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
         EnemyManager.Instance.OnSpawnedEnemiesChanged += OnEnemiesSpawnedChangedHandler;
     }
 
-    protected override void DettachEvents()
+    protected override void DetachEvents()
     {
-        base.DettachEvents();
+        base.DetachEvents();
 
         rightEndPoint.OnTrigger -= OnRightTrigger;
         leftEndPoint.OnTrigger -= OnLeftTrigger;

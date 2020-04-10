@@ -6,9 +6,6 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
 {
     #region Fields
 
-    private List<SingleCharacter> enemyCharactersDefinitions;
-
-    private List<CharacterBase> enemyCharactersSpawned;
 
     #endregion
 
@@ -17,13 +14,13 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
     public event Action OnSpawnedEnemiesChanged = delegate { };
 
     public List<SingleCharacter> EnemyCharactersDefinitions { 
-        get => enemyCharactersDefinitions; 
-        private set => enemyCharactersDefinitions = value; 
+        get; 
+        private set; 
     }
 
     public List<CharacterBase> EnemyCharactersSpawned { 
-        get => enemyCharactersSpawned; 
-        private set => enemyCharactersSpawned = value; 
+        get; 
+        private set; 
     }
 
     public bool IsGameFreezed
@@ -107,12 +104,17 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
 
     public void Load()
     {
-        //TODO  
+        EnemyManagerMemento enemyManagerMemento = SaveLoadManager.Instance.LoadManagerClass(this) as EnemyManagerMemento;
+        if(enemyManagerMemento != null)
+        {
+            EnemyCharactersSpawned = enemyManagerMemento.EnemyCharactersSpawned;
+        }
+
     }
 
     public void Save()
     {
-        //TODO
+        SaveLoadManager.Instance.SaveManagerClass(this);
     }
 
     protected override void OnEnable () {
@@ -135,14 +137,18 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
 
         GameplayManager.Instance.OnGameFreez += OnGameFreezHandler;
         SaveLoadManager.Instance.OnResetGame += ResetFields;
+        SaveLoadManager.Instance.OnLoadGame += Load;
+        SaveLoadManager.Instance.OnSaveGame += Save;
     }
 
-    protected override void DettachEvents()
+    protected override void DetachEvents()
     {
-        base.DettachEvents();
+        base.DetachEvents();
 
         GameplayManager.Instance.OnGameFreez -= OnGameFreezHandler;
         SaveLoadManager.Instance.OnResetGame -= ResetFields;
+        SaveLoadManager.Instance.OnLoadGame -= Load;
+        SaveLoadManager.Instance.OnSaveGame -= Save;
     }
 
     private void Update() 

@@ -11,6 +11,9 @@ public class ManagerSingletonBase<T> : MonoBehaviour where T : MonoBehaviour
 
 	private static T instance;
 
+	[SerializeField]
+	private string fileName;
+
 	#endregion
 	#region Propeties
 	public static T Instance
@@ -27,6 +30,11 @@ public class ManagerSingletonBase<T> : MonoBehaviour where T : MonoBehaviour
 		{
 			instance = value;
 		}
+	}
+
+	public string FileName { 
+		get => fileName; 
+		private set => fileName = value; 
 	}
 
 	#endregion
@@ -50,7 +58,7 @@ public class ManagerSingletonBase<T> : MonoBehaviour where T : MonoBehaviour
 
 	protected virtual void OnDisable() 
 	{
-		DettachEvents();
+		DetachEvents();
 	}
 
 	protected virtual void AttachEvents()
@@ -58,7 +66,7 @@ public class ManagerSingletonBase<T> : MonoBehaviour where T : MonoBehaviour
 
 	}
 
-	protected virtual void DettachEvents()
+	protected virtual void DetachEvents()
 	{
 
 	}
