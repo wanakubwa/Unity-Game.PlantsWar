@@ -28,12 +28,12 @@ public class MainMenuController : MonoBehaviour
 
     public void OnOptionsButtons()
     {
-        
+        Application.OpenURL("https://www.youtube.com/watch?v=4oLnJiYN_GE");
     }
 
     public void OnFacebookButton()
     {
-
+        Application.OpenURL("https://www.facebook.com/GeekBox-109186153819085/");
     }
     
     #endregion
