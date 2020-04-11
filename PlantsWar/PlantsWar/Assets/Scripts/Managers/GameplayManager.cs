@@ -20,7 +20,6 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
     public event Action<int> OnEnemiesLimitCounterChange = delegate{};
     public event Action OnGameOver = delegate{};
     public event Action OnGameWin = delegate{};
-    public event Action<bool> OnGameFreez = delegate { };
     public event Action OnWaveClear = delegate {};
 
     public EndPoint RightEndPoint { 
@@ -66,10 +65,10 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
         SaveLoadManager.Instance.SaveManagerClass(this);
     }
 
-    public void CallGameFreez(bool isFreezed)
-    {
-        OnGameFreez.Invoke(isFreezed);
-    }
+    // public void CallGameFreez(bool isFreezed)
+    // {
+    //     OnGameFreez.Invoke(isFreezed);
+    // }
 
     public void SetEnemiesLimitCounter(int value)
     {
@@ -88,7 +87,10 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
         SaveLoadManager.Instance.OnResetGame += ResetFields;
         SaveLoadManager.Instance.OnSaveGame += Save;
         SaveLoadManager.Instance.OnLoadGame += Load;
+
+        GameplayManager.Instance.OnWaveClear += OnWaveClearHandler;
         
+        //TODO naprawic to.
         EnemyManager.Instance.OnSpawnedEnemiesChanged += OnEnemiesSpawnedChangedHandler;
     }
 
@@ -103,6 +105,8 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
         SaveLoadManager.Instance.OnResetGame -= ResetFields;
         SaveLoadManager.Instance.OnSaveGame -= Save;
         SaveLoadManager.Instance.OnLoadGame -= Load;
+
+        GameplayManager.Instance.OnWaveClear -= OnWaveClearHandler;
 
         EnemyManager.Instance.OnSpawnedEnemiesChanged -= OnEnemiesSpawnedChangedHandler;
     }
@@ -143,7 +147,7 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
     {
         if(counter >= EnemiesLimit)
         {
-            OnGameFreez.Invoke(true);
+            GameEventsManager.Instance.OnGameFreezNotify(true);
             OnGameOver.Invoke();
         }
     }
@@ -166,6 +170,11 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
                 OnWaveClear.Invoke();
             }
         }
+    }
+
+    private void OnWaveClearHandler()
+    {
+        SaveLoadManager.Instance.CallSaveGame();
     }
 
     #endregion

@@ -21,7 +21,7 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
     public List<CharacterBase> EnemyCharactersSpawned { 
         get; 
         private set; 
-    }
+    } = new List<CharacterBase>();
 
     public bool IsGameFreezed
     {
@@ -135,7 +135,7 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
     {
         base.AttachEvents();
 
-        GameplayManager.Instance.OnGameFreez += OnGameFreezHandler;
+        GameEventsManager.Instance.OnGameFreez += OnGameFreezHandler;
         SaveLoadManager.Instance.OnResetGame += ResetFields;
         SaveLoadManager.Instance.OnLoadGame += Load;
         SaveLoadManager.Instance.OnSaveGame += Save;
@@ -145,7 +145,7 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
     {
         base.DetachEvents();
 
-        GameplayManager.Instance.OnGameFreez -= OnGameFreezHandler;
+        GameEventsManager.Instance.OnGameFreez -= OnGameFreezHandler;
         SaveLoadManager.Instance.OnResetGame -= ResetFields;
         SaveLoadManager.Instance.OnLoadGame -= Load;
         SaveLoadManager.Instance.OnSaveGame -= Save;

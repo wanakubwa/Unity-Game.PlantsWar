@@ -183,7 +183,7 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     {
         base.AttachEvents();
 
-        GameplayManager.Instance.OnGameFreez += OnGameFreezHandler;
+        GameEventsManager.Instance.OnGameFreez += OnGameFreezHandler;
         GameplayManager.Instance.OnWaveClear += OnWaveClearHandler;
 
         SaveLoadManager.Instance.OnResetGame += ResetFields;
@@ -195,7 +195,7 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     {
         base.DetachEvents();
 
-        GameplayManager.Instance.OnGameFreez -= OnGameFreezHandler;
+        GameEventsManager.Instance.OnGameFreez -= OnGameFreezHandler;
         GameplayManager.Instance.OnWaveClear -= OnWaveClearHandler;
 
         SaveLoadManager.Instance.OnResetGame -= ResetFields;

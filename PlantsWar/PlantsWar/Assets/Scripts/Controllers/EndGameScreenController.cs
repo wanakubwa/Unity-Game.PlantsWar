@@ -52,9 +52,8 @@ public class EndGameScreenController : MonoBehaviour
 
     public void ResetGame()
     {
-        Debug.Log("Reset".SetColor(Color.blue));
         SaveLoadManager.Instance.CallResetGame();
-        GameplayManager.Instance.CallGameFreez(false);
+        GameEventsManager.Instance.OnGameFreezNotify(false);
         ToggleView();
     }
 

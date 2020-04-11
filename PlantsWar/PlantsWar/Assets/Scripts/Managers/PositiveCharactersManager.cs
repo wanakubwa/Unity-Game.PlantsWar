@@ -200,7 +200,7 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
     {
         base.AttachEvents();
 
-        GameplayManager.Instance.OnGameFreez += OnGameFreezHandler;
+        GameEventsManager.Instance.OnGameFreez += OnGameFreezHandler;
         SaveLoadManager.Instance.OnResetGame += ResetFields;
         SaveLoadManager.Instance.OnLoadGame += Load;
         SaveLoadManager.Instance.OnSaveGame += Save;
@@ -210,7 +210,7 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
     {
         base.DetachEvents();
 
-        GameplayManager.Instance.OnGameFreez -= OnGameFreezHandler;
+        GameEventsManager.Instance.OnGameFreez -= OnGameFreezHandler;
         SaveLoadManager.Instance.OnResetGame -= ResetFields;
         SaveLoadManager.Instance.OnLoadGame -= Load;
         SaveLoadManager.Instance.OnSaveGame -= Save;

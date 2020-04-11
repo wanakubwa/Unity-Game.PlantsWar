@@ -161,10 +161,6 @@ public class GameManager : ManagerSingletonBase<GameManager>
 
     void OnLevelFinishedLoading (Scene scene, LoadSceneMode mode)
     {
-        Debug.Log ("Level Loaded");
-        Debug.Log (scene.name);
-        Debug.Log (mode);
-
         CheckLoadedScene ();
     }
 
