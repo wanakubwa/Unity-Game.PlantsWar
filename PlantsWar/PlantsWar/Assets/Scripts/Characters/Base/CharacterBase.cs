@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using OdinSerializer;
 
 [Serializable]
-public class CharacterBase : MonoBehaviour
+public class CharacterBase : SerializedMonoBehaviour
 {
     #region Fields
 

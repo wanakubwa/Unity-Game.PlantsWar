@@ -37,7 +37,7 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
         private set => enemiesLimit = value; 
     }
 
-    public int EnemiesLimitCounter{
+    public int EnemiesLimitCounter {
         get;
         private set;
     }
@@ -53,17 +53,27 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
 
     public void Load()
     {
-        //TODO
+        GameplayManagerMemento memento = SaveLoadManager.Instance.LoadManagerClass(this) as GameplayManagerMemento;
+        if(memento != null)
+        {
+            SetEnemiesLimitCounter(memento.EnemiesLimitCounter);
+        }
     }
 
     public void Save()
     {
-        //TODO
+        SaveLoadManager.Instance.SaveManagerClass(this);
     }
 
     public void CallGameFreez(bool isFreezed)
     {
         OnGameFreez.Invoke(isFreezed);
+    }
+
+    public void SetEnemiesLimitCounter(int value)
+    {
+        EnemiesLimitCounter = value;
+        OnEnemiesLimitCounterChange.Invoke(EnemiesLimitCounter);
     }
 
     protected override void AttachEvents()
@@ -75,6 +85,9 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
         OnEnemiesLimitCounterChange += EnemiesLimitCounterHandler;
 
         SaveLoadManager.Instance.OnResetGame += ResetFields;
+        SaveLoadManager.Instance.OnSaveGame += Save;
+        SaveLoadManager.Instance.OnLoadGame += Load;
+        
         EnemyManager.Instance.OnSpawnedEnemiesChanged += OnEnemiesSpawnedChangedHandler;
     }
 
@@ -87,6 +100,9 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
         OnEnemiesLimitCounterChange -= EnemiesLimitCounterHandler;
 
         SaveLoadManager.Instance.OnResetGame -= ResetFields;
+        SaveLoadManager.Instance.OnSaveGame -= Save;
+        SaveLoadManager.Instance.OnLoadGame -= Load;
+
         EnemyManager.Instance.OnSpawnedEnemiesChanged -= OnEnemiesSpawnedChangedHandler;
     }
 

@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de939188c9ff1a45bd62fad98d14b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fileName: GameplayManager.dat
   rightEndPoint: {fileID: 5118426803692025109}
   leftEndPoint: {fileID: 5118426804578974091}
   enemiesLimit: 5

@@ -6,25 +6,26 @@ using System.Threading.Tasks;
 using OdinSerializer;
 
 [Serializable]
-public class EnemyManagerMemento
+public class GameplayManagerMemento
 {
     #region Fields
 
-    [OdinSerialize]
-    private List<CharacterBase> enemyCharactersSpawned;
+    
 
     #endregion
 
     #region Propeties
 
-    public List<CharacterBase> EnemyCharactersSpawned {
-        get => enemyCharactersSpawned;
-        set => enemyCharactersSpawned = value;
+    [OdinSerialize]
+    public int EnemiesLimitCounter {
+        get;
+        set;
     }
 
     #endregion
 
     #region Methods
+
 
 
     #endregion

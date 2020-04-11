@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
+[Serializable]
 public class DragonflyEnemieCharacter : CharacterBase
 {
         #region Fields

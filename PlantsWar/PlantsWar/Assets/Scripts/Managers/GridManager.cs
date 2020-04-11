@@ -342,6 +342,7 @@ class GridManager : ManagerSingletonBase<GridManager>, ISaveable
 
         for (int i = 0; i < GridHeightCells; i++) {
             for (int y = 0; y < GridWithCells; y++) {
+
                 // Uwtorzenie pozycji nowej komorki siatki zmodyfikowanej o pozycje w tablicy.
                 // W poziomie nalzy dodawac aby przesunac w pionie idziemy w dol wiec odejmujemy.
                 Vector3 position = new Vector3 (GridStartPosition.position.x + y * CellWidth, GridStartPosition.position.y - i * CellHeight, GridStartPosition.position.z);
