@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247330e8c495fa44d8368b323cfd3d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fileName: PositiveCharactersManager.dat

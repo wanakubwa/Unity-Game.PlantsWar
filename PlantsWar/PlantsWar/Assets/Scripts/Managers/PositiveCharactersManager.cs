@@ -42,6 +42,17 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         SpawnedCharacters.Add(newCharacter);
     }
 
+    public void SpawnCharacterInCellId(CharacterBase character, int cellId)
+    {
+        GridCell cell = GridManager.Instance.GetCellByID(cellId);
+        if(cell == null)
+        {
+            return;
+        }
+
+        SpawnCharacterInCell(character, cell);
+    }
+
     public List<CharacterBase> GetCharactersAwaibleToBuy()
     {
         // TODO:
@@ -130,23 +141,44 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         return null;
     }
 
-    public void ResetFields()
+    public void KillAllCharacters()
     {
-        for(int i = 0; i < SpawnedCharacters.Count; i++)
+        for (int i = 0; i < SpawnedCharacters.Count; i++)
         {
             Destroy(SpawnedCharacters[i].gameObject);
         }
+
         SpawnedCharacters.Clear();
+    }
+
+    public void ResetFields()
+    {
+        KillAllCharacters();
     }
 
     public void Load()
     {
-        throw new NotImplementedException();
+        PositiveCharactersManagerMemento memento = SaveLoadManager.Instance.LoadManagerClass(this) as PositiveCharactersManagerMemento;
+        if(memento != null)
+        {
+            // Reset sceny ma sens tylko do testow potem usunac.
+            KillAllCharacters();
+
+            List<CharacterBaseMemento> characterBasesMemento = memento.SpawnedCharacters;
+            if(characterBasesMemento != null)
+            {
+                foreach (CharacterBaseMemento characterMemento in characterBasesMemento)
+                {
+                    CharacterBase character = GetCharacterByIdAndType(characterMemento.Id, characterMemento.Type);
+                    SpawnCharacterInCellId(character, characterMemento.CellId);
+                }
+            }
+        }
     }
 
     public void Save()
     {
-        throw new NotImplementedException();
+        SaveLoadManager.Instance.SaveManagerClass(this);
     }
 
     protected override void OnEnable()
@@ -168,6 +200,8 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
 
         GameplayManager.Instance.OnGameFreez += OnGameFreezHandler;
         SaveLoadManager.Instance.OnResetGame += ResetFields;
+        SaveLoadManager.Instance.OnLoadGame += Load;
+        SaveLoadManager.Instance.OnSaveGame += Save;
     }
 
     protected override void DetachEvents()
@@ -176,6 +210,8 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
 
         GameplayManager.Instance.OnGameFreez -= OnGameFreezHandler;
         SaveLoadManager.Instance.OnResetGame -= ResetFields;
+        SaveLoadManager.Instance.OnLoadGame -= Load;
+        SaveLoadManager.Instance.OnSaveGame -= Save;
     }
 
     private void Update() 
