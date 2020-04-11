@@ -43,6 +43,11 @@ public class CheatsManager : ManagerSingletonBase<CheatsManager>
         SaveLoadManager.Instance.CallLoadGame();
     }
 
+    public void OnMainMenuButton()
+    {
+        GameManager.Instance.LoadMenuScene();
+    }
+
     #endregion
 
     #region Handlers

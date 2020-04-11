@@ -29,6 +29,11 @@ public class GameManager : ManagerSingletonBase<GameManager>
     #endregion
     #region Methods
 
+    public void LoadMenuScene()
+    {
+        //TODO;
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
