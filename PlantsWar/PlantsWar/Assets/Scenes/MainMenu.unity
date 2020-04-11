@@ -357,6 +357,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4928421270849644461, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnQuitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 22433835877335761, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22433835877335761, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22433835877335761, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22433835877335761, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22433835877335761, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5280249800502662920, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
         type: 3}
       propertyPath: m_Name

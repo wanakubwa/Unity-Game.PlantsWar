@@ -35,6 +35,11 @@ public class MainMenuController : MonoBehaviour
     {
         Application.OpenURL("https://www.facebook.com/GeekBox-109186153819085/");
     }
+
+    public void OnQuitButton()
+    {
+        Application.Quit();
+    }
     
     #endregion
     
