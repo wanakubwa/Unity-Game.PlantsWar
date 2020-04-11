@@ -55,6 +55,10 @@ public class SaveLoadManager : ManagerSingletonBase<SaveLoadManager>
         {
             memento = GetSavedGameplayMemento(manager as GameplayManager);
         }
+        else if (classType == typeof(PlayerWalletManager))
+        {
+            memento = GetSavedPlayerWalletManagerMemento(manager as PlayerWalletManager);
+        }
 
         if (memento != null)
         {
@@ -77,6 +81,10 @@ public class SaveLoadManager : ManagerSingletonBase<SaveLoadManager>
         else if (classType == typeof(GameplayManager))
         {
             SaveGameplayManager(manager as GameplayManager);
+        }
+        else if (classType == typeof(PlayerWalletManager))
+        {
+            SavePlayerWalletManager(manager as PlayerWalletManager);
         }
 
         // TODO: wyjatek przy zapisie.
@@ -113,6 +121,19 @@ public class SaveLoadManager : ManagerSingletonBase<SaveLoadManager>
 
         GameplayManagerMemento managerMemento = new GameplayManagerMemento();
         managerMemento.EnemiesLimitCounter = manager.EnemiesLimitCounter;
+
+        var bytes = SerializationUtility.SerializeValue(managerMemento, dataFormat);
+        File.WriteAllBytes(savePath, bytes);
+    }
+
+    private void SavePlayerWalletManager(PlayerWalletManager manager)
+    {
+        DataFormat dataFormat = DataFormat.Binary;
+        string savePath = Application.dataPath + "/" + manager.FileName;
+
+        // Miejsce na uzupelnienie memento przed zapisem.
+        PlayerWalletManagerMemento managerMemento = new PlayerWalletManagerMemento();
+        managerMemento.Money= manager.Money;
 
         var bytes = SerializationUtility.SerializeValue(managerMemento, dataFormat);
         File.WriteAllBytes(savePath, bytes);
@@ -158,6 +179,22 @@ public class SaveLoadManager : ManagerSingletonBase<SaveLoadManager>
 
             var bytes = File.ReadAllBytes(savePath);
             managerMemento = SerializationUtility.DeserializeValue<GameplayManagerMemento>(bytes, dataFormat);
+        }
+
+        return managerMemento;
+    }
+
+    private object GetSavedPlayerWalletManagerMemento(PlayerWalletManager manager)
+    {
+        PlayerWalletManagerMemento managerMemento = null;
+
+        if (File.Exists(Application.dataPath + "/" + manager.FileName))
+        {
+            DataFormat dataFormat = DataFormat.Binary;
+            string savePath = Application.dataPath + "/" + manager.FileName;
+
+            var bytes = File.ReadAllBytes(savePath);
+            managerMemento = SerializationUtility.DeserializeValue<PlayerWalletManagerMemento>(bytes, dataFormat);
         }
 
         return managerMemento;

@@ -66,12 +66,22 @@ public class PlayerWalletManager : ManagerSingletonBase<PlayerWalletManager>, IS
 
     public void Load()
     {
-        throw new NotImplementedException();
+        PlayerWalletManagerMemento memento = SaveLoadManager.Instance.LoadManagerClass(this) as PlayerWalletManagerMemento;
+        if(memento != null)
+        {
+            SetMoney(memento.Money);
+        }
     }
 
     public void Save()
     {
-        throw new NotImplementedException();
+        SaveLoadManager.Instance.SaveManagerClass(this);
+    }
+
+    public void SetMoney(int value)
+    {
+        Money = value;
+        OnMoneyChangeCall();
     }
 
     protected override void OnEnable()
@@ -94,6 +104,8 @@ public class PlayerWalletManager : ManagerSingletonBase<PlayerWalletManager>, IS
         base.AttachEvents();
 
         SaveLoadManager.Instance.OnResetGame += ResetFields;
+        SaveLoadManager.Instance.OnLoadGame += Load;
+        SaveLoadManager.Instance.OnSaveGame += Save;
     }
 
     protected override void DetachEvents()
@@ -101,6 +113,8 @@ public class PlayerWalletManager : ManagerSingletonBase<PlayerWalletManager>, IS
         base.DetachEvents();
 
         SaveLoadManager.Instance.OnResetGame -= ResetFields;
+        SaveLoadManager.Instance.OnLoadGame -= Load;
+        SaveLoadManager.Instance.OnSaveGame -= Save;
     }
 
     #endregion
