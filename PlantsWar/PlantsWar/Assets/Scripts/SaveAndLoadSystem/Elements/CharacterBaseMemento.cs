@@ -35,15 +35,23 @@ public class CharacterBaseMemento
         set;
     } = -1;
 
+    [OdinSerialize]
+    public float HealthPoints
+    {
+        get;
+        set;
+    }
+
     #endregion
 
     #region Methods
 
-    public CharacterBaseMemento(int id, CharacterType type, int cellId)
+    public CharacterBaseMemento(int id, CharacterType type, int cellId, float healthPoints)
     {
         Id = id;
         Type = type;
         CellId = cellId;
+        HealthPoints = healthPoints;
     }
 
     #endregion

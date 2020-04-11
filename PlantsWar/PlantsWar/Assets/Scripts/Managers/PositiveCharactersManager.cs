@@ -170,6 +170,8 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
                 foreach (CharacterBaseMemento characterMemento in characterBasesMemento)
                 {
                     CharacterBase character = GetCharacterByIdAndType(characterMemento.Id, characterMemento.Type);
+
+                    // TODO: puntky zdrowia tez trzeba jakos przywrocic.
                     SpawnCharacterInCellId(character, characterMemento.CellId);
                 }
             }

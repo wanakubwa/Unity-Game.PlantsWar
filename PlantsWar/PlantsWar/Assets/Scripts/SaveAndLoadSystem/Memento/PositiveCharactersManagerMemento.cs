@@ -37,7 +37,7 @@ public class PositiveCharactersManagerMemento
 
     public void AddCharacterToCollection(CharacterBase character)
     {
-        CharacterBaseMemento characterMemento = new CharacterBaseMemento(character.Id, character.Type, character.CellId);
+        CharacterBaseMemento characterMemento = new CharacterBaseMemento(character.Id, character.Type, character.CellId, character.HealthPoints);
         SpawnedCharacters.Add(characterMemento);
     }
 
