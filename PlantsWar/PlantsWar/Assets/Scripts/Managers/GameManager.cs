@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : ManagerSingletonBase<GameManager>
 {
@@ -17,84 +18,155 @@ public class GameManager : ManagerSingletonBase<GameManager>
 
     public List<GameObject> ManagersToSpawn
     {
-        get => managersToSpawn; 
+        get => managersToSpawn;
         private set => managersToSpawn = value;
     }
 
-    public List<GameObject> EventsToSpawn { 
-        get => eventsToSpawn; 
-        private set => eventsToSpawn = value; 
+    public List<GameObject> EventsToSpawn
+    {
+        get => eventsToSpawn;
+        private set => eventsToSpawn = value;
+    }
+
+    public List<GameObject> SpawnedElementsCollection
+    {
+        get;
+        private set;
+    } = new List<GameObject> ();
+
+    public bool IsContinueRequired{
+        get;
+        private set;
     }
 
     #endregion
     #region Methods
 
-    public void LoadMenuScene()
+    public void LoadMenuScene ()
     {
-        //TODO;
+        SceneManager.LoadScene (0, LoadSceneMode.Single);
     }
 
-    protected override void OnEnable()
+    public void LoadGameScene (bool isContinueRequired)
     {
-        base.OnEnable();
-
-        List<GameObject> toSpawnOnAwake;
-        toSpawnOnAwake = GetObjectsToSpawnOnAwake();
-        SpawnAllObjects(toSpawnOnAwake);
-
-        Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.cyan), this.GetType());
+        SceneManager.LoadScene (1, LoadSceneMode.Single);
+        IsContinueRequired = isContinueRequired;
     }
 
-    protected override void Awake()
+    protected override void OnEnable ()
     {
-        base.Awake();
+        base.OnEnable ();
 
-        GameManager[] objs = FindObjectsOfType<GameManager>();
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+
+        if (SceneManager.GetActiveScene ().buildIndex != 0)
+        {
+            SpawnObjects();
+        }
+
+        Debug.LogFormat ("[{0}] Zainicjalizowany.".SetColor (Color.cyan), this.GetType ());
+    }
+
+    protected override void DetachEvents ()
+    {
+        base.DetachEvents ();
+
+        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+    }
+
+    protected override void Awake ()
+    {
+        base.Awake ();
+
+        GameManager[] objs = FindObjectsOfType<GameManager> ();
 
         if (objs.Length > 1)
         {
-            gameObject.SetActive(false);
-            Destroy(gameObject);
+            gameObject.SetActive (false);
+            Destroy (gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad (gameObject);
     }
 
-    private List<GameObject> GetObjectsToSpawnOnAwake()
+    private void SpawnObjects ()
     {
-        List<GameObject> toSpawnObjects = new List<GameObject>();
+        List<GameObject> toSpawnOnAwake;
+        toSpawnOnAwake = GetObjectsToSpawnOnAwake ();
+        SpawnAllObjects (toSpawnOnAwake);
+    }
+
+    private List<GameObject> GetObjectsToSpawnOnAwake ()
+    {
+        List<GameObject> toSpawnObjects = new List<GameObject> ();
 
         // Najpierw spawnowane są eventy pozniej dopiero managery.
-        if(eventsToSpawn != null)
+        if (eventsToSpawn != null)
         {
-            toSpawnObjects.AddRange(EventsToSpawn);
+            toSpawnObjects.AddRange (EventsToSpawn);
         }
 
-        if(managersToSpawn != null)
+        if (managersToSpawn != null)
         {
-            toSpawnObjects.AddRange(ManagersToSpawn);
+            toSpawnObjects.AddRange (ManagersToSpawn);
         }
 
         return toSpawnObjects;
     }
 
-    private void SpawnAllObjects(List<GameObject> toSpawnObjects)
+    private void SpawnAllObjects (List<GameObject> toSpawnObjects)
     {
-        if(toSpawnObjects == null)
+        if (toSpawnObjects == null)
         {
-            Debug.LogFormat("Brak elemwntow do zespawnowania na starcie gry {0}".SetColor(Color.red), this);
+            Debug.LogFormat ("Brak elemwntow do zespawnowania na starcie gry {0}".SetColor (Color.red), this);
             return;
         }
 
         foreach (GameObject toSpawn in toSpawnObjects)
         {
-            GameObject spawnedObject = Instantiate(toSpawn);
-            spawnedObject.transform.SetParent(this.transform);
+            GameObject spawnedObject = Instantiate (toSpawn);
+            spawnedObject.transform.SetParent (this.transform);
+
+            SpawnedElementsCollection.Add (spawnedObject);
+        }
+    }
+
+    private void CheckLoadedScene ()
+    {
+        if (SceneManager.GetActiveScene ().buildIndex == 0)
+        {
+            // Menu.
+            if (SpawnedElementsCollection != null)
+            {
+                foreach (GameObject element in SpawnedElementsCollection)
+                {
+                    Destroy(element);
+                }
+            }
+        }
+        else if (SceneManager.GetActiveScene ().buildIndex == 1)
+        {
+            // GameScene
+            SpawnObjects();
+
+            if(IsContinueRequired == true)
+            {
+                SaveLoadManager.Instance.CallLoadGame();
+            }
         }
     }
 
     #endregion
     #region Handlers
+
+    void OnLevelFinishedLoading (Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log ("Level Loaded");
+        Debug.Log (scene.name);
+        Debug.Log (mode);
+
+        CheckLoadedScene ();
+    }
 
     #endregion
 }
