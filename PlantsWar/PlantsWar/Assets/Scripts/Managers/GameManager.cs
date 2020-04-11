@@ -57,14 +57,17 @@ public class GameManager : ManagerSingletonBase<GameManager>
     {
         base.OnEnable ();
 
-        SceneManager.sceneLoaded += OnLevelFinishedLoading;
-
-        if (SceneManager.GetActiveScene ().buildIndex != 0)
-        {
-            SpawnObjects();
-        }
+        IsContinueRequired = false;
+        CheckLoadedScene();
 
         Debug.LogFormat ("[{0}] Zainicjalizowany.".SetColor (Color.cyan), this.GetType ());
+    }
+
+    protected override void AttachEvents()
+    {
+        base.AttachEvents();
+
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
     }
 
     protected override void DetachEvents ()
