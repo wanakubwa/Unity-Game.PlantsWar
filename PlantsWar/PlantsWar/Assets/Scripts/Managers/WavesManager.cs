@@ -27,6 +27,10 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
 
     #region Propeties
 
+    public event Action OnWavesCounterChanged = delegate {};
+    public event Action OnRowsCounterChanged = delegate {};
+    public event Action OnCharactersInRowChanged = delegate {};
+
     public int EnemiesInRow { 
         get => enemiesInRow; 
         private set => enemiesInRow = value; 
@@ -108,14 +112,40 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
 
     public void Load()
     {
-        throw new NotImplementedException();
+        WavesManagerMemento memento =  SaveLoadManager.Instance.LoadManagerClass(this) as WavesManagerMemento;
+        if(memento != null)
+        {
+            SetCharactersInRowCounter(memento.CharactersInRowCounter);
+            SetWavesCounter(memento.WavesCounter);
+            SetRowsCounter(memento.RowsCounter);
+
+            ResetDelayCounters();
+        }
     }
 
     public void Save()
     {
-        throw new NotImplementedException();
+        SaveLoadManager.Instance.SaveManagerClass(this);
     }
     
+    public void SetWavesCounter(int value)
+    {
+        WavesCounter = value;
+        OnWavesCounterChanged.Invoke();
+    }
+
+    public void SetRowsCounter(int value)
+    {
+        RowsCounter = value;
+        OnRowsCounterChanged.Invoke();
+    }
+
+    public void SetCharactersInRowCounter(int value)
+    {
+        CharactersInRowCounter = value;
+        OnCharactersInRowChanged.Invoke();
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -135,6 +165,8 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
 
         GameplayManager.Instance.OnGameFreez += OnGameFreezHandler;
         SaveLoadManager.Instance.OnResetGame += ResetFields;
+        SaveLoadManager.Instance.OnLoadGame += Load;
+        SaveLoadManager.Instance.OnSaveGame += Save;
     }
 
     protected override void DetachEvents()
@@ -143,6 +175,8 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
 
         GameplayManager.Instance.OnGameFreez -= OnGameFreezHandler;
         SaveLoadManager.Instance.OnResetGame -= ResetFields;
+        SaveLoadManager.Instance.OnLoadGame -= Load;
+        SaveLoadManager.Instance.OnSaveGame -= Save;
     }
 
     private void Update()
@@ -181,15 +215,15 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
                         EnemyManager.Instance.SpawnCharacterOfTypeAtPosition(characterType, position);
 
                         SpawnCharacterDelayCounter = 0f;
-                        CharactersInRowCounter++;
+                        SetCharactersInRowCounter(CharactersInRowCounter + 1);
 
                         Debug.Log("#### Enemie ####".SetColor(Color.cyan));
                     }
                     else
                     {
-                        RowsCounter++;
                         RowDelayCounter = 0f;
-                        CharactersInRowCounter = 0;
+                        SetRowsCounter(RowsCounter + 1);
+                        SetCharactersInRowCounter(0);
 
                         Debug.Log("#### Row ####".SetColor(Color.green));
                     }
@@ -206,8 +240,15 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         }
         else
         {
-            WavesCounter++;
+            SetWavesCounter(WavesCounter + 1);
         }
+    }
+
+    private void ResetDelayCounters()
+    {
+        SpawnCharacterDelayCounter = 0f;
+        RowDelayCounter = 0f;
+        StartDelayCounter = 0f;
     }
 
     #endregion

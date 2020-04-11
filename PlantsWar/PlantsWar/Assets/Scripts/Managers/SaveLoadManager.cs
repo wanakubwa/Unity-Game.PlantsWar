@@ -63,6 +63,10 @@ public class SaveLoadManager : ManagerSingletonBase<SaveLoadManager>
         {
             memento = GetSavedPositiveCharactersManagerMemento(manager as PositiveCharactersManager);
         }
+        else if (classType == typeof(WavesManager))
+        {
+            memento = GetWavesManagerMemento(manager as WavesManager);
+        }
 
         if (memento != null)
         {
@@ -93,6 +97,10 @@ public class SaveLoadManager : ManagerSingletonBase<SaveLoadManager>
         else if (classType == typeof(PositiveCharactersManager))
         {
             SavePositiveCharactersManager(manager as PositiveCharactersManager);
+        }
+        else if (classType == typeof(WavesManager))
+        {
+            SaveWavesManager(manager as WavesManager);
         }
 
         // TODO: wyjatek przy zapisie.
@@ -160,6 +168,23 @@ public class SaveLoadManager : ManagerSingletonBase<SaveLoadManager>
         File.WriteAllBytes(savePath, bytes);
     }
 
+    private void SaveWavesManager(WavesManager manager)
+    {
+        DataFormat dataFormat = DataFormat.Binary;
+        string savePath = Application.dataPath + "/" + manager.FileName;
+
+        // Miejsce na uzupelnienie memento przed zapisem.
+        WavesManagerMemento managerMemento = new WavesManagerMemento();
+        managerMemento.CharactersInRowCounter = manager.CharactersInRowCounter;
+        managerMemento.RowDelayCounter = manager.RowDelayCounter;
+        managerMemento.RowsCounter = manager.RowsCounter;
+        managerMemento.SpawnCharacterDelayCounter = manager.SpawnCharacterDelayCounter;
+        managerMemento.StartDelayCounter = manager.StartDelayCounter;
+        managerMemento.WavesCounter = manager.WavesCounter;
+
+        var bytes = SerializationUtility.SerializeValue(managerMemento, dataFormat);
+        File.WriteAllBytes(savePath, bytes);
+    }
 
 
     // ############################ LOAD SECTION ###################################
@@ -232,6 +257,22 @@ public class SaveLoadManager : ManagerSingletonBase<SaveLoadManager>
 
             var bytes = File.ReadAllBytes(savePath);
             managerMemento = SerializationUtility.DeserializeValue<PositiveCharactersManagerMemento>(bytes, dataFormat);
+        }
+
+        return managerMemento;
+    }
+
+    private object GetWavesManagerMemento(WavesManager manager)
+    {
+        WavesManagerMemento managerMemento = null;
+
+        if (File.Exists(Application.dataPath + "/" + manager.FileName))
+        {
+            DataFormat dataFormat = DataFormat.Binary;
+            string savePath = Application.dataPath + "/" + manager.FileName;
+
+            var bytes = File.ReadAllBytes(savePath);
+            managerMemento = SerializationUtility.DeserializeValue<WavesManagerMemento>(bytes, dataFormat);
         }
 
         return managerMemento;

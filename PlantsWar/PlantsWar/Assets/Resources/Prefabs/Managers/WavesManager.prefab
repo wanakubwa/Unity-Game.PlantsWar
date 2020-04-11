@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7124da465bb3e4e4495ba3223af395f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fileName: WavesManager.dat
   enemiesInRow: 5
   rowsNum: 3
   firstWaveDelay: 3000
