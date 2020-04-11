@@ -49,4 +49,4 @@ MonoBehaviour:
   firstWaveDelay: 3000
   spawnCharactersDelay: 1000
   rowsDelay: 2500
-  wavesLimit: 1
+  wavesLimit: 3

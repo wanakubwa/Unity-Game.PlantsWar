@@ -30,6 +30,7 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     public event Action OnWavesCounterChanged = delegate {};
     public event Action OnRowsCounterChanged = delegate {};
     public event Action OnCharactersInRowChanged = delegate {};
+    public event Action OnEndWave = delegate {};
 
     public int EnemiesInRow { 
         get => enemiesInRow; 
@@ -96,6 +97,11 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         private set => wavesLimit = value; 
     }
 
+    public bool IsWaitingForWaveRequest {
+        get;
+        private set;
+    }
+
     #endregion
 
     #region Methods
@@ -108,6 +114,8 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         SpawnCharacterDelayCounter = 0f;
         StartDelayCounter = 0f;
         WavesCounter = 0;
+
+        IsWaitingForWaveRequest = false;
     }
 
     public void Load()
@@ -146,6 +154,16 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         OnCharactersInRowChanged.Invoke();
     }
 
+    public void OnEndWaveNotify()
+    {
+        OnEndWave.Invoke();
+    }
+
+    public void RequestForNewWave()
+    {
+        IsWaitingForWaveRequest = false;
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -157,6 +175,8 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         RowsCounter = 0;
         CharactersInRowCounter = 0;
         WavesCounter = 0;
+
+        IsWaitingForWaveRequest = false;
     }
 
     protected override void AttachEvents()
@@ -164,6 +184,8 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         base.AttachEvents();
 
         GameplayManager.Instance.OnGameFreez += OnGameFreezHandler;
+        GameplayManager.Instance.OnWaveClear += OnWaveClearHandler;
+
         SaveLoadManager.Instance.OnResetGame += ResetFields;
         SaveLoadManager.Instance.OnLoadGame += Load;
         SaveLoadManager.Instance.OnSaveGame += Save;
@@ -174,6 +196,8 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         base.DetachEvents();
 
         GameplayManager.Instance.OnGameFreez -= OnGameFreezHandler;
+        GameplayManager.Instance.OnWaveClear -= OnWaveClearHandler;
+
         SaveLoadManager.Instance.OnResetGame -= ResetFields;
         SaveLoadManager.Instance.OnLoadGame -= Load;
         SaveLoadManager.Instance.OnSaveGame -= Save;
@@ -185,7 +209,10 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         {
             if (StartDelayCounter >= FirstWaveDelay)
             {
-                SpawnEnemiesInWave(Time.deltaTime * 1000);
+                if(IsWaitingForWaveRequest == false)
+                {
+                    SpawnEnemiesInWave(Time.deltaTime * 1000);
+                }
             }
             else
             {
@@ -241,6 +268,8 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         else
         {
             SetWavesCounter(WavesCounter + 1);
+            SetRowsCounter(0);
+            IsWaitingForWaveRequest = true;
         }
     }
 
@@ -258,6 +287,11 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     private void OnGameFreezHandler(bool isFreezed)
     {
         IsGameFreezed = isFreezed;
+    }
+
+    private void OnWaveClearHandler()
+    {
+        RequestForNewWave();
     }
 
     #endregion

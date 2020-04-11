@@ -21,6 +21,7 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
     public event Action OnGameOver = delegate{};
     public event Action OnGameWin = delegate{};
     public event Action<bool> OnGameFreez = delegate { };
+    public event Action OnWaveClear = delegate {};
 
     public EndPoint RightEndPoint { 
         get => rightEndPoint; 
@@ -157,13 +158,19 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
                 OnGameWin.Invoke();
             }
         }
+        
+        if (EnemyManager.Instance.EnemyCharactersSpawned.Count == 0)
+        {
+            if(WavesManager.Instance.IsWaitingForWaveRequest == true)
+            {
+                OnWaveClear.Invoke();
+            }
+        }
     }
 
     #endregion
 
     #region Enums
-
-
 
     #endregion
 }

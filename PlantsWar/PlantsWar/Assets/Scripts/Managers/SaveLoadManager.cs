@@ -278,11 +278,29 @@ public class SaveLoadManager : ManagerSingletonBase<SaveLoadManager>
         return managerMemento;
     }
 
+
+    protected override void AttachEvents()
+    {
+        base.AttachEvents();
+
+        GameplayManager.Instance.OnWaveClear += OnWaveClearHandler;
+    }
+
+    protected override void DetachEvents()
+    {
+        base.DetachEvents();
+
+        GameplayManager.Instance.OnWaveClear -= OnWaveClearHandler;
+    }
+
     #endregion
 
     #region Handlers
 
-
+    private void OnWaveClearHandler()
+    {
+        CallSaveGame();
+    }
 
     #endregion
 }
