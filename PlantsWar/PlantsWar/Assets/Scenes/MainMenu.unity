@@ -545,5 +545,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2035425370}
+    - target: {fileID: 835591097697739914, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 7991
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47384b0ce4430cd47aa4fd56f1ead4e4, type: 3}

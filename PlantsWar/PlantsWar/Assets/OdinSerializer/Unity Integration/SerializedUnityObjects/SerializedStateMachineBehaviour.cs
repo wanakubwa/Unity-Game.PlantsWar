@@ -23,7 +23,7 @@ namespace OdinSerializer
     /// A Unity StateMachineBehaviour which is serialized by the Sirenix serialization system.
     /// </summary>
 #if ODIN_INSPECTOR
-    [Sirenix.OdinInspector.ShowOdinSerializedPropertiesInInspector]
+    //[Sirenix.OdinInspector.ShowOdinSerializedPropertiesInInspector]
 #endif
 
     public abstract class SerializedStateMachineBehaviour : StateMachineBehaviour, ISerializationCallbackReceiver
