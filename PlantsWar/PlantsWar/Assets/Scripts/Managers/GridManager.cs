@@ -138,6 +138,16 @@ class GridManager : ManagerSingletonBase<GridManager>, ISaveable
         return SpawnPositions[index];
     }
 
+    public Vector3 GetSpawnPositionByIndex(int index)
+    {
+        if(index < SpawnPositions.Count && index > 0)
+        {
+            return SpawnPositions[index];
+        }
+
+        return SpawnPositions.First();
+    }
+
     public void FreeCellById(int id)
     {
         GridCell cell = GetCellByID(id);

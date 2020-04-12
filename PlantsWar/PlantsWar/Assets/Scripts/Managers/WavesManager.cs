@@ -23,6 +23,10 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     [SerializeField]
     private int wavesLimit;
 
+    [Space]
+    [SerializeField]
+    private List<WaveElement> wavesCollection = new List<WaveElement>();
+
     #endregion
 
     #region Propeties
@@ -100,6 +104,12 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     public bool IsWaitingForWaveRequest {
         get;
         private set;
+
+    }
+
+    public List<WaveElement> WavesCollection { 
+        get => wavesCollection; 
+        private set => wavesCollection = value; 
     }
 
     #endregion
@@ -110,10 +120,11 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     {
         CharactersInRowCounter = 0;
         RowDelayCounter = 0f;
-        RowsCounter = 0;
+        SetWavesCounter(0);
+        SetRowsCounter(0);
+
         SpawnCharacterDelayCounter = 0f;
         StartDelayCounter = 0f;
-        WavesCounter = 0;
 
         IsWaitingForWaveRequest = false;
     }
@@ -139,12 +150,16 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     public void SetWavesCounter(int value)
     {
         WavesCounter = value;
+        RefreshRowsNumber();
+
         OnWavesCounterChanged.Invoke();
     }
 
     public void SetRowsCounter(int value)
     {
         RowsCounter = value;
+        RefreshCharactersInRowNumber();
+
         OnRowsCounterChanged.Invoke();
     }
 
@@ -168,13 +183,14 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     {
         base.OnEnable();
 
+        WavesLimit = WavesCollection.Count;
+        SetWavesCounter(0);
+        SetRowsCounter(0);
+
         StartDelayCounter = 0f;
         RowDelayCounter = 0f;
         SpawnCharacterDelayCounter = 0f;
-
-        RowsCounter = 0;
         CharactersInRowCounter = 0;
-        WavesCounter = 0;
 
         IsWaitingForWaveRequest = false;
     }
@@ -201,6 +217,27 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         SaveLoadManager.Instance.OnResetGame -= ResetFields;
         SaveLoadManager.Instance.OnLoadGame -= Load;
         SaveLoadManager.Instance.OnSaveGame -= Save;
+    }
+
+    private void RefreshRowsNumber()
+    {
+        if(WavesCollection.Count > WavesCounter)
+        {
+            RowsNum = WavesCollection[WavesCounter].RowsCollection.Count;
+        }
+    }
+
+    private void RefreshCharactersInRowNumber()
+    {
+        if(WavesCollection.Count <= WavesCounter)
+        {
+            return;
+        }
+
+        if(WavesCollection[WavesCounter].RowsCollection.Count > RowsCounter)
+        {
+            EnemiesInRow = WavesCollection[WavesCounter].RowsCollection[RowsCounter].EnemiesCollection.Count;
+        }
     }
 
     private void Update()
@@ -237,22 +274,21 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
                 {
                     if(CharactersInRowCounter < EnemiesInRow)
                     {
-                        Vector3 position = GridManager.Instance.GetRandomSpawnPosition();
-                        CharacterType characterType = EnemyManager.Instance.GetRandomCharacterType();
-                        EnemyManager.Instance.SpawnCharacterOfTypeAtPosition(characterType, position);
+                        WaveElement wave = WavesCollection[WavesCounter];
+                        RowElement row = wave.RowsCollection[RowsCounter];
+                        EnemyElement enemyToSpawn = row.EnemiesCollection[CharactersInRowCounter];
+
+                        Vector3 position = GridManager.Instance.GetSpawnPositionByIndex(enemyToSpawn.SpawnIndex);
+                        EnemyManager.Instance.SpawnCharacterOfTypeAtPosition(enemyToSpawn.CharacterType, position);
 
                         SpawnCharacterDelayCounter = 0f;
                         SetCharactersInRowCounter(CharactersInRowCounter + 1);
-
-                        Debug.Log("#### Enemie ####".SetColor(Color.cyan));
                     }
                     else
                     {
                         RowDelayCounter = 0f;
                         SetRowsCounter(RowsCounter + 1);
                         SetCharactersInRowCounter(0);
-
-                        Debug.Log("#### Row ####".SetColor(Color.green));
                     }
                 }
                 else
@@ -295,4 +331,126 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
     }
 
     #endregion
+
+    [Serializable]
+    public class WaveElement
+    {
+        #region Fields
+        
+        [SerializeField]
+        private List<RowElement> rowsCollection = new List<RowElement>();
+
+        #endregion
+
+        #region Propeties
+
+        public List<RowElement> RowsCollection { 
+            get => rowsCollection; 
+            private set => rowsCollection = value; 
+        }
+
+        #endregion
+
+        #region Methods
+
+
+
+        #endregion
+
+        #region Handlers
+
+
+
+        #endregion
+
+        #region Enums
+
+
+
+        #endregion
+    }
+
+    [Serializable]
+    public class RowElement
+    {
+        #region Fields
+        
+        [SerializeField]
+        private List<EnemyElement> enemiesCollection = new List<EnemyElement>();
+
+        #endregion
+
+        #region Propeties
+
+        public List<EnemyElement> EnemiesCollection { 
+            get => enemiesCollection; 
+            private set => enemiesCollection = value; 
+        }
+
+        #endregion
+
+        #region Methods
+
+
+
+        #endregion
+
+        #region Handlers
+
+
+
+        #endregion
+
+        #region Enums
+
+
+
+        #endregion
+    }
+
+    [Serializable]
+    public class EnemyElement
+    {
+        #region Fields
+        
+        [SerializeField]
+        private CharacterType characterType;
+
+        [SerializeField]
+        private int spawnIndex;
+
+        #endregion
+
+        #region Propeties
+
+        public CharacterType CharacterType { 
+            get => characterType; 
+            private set => characterType = value; 
+        }
+
+        public int SpawnIndex { 
+            get => spawnIndex; 
+            private set => spawnIndex = value; 
+        }
+
+        #endregion
+
+        #region Methods
+
+
+
+        #endregion
+
+        #region Handlers
+
+
+
+        #endregion
+
+        #region Enums
+
+
+
+        #endregion
+    }
 }

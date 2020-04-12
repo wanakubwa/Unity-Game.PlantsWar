@@ -58,7 +58,6 @@ public class GameManager : ManagerSingletonBase<GameManager>
         base.OnEnable ();
 
         IsContinueRequired = false;
-        CheckLoadedScene();
 
         Debug.LogFormat ("[{0}] Zainicjalizowany.".SetColor (Color.cyan), this.GetType ());
     }
