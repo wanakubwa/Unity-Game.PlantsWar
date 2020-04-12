@@ -153,3 +153,194 @@ MonoBehaviour:
         spawnIndex: 4
       - characterType: 7
         spawnIndex: 5
+  - rowsCollection:
+    - enemiesCollection:
+      - characterType: 6
+        spawnIndex: 0
+      - characterType: 6
+        spawnIndex: 1
+      - characterType: 6
+        spawnIndex: 2
+      - characterType: 6
+        spawnIndex: 3
+      - characterType: 6
+        spawnIndex: 4
+      - characterType: 6
+        spawnIndex: 5
+    - enemiesCollection:
+      - characterType: 7
+        spawnIndex: 0
+      - characterType: 7
+        spawnIndex: 3
+      - characterType: 6
+        spawnIndex: 4
+      - characterType: 6
+        spawnIndex: 5
+    - enemiesCollection:
+      - characterType: 8
+        spawnIndex: 1
+      - characterType: 8
+        spawnIndex: 3
+      - characterType: 8
+        spawnIndex: 5
+    - enemiesCollection:
+      - characterType: 6
+        spawnIndex: 0
+      - characterType: 6
+        spawnIndex: 2
+      - characterType: 6
+        spawnIndex: 3
+      - characterType: 6
+        spawnIndex: 5
+    - enemiesCollection:
+      - characterType: 7
+        spawnIndex: 0
+      - characterType: 7
+        spawnIndex: 1
+      - characterType: 6
+        spawnIndex: 2
+      - characterType: 7
+        spawnIndex: 3
+      - characterType: 6
+        spawnIndex: 5
+    - enemiesCollection:
+      - characterType: 6
+        spawnIndex: 0
+      - characterType: 6
+        spawnIndex: 1
+      - characterType: 6
+        spawnIndex: 2
+      - characterType: 7
+        spawnIndex: 3
+      - characterType: 7
+        spawnIndex: 4
+      - characterType: 7
+        spawnIndex: 5
+  - rowsCollection:
+    - enemiesCollection:
+      - characterType: 6
+        spawnIndex: 1
+      - characterType: 6
+        spawnIndex: 2
+      - characterType: 7
+        spawnIndex: 3
+      - characterType: 7
+        spawnIndex: 4
+      - characterType: 6
+        spawnIndex: 5
+    - enemiesCollection:
+      - characterType: 8
+        spawnIndex: 0
+      - characterType: 6
+        spawnIndex: 1
+      - characterType: 8
+        spawnIndex: 3
+      - characterType: 8
+        spawnIndex: 4
+    - enemiesCollection:
+      - characterType: 6
+        spawnIndex: 1
+      - characterType: 7
+        spawnIndex: 2
+      - characterType: 8
+        spawnIndex: 3
+      - characterType: 6
+        spawnIndex: 4
+      - characterType: 7
+        spawnIndex: 5
+    - enemiesCollection:
+      - characterType: 6
+        spawnIndex: 1
+      - characterType: 7
+        spawnIndex: 3
+      - characterType: 6
+        spawnIndex: 4
+      - characterType: 8
+        spawnIndex: 5
+    - enemiesCollection:
+      - characterType: 8
+        spawnIndex: 0
+      - characterType: 6
+        spawnIndex: 1
+      - characterType: 8
+        spawnIndex: 2
+      - characterType: 7
+        spawnIndex: 3
+      - characterType: 6
+        spawnIndex: 4
+      - characterType: 8
+        spawnIndex: 5
+    - enemiesCollection:
+      - characterType: 7
+        spawnIndex: 0
+      - characterType: 6
+        spawnIndex: 1
+      - characterType: 7
+        spawnIndex: 2
+      - characterType: 6
+        spawnIndex: 3
+      - characterType: 7
+        spawnIndex: 4
+      - characterType: 6
+        spawnIndex: 5
+  - rowsCollection:
+    - enemiesCollection:
+      - characterType: 8
+        spawnIndex: 1
+      - characterType: 6
+        spawnIndex: 2
+      - characterType: 8
+        spawnIndex: 3
+      - characterType: 6
+        spawnIndex: 4
+      - characterType: 6
+        spawnIndex: 5
+    - enemiesCollection:
+      - characterType: 8
+        spawnIndex: 0
+      - characterType: 8
+        spawnIndex: 2
+      - characterType: 8
+        spawnIndex: 4
+    - enemiesCollection:
+      - characterType: 7
+        spawnIndex: 1
+      - characterType: 7
+        spawnIndex: 2
+      - characterType: 7
+        spawnIndex: 3
+      - characterType: 7
+        spawnIndex: 4
+    - enemiesCollection:
+      - characterType: 6
+        spawnIndex: 0
+      - characterType: 7
+        spawnIndex: 2
+      - characterType: 6
+        spawnIndex: 3
+      - characterType: 8
+        spawnIndex: 4
+      - characterType: 6
+        spawnIndex: 5
+    - enemiesCollection:
+      - characterType: 8
+        spawnIndex: 0
+      - characterType: 8
+        spawnIndex: 1
+      - characterType: 8
+        spawnIndex: 3
+      - characterType: 8
+        spawnIndex: 5
+    - enemiesCollection:
+      - characterType: 7
+        spawnIndex: 0
+      - characterType: 6
+        spawnIndex: 1
+      - characterType: 7
+        spawnIndex: 2
+      - characterType: 7
+        spawnIndex: 3
+      - characterType: 7
+        spawnIndex: 4
+      - characterType: 7
+        spawnIndex: 5
