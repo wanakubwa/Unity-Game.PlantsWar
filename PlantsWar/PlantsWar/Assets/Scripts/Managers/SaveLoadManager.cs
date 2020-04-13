@@ -111,15 +111,6 @@ public class SaveLoadManager : ManagerSingletonBase<SaveLoadManager>
 
     private void SaveEnemyManager(EnemyManager manager)
     {
-        //BinaryFormatter bf = new BinaryFormatter();
-        //FileStream file = File.Create(Application.dataPath + Path.DirectorySeparatorChar + manager.FileName);
-
-        //EnemyManagerMemento managerMemento = new EnemyManagerMemento();
-        //managerMemento.EnemyCharactersSpawned = manager.EnemyCharactersSpawned;
-
-        //bf.Serialize(file, managerMemento);
-        //file.Close();
-
         DataFormat dataFormat = DataFormat.Binary;
         string savePath = Application.dataPath + "/" + manager.FileName;
 
@@ -193,24 +184,6 @@ public class SaveLoadManager : ManagerSingletonBase<SaveLoadManager>
     {
         EnemyManagerMemento managerMemento = null;
 
-        //if (File.Exists(Application.persistentDataPath + Path.DirectorySeparatorChar + manager.FileName))
-        //{
-        //    BinaryFormatter bf = new BinaryFormatter();
-        //    FileStream file = File.Open(Application.dataPath + Path.DirectorySeparatorChar + manager.FileName, FileMode.Open);
-
-        //    managerMemento = (EnemyManagerMemento)bf.Deserialize(file);
-        //    file.Close();
-        //}
-
-        //if (File.Exists(Application.dataPath + "/" + manager.FileName))
-        //{
-        //    DataFormat dataFormat = DataFormat.Binary;
-        //    string savePath = Application.dataPath + "/" + manager.FileName;
-
-        //    var bytes = File.ReadAllBytes(savePath);
-        //    managerMemento = SerializationUtility.DeserializeValue<EnemyManagerMemento>(bytes, dataFormat);
-        //}
-
         return managerMemento;
     }
 
@@ -282,25 +255,18 @@ public class SaveLoadManager : ManagerSingletonBase<SaveLoadManager>
     protected override void AttachEvents()
     {
         base.AttachEvents();
-
-        //GameplayManager.Instance.OnWaveClear += OnWaveClearHandler;
     }
 
     protected override void DetachEvents()
     {
         base.DetachEvents();
-
-        //GameplayManager.Instance.OnWaveClear -= OnWaveClearHandler;
     }
 
     #endregion
 
     #region Handlers
 
-    private void OnWaveClearHandler()
-    {
-        CallSaveGame();
-    }
+
 
     #endregion
 }
