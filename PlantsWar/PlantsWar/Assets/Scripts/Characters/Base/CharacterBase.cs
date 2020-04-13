@@ -145,6 +145,17 @@ public class CharacterBase : SerializedMonoBehaviour
 
     }
 
+    public string GetCharacterName()
+    {
+        string key = CharactersContainerSetup.Instance.GetKeyByTypeAndId(Type, Id);
+        if(key != null)
+        {
+            return FileContainerSetup.Instance.GetNameByLocalizedKey(key);
+        }
+
+        return string.Empty;
+    }
+
     protected virtual bool CanMove()
     {
         return false;

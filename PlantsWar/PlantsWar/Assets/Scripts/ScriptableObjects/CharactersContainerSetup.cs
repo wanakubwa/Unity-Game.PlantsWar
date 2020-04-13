@@ -130,6 +130,24 @@ public class CharactersContainerSetup : ScriptableObject
         return characters;
     }
 
+    public string GetKeyByTypeAndId(CharacterType type, int id)
+    {
+        CharacterSet characterSet = GetPositiveCharacterSetOfType(type);
+        if(characterSet != null)
+        {
+            for(int i = 0; i < characterSet.Characters.Count; i++)
+            {
+                if(characterSet.Characters[i].CharacterPrefab.Id == id)
+                {
+                    return characterSet.Characters[i].LocalizeKey;
+                }
+            }
+        }
+
+        Debug.LogFormat("Brak klicza dla typu {0}, o id {1}".SetColor(Color.red), type, id);
+        return null;
+    }
+
     #endregion
 
     #region Handlers
