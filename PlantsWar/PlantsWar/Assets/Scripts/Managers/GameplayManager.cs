@@ -48,7 +48,7 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
 
     public void ResetFields()
     {
-        EnemiesLimitCounter = 0;
+        SetEnemiesLimitCounter(0);
     }
 
     public void Load()
@@ -64,11 +64,6 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
     {
         SaveLoadManager.Instance.SaveManagerClass(this);
     }
-
-    // public void CallGameFreez(bool isFreezed)
-    // {
-    //     OnGameFreez.Invoke(isFreezed);
-    // }
 
     public void SetEnemiesLimitCounter(int value)
     {
@@ -133,9 +128,8 @@ public class GameplayManager : ManagerSingletonBase<GameplayManager>, ISaveable
         CharacterBase character = obj.gameObject.GetComponent<CharacterBase>();
         if(character != null)
         {
-            EnemiesLimitCounter++;
+            SetEnemiesLimitCounter(EnemiesLimitCounter + 1);
             EnemyManager.Instance?.KillSpawnedCharacter(character);
-            OnEnemiesLimitCounterChange.Invoke(EnemiesLimitCounter);
         }
         else
         {

@@ -735,6 +735,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinsText: {fileID: 6138928043533741584}
   coinsNumber: {fileID: 6138928042618090665}
+  livesText: {fileID: 3957305095935761428}
+  livesNumber: {fileID: 2299385501409544963}
 --- !u!1 &6138928043140330715
 GameObject:
   m_ObjectHideFlags: 0

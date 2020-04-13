@@ -43,6 +43,7 @@ public class UIManager : ManagerSingletonBase<UIManager>
         InitializeGameOverScreen();
         InitializeGameWinScreen();
         TopBarController.SetCoinsNumber(PlayerWalletManager.Instance.Money);
+        TopBarController.UpdateLivesStatistics();
 
         Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
     }
@@ -63,6 +64,7 @@ public class UIManager : ManagerSingletonBase<UIManager>
 
         GameplayManager.Instance.OnGameOver += OnGameOverHandler;
         GameplayManager.Instance.OnGameWin += OnGameWinHandler;
+        GameplayManager.Instance.OnEnemiesLimitCounterChange += OnEnemiesCounterChangedHandler;
     }
 
     protected override void DetachEvents()
@@ -81,6 +83,7 @@ public class UIManager : ManagerSingletonBase<UIManager>
 
         GameplayManager.Instance.OnGameOver -= OnGameOverHandler;
         GameplayManager.Instance.OnGameWin -= OnGameWinHandler;
+        GameplayManager.Instance.OnEnemiesLimitCounterChange -= OnEnemiesCounterChangedHandler;
     }
 
     
@@ -121,6 +124,11 @@ public class UIManager : ManagerSingletonBase<UIManager>
     private void OnGameWinHandler()
     {
         GameWinScreenController.ToggleView();
+    }
+
+    private void OnEnemiesCounterChangedHandler(int value)
+    {
+        TopBarController.UpdateLivesStatistics();
     }
     
     #endregion

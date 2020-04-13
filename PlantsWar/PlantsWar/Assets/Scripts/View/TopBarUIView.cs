@@ -10,6 +10,10 @@ public class TopBarUIView : MonoBehaviour
     private TextMeshProUGUI coinsText;
     [SerializeField]
     private TextMeshProUGUI coinsNumber;
+    [SerializeField]
+    private TextMeshProUGUI livesText;
+    [SerializeField]
+    private TextMeshProUGUI livesNumber;
 
     #endregion
 
@@ -23,6 +27,16 @@ public class TopBarUIView : MonoBehaviour
     public TextMeshProUGUI CoinsNumber { 
         get => coinsNumber; 
         private set => coinsNumber = value; 
+    }
+
+    public TextMeshProUGUI LivesText { 
+        get => livesText; 
+        private set => livesText = value; 
+    }
+
+    public TextMeshProUGUI LivesNumber { 
+        get => livesNumber; 
+        private set => livesNumber = value; 
     }
 
     #endregion
@@ -42,6 +56,16 @@ public class TopBarUIView : MonoBehaviour
     public void SetCoinsNumber(int number)
     {
         CoinsNumber.text = number.ToString();
+    }
+
+    public void SetLivesText(string text)
+    {
+        LivesText.text = text;
+    }
+
+    public void SetLivesNumber(int playerLives, int totalLives)
+    {
+        LivesNumber.text = string.Format("{0}/{1}", playerLives, totalLives);
     }
 
     #endregion

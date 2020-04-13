@@ -47,6 +47,14 @@ public class TopBarUIController : MonoBehaviour
         View.SetCoinsNumber(number);
     }
 
+    public void UpdateLivesStatistics()
+    {
+        int enemiesLimit = GameplayManager.Instance.EnemiesLimit;
+        int playerLives = enemiesLimit - GameplayManager.Instance.EnemiesLimitCounter;
+
+        View.SetLivesNumber(playerLives, enemiesLimit);
+    }
+
     #endregion
     #region Handlers
 
