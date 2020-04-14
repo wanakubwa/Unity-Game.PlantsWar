@@ -149,6 +149,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4599689831964934178}
   spriteScale: {x: 1, y: 1, z: 1}
   shopCardBackground: {fileID: 21300000, guid: d37b89e6b1ba87b4a9e3ed873330c65b, type: 3}
+  characterAnimator: {fileID: 97690012387074449}
 --- !u!61 &4574922381811350697
 BoxCollider2D:
   m_ObjectHideFlags: 0

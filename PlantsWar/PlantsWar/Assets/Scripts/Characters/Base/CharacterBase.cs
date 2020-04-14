@@ -41,6 +41,10 @@ public class CharacterBase : SerializedMonoBehaviour
     [SerializeField]
     private Sprite shopCardBackground;
 
+    [Space(10)]
+    [SerializeField]
+    private Animator characterAnimator;
+
     #endregion
 
     #region Propeties
@@ -119,6 +123,11 @@ public class CharacterBase : SerializedMonoBehaviour
         get;
         set;
     } = -1;
+
+    public Animator CharacterAnimator { 
+        get => characterAnimator; 
+        private set => characterAnimator = value; 
+    }
 
     #endregion
 

@@ -175,6 +175,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4599689831964934178}
   spriteScale: {x: 0.9, y: 0.9, z: 1}
   shopCardBackground: {fileID: 21300000, guid: d37b89e6b1ba87b4a9e3ed873330c65b, type: 3}
+  characterAnimator: {fileID: -8371932696407321882}
 --- !u!50 &-7443742595873478019
 Rigidbody2D:
   serializedVersion: 4

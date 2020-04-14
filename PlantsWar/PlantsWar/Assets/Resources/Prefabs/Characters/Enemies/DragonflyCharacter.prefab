@@ -196,6 +196,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4599689831964934178}
   spriteScale: {x: 0.85, y: 0.85, z: 1}
   shopCardBackground: {fileID: 21300000, guid: d37b89e6b1ba87b4a9e3ed873330c65b, type: 3}
+  characterAnimator: {fileID: -348271466725922947}
 --- !u!95 &-348271466725922947
 Animator:
   serializedVersion: 3
