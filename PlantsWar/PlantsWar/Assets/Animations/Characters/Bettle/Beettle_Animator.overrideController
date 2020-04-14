@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Beettle_Animator
+  m_Controller: {fileID: 9100000, guid: f2097b3b41abfe2439602ff547e93876, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 58c11aab67722e2469632e0c921b79dc, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5206a60e50e436849bf9939652aea89c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a8f6e9cba985646439b4937b3dc2129d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 49d41ef3423eca742b132328228176cb, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 080c0904d6ee4a549ab2e0d08e59f138, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1f23f30e62d89a6408b2123021e8031f, type: 2}

@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 445227335854625588}
   - component: {fileID: 5740880977546123858}
   - component: {fileID: 1818207974721855059}
+  - component: {fileID: 3842426035022020733}
   m_Layer: 10
   m_Name: DaisyCharacter
   m_TagString: Untagged
@@ -126,6 +127,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b3043929822d5488494e40e6c256b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   id: 0
   upgradeLvl: 0
   type: 0
@@ -186,3 +196,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &3842426035022020733
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8113526142541975384}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 04487d7e44d150042834ed5ca31665b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

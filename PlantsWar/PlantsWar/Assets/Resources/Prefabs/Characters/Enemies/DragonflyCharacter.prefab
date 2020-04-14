@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 8535287938753226860}
   - component: {fileID: -7443742595873478019}
   - component: {fileID: -6525325442538010782}
+  - component: {fileID: -348271466725922947}
   m_Layer: 8
   m_Name: DragonflyCharacter
   m_TagString: Untagged
@@ -195,3 +196,22 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4599689831964934178}
   spriteScale: {x: 0.85, y: 0.85, z: 1}
   shopCardBackground: {fileID: 21300000, guid: d37b89e6b1ba87b4a9e3ed873330c65b, type: 3}
+--- !u!95 &-348271466725922947
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8113526142541975384}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: ba3da1828f247d24789d28dfcacb4b01, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

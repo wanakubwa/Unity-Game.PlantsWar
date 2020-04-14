@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 7157207595282455720}
   - component: {fileID: -6344089765559380300}
   - component: {fileID: 3676011925380756061}
+  - component: {fileID: 945501281933762954}
   m_Layer: 10
   m_Name: CactusCharacter
   m_TagString: Untagged
@@ -173,6 +174,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eed8d0e9d96cae646bee844817407de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   id: 2
   upgradeLvl: 0
   type: 2
@@ -191,3 +201,22 @@ MonoBehaviour:
     m_Bits: 256
   spawnBullet: {fileID: 643015199219972638, guid: ec3fc51747d75a3498f8d197f2474e3c,
     type: 3}
+--- !u!95 &945501281933762954
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8113526142541975384}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 1ab2fedc8f665314ba69a1ee19266199, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

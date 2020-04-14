@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Dragonfly_Animator
+  m_Controller: {fileID: 9100000, guid: f2097b3b41abfe2439602ff547e93876, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 58c11aab67722e2469632e0c921b79dc, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a52f82154a54e75499c991e6c24b5f52, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a8f6e9cba985646439b4937b3dc2129d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ae8c520f16eb98e4784673797d12dc3c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 080c0904d6ee4a549ab2e0d08e59f138, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fc47ae19aaf030c4992ace3aba8e1911, type: 2}
