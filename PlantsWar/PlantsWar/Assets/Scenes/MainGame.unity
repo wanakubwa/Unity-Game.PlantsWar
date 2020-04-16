@@ -498,6 +498,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2769775974095204350, guid: f21960469882a2548b5d871721882b70,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 7991
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f21960469882a2548b5d871721882b70, type: 3}
 --- !u!1001 &1137501591568406774
