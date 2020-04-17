@@ -90,6 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754585554797763013}
   - component: {fileID: 4317001178422401976}
+  - component: {fileID: 8013613358675836284}
   - component: {fileID: 4574922381811350697}
   - component: {fileID: 2302198964227689167}
   - component: {fileID: 97690012387074449}
@@ -149,7 +150,23 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4599689831964934178}
   spriteScale: {x: 1, y: 1, z: 1}
   shopCardBackground: {fileID: 21300000, guid: d37b89e6b1ba87b4a9e3ed873330c65b, type: 3}
+  characterAnimator: {fileID: 8013613358675836284}
+--- !u!114 &8013613358675836284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8113526142541975384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df344780bf0f4c94a8ac6f0081d6d8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   characterAnimator: {fileID: 97690012387074449}
+  idleTriggerName: isIdle
+  attackTriggerName: isAttack
+  deathTriggerName: IsDeath
 --- !u!61 &4574922381811350697
 BoxCollider2D:
   m_ObjectHideFlags: 0

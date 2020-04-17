@@ -23,6 +23,11 @@ public class PopUpManager : ManagerSingletonBase<PopUpManager>
         private set => waveEndPopUp = value; 
     }
 
+    public GameObject MediumPriorityPopUp {
+        get;
+        private set;
+    }
+
     #endregion
 
     #region Methods
@@ -30,6 +35,14 @@ public class PopUpManager : ManagerSingletonBase<PopUpManager>
     public void RequestWaveEndPopUp()
     {
         Instantiate(WaveEndPopUp);
+    }
+
+    public void RequestUpgradePopUp()
+    {
+        if(MediumPriorityPopUp == null)
+        {
+            //TODO;
+        }
     }
 
     protected override void AttachEvents()

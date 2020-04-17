@@ -42,8 +42,9 @@ public class CharacterBase : SerializedMonoBehaviour
     private Sprite shopCardBackground;
 
     [Space(10)]
+    [Header("Animator setup")]
     [SerializeField]
-    private Animator characterAnimator;
+    private CharacterAnimatorController characterAnimator;
 
     #endregion
 
@@ -124,7 +125,7 @@ public class CharacterBase : SerializedMonoBehaviour
         set;
     } = -1;
 
-    public Animator CharacterAnimator { 
+    public CharacterAnimatorController CharacterAnimator { 
         get => characterAnimator; 
         private set => characterAnimator = value; 
     }
@@ -182,7 +183,7 @@ public class CharacterBase : SerializedMonoBehaviour
 
     protected virtual void OnAttackAction(float time)
     {
-        
+        CharacterAnimator.PlayAttackAnimation();
     }
 
     protected virtual void OnEnable()

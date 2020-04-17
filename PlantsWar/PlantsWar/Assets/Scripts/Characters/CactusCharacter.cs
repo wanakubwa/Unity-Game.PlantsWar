@@ -79,6 +79,8 @@ public class CactusCharacter : CharacterBase
 
     protected override void OnAttackAction(float time)
     {
+        base.OnAttackAction(time);
+
         Bullet bullet = Instantiate(SpawnBullet, transform.position, Quaternion.identity);
         bullet.transform.SetParent(transform);
         bullet.Damage = AttackDamage;

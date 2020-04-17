@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 4754585554797763013}
   - component: {fileID: 8535287938753226860}
   - component: {fileID: 7654303614708601806}
+  - component: {fileID: 4759495934525279376}
   - component: {fileID: -7443742595873478019}
   - component: {fileID: -8371932696407321882}
   m_Layer: 8
@@ -175,7 +176,23 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4599689831964934178}
   spriteScale: {x: 0.9, y: 0.9, z: 1}
   shopCardBackground: {fileID: 21300000, guid: d37b89e6b1ba87b4a9e3ed873330c65b, type: 3}
+  characterAnimator: {fileID: 4759495934525279376}
+--- !u!114 &4759495934525279376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8113526142541975384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df344780bf0f4c94a8ac6f0081d6d8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   characterAnimator: {fileID: -8371932696407321882}
+  idleTriggerName: isIdle
+  attackTriggerName: isAttack
+  deathTriggerName: IsDeath
 --- !u!50 &-7443742595873478019
 Rigidbody2D:
   serializedVersion: 4

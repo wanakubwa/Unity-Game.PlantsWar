@@ -65,6 +65,8 @@ class RoseCharacter : CharacterBase
 
     protected override void OnAttackAction(float time)
     {
+        base.OnAttackAction(time);
+
         if (Character != null)
         {
             Character.ReciveDamage(AttackDamage);

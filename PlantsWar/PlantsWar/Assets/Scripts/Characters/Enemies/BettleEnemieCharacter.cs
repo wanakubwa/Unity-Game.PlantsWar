@@ -74,6 +74,8 @@ public class BettleEnemieCharacter : CharacterBase
 
     protected override void OnAttackAction(float time)
     {
+        base.OnAttackAction(time);
+
         if (PlayerCharacter != null)
         {
             PlayerCharacter.ReciveDamage(AttackDamage);

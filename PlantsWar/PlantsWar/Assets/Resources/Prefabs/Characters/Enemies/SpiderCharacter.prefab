@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 8535287938753226860}
   - component: {fileID: -7443742595873478019}
   - component: {fileID: -1460079085453598790}
+  - component: {fileID: 6445013587198370041}
   - component: {fileID: -9125416103017850151}
   m_Layer: 8
   m_Name: SpiderCharacter
@@ -196,12 +197,28 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4599689831964934178}
   spriteScale: {x: 1, y: 1, z: 1}
   shopCardBackground: {fileID: 21300000, guid: 349e68b495dfba64a89d28b493d94a4b, type: 3}
-  characterAnimator: {fileID: -9125416103017850151}
+  characterAnimator: {fileID: 6445013587198370041}
   triggerLayer:
     serializedVersion: 2
     m_Bits: 1024
   spawnBullet: {fileID: 643015199219972638, guid: 3aa2c96748be7b847ab5a2424cd0f724,
     type: 3}
+--- !u!114 &6445013587198370041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8113526142541975384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df344780bf0f4c94a8ac6f0081d6d8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterAnimator: {fileID: -9125416103017850151}
+  idleTriggerName: isIdle
+  attackTriggerName: isAttack
+  deathTriggerName: IsDeath
 --- !u!95 &-9125416103017850151
 Animator:
   serializedVersion: 3

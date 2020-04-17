@@ -75,6 +75,8 @@ public class DragonflyEnemieCharacter : CharacterBase
 
     protected override void OnAttackAction(float time)
     {
+        base.OnAttackAction(time);
+
         if (PlayerCharacter != null)
         {
             List<GridCell> neighboursCells = GridManager.Instance?.GetNeighboursInCrossCellsById(PlayerCharacter.CellId);
