@@ -11,6 +11,8 @@ public class WaveEndPopUpController : MonoBehaviour
 
     [SerializeField]
     private WaveEndPopUpView view;
+    [SerializeField]
+    private WaveEndPopUpModel model;
 
     [SerializeField]
     private Canvas canvas;
@@ -29,6 +31,11 @@ public class WaveEndPopUpController : MonoBehaviour
         private set => canvas = value; 
     }
 
+    public WaveEndPopUpModel Model { 
+        get => model; 
+        private set => model = value; 
+    }
+
     #endregion
 
     #region Methods
@@ -42,6 +49,9 @@ public class WaveEndPopUpController : MonoBehaviour
     {
         int wavesNumber = WavesManager.Instance.WavesCounter;
         View.SetWavesClearedNumber(wavesNumber);
+
+        // Liczenie czasu do automatycznego zamkniecia.
+        Model.StartAutoClose();
     }
 
     public void SetCanvasCamera(Camera camera)
@@ -52,8 +62,6 @@ public class WaveEndPopUpController : MonoBehaviour
     #endregion
 
     #region Handlers
-
-
 
     #endregion
 }
