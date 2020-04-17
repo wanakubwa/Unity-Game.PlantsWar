@@ -59,6 +59,11 @@ public class WaveEndPopUpController : MonoBehaviour
         Canvas.worldCamera = camera;
     }
 
+    private void OnEnable()
+    {
+        Initialize();
+    }
+
     #endregion
 
     #region Handlers
