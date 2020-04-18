@@ -1,0 +1,14 @@
+BUTTON_ENDGAME_PLAY,Zagraj Ponownie,Play Again
+BUTTON_GAME_LOAD,Załaduj Grę,Load Game
+BUTTON_GAME_MAINMENU,Menu,Main Menu
+BUTTON_GAME_SAVE,Zapisz Grę,Save Game
+BUTTON_MM_FB,Facebook,Facebook
+BUTTON_MM_LOADGAME,Załaduj Grę,Load Game
+BUTTON_MM_NEWGAME,Nowa Gra,New Game
+BUTTON_MM_OPTIONS,Ustawienia,Options
+BUTTON_MM_QUIT,Wyjście,Quit
+STRING_ENDGAME_LOSE,Przegrałeś,You Lost
+STRING_ENDGAME_WIN,Wygrałeś,You Win
+STRING_GAME_COINS,Monety,Coins
+STRING_GAME_LIVES,Życia,Lives
+STRING_GAME_WAVE,Koniec Fali,Waves Cleared
