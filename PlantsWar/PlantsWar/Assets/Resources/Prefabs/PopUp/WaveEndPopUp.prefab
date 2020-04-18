@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 5548481940057061855}
   - component: {fileID: 3524279407929706763}
   - component: {fileID: 4198694605312708457}
+  - component: {fileID: 1860653780856265730}
   m_Layer: 0
   m_Name: Text.WavesClearText
   m_TagString: Untagged
@@ -314,6 +315,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1860653780856265730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237166973363500811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e64cd90b827cdc46ac0376eab134d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedKey: STRING_GAME_WAVE
 --- !u!1 &1623063382389988329
 GameObject:
   m_ObjectHideFlags: 0

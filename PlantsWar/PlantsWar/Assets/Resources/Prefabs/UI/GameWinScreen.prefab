@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2333426440307942532}
   - component: {fileID: 2333426440307942534}
   - component: {fileID: 2333426440307942533}
+  - component: {fileID: 2492288087196941160}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -157,6 +158,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2492288087196941160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2333426440307942531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e64cd90b827cdc46ac0376eab134d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedKey: STRING_ENDGAME_WIN
 --- !u!1 &2333426440371265102
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +404,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 7991
 --- !u!1 &2333426441410783987
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,6 +627,7 @@ GameObject:
   - component: {fileID: 2333426441973715078}
   - component: {fileID: 2333426441973715080}
   - component: {fileID: 2333426441973715079}
+  - component: {fileID: 9119222297076592438}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -698,9 +713,9 @@ MonoBehaviour:
   m_fontSize: 48
   m_fontSizeBase: 48
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 48
   m_fontStyle: 0
   m_textAlignment: 514
   m_characterSpacing: 0
@@ -759,3 +774,16 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &9119222297076592438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2333426441973715077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e64cd90b827cdc46ac0376eab134d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedKey: BUTTON_ENDGAME_PLAY

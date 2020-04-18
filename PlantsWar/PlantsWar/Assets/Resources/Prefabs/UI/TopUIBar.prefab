@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 5375431866188784801}
   - component: {fileID: 2411966667694564159}
   - component: {fileID: 3957305095935761428}
+  - component: {fileID: 1225765122429421614}
   m_Layer: 5
   m_Name: Text.Hears
   m_TagString: Untagged
@@ -222,6 +223,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1225765122429421614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2206127286559796092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e64cd90b827cdc46ac0376eab134d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedKey: STRING_GAME_LIVES
 --- !u!1 &3081121899669936827
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,6 +938,7 @@ GameObject:
   - component: {fileID: 6138928043533741586}
   - component: {fileID: 6138928043533741599}
   - component: {fileID: 6138928043533741584}
+  - component: {fileID: 7335858606261576081}
   m_Layer: 5
   m_Name: Text.Coins
   m_TagString: Untagged
@@ -1070,6 +1085,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7335858606261576081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6138928043533741587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e64cd90b827cdc46ac0376eab134d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedKey: STRING_GAME_COINS
 --- !u!1 &6138928044157313405
 GameObject:
   m_ObjectHideFlags: 0
