@@ -13,7 +13,6 @@ public class FileContainerSetup : ScriptableObject
 
     private const char lineSeparator = '\n';
     private const char fieldSeparator = ',';
-    private const int keyIndex = 0;
 
     [Space (10)]
     [SerializeField]
@@ -60,6 +59,12 @@ public class FileContainerSetup : ScriptableObject
         private set;
     } = new List<string[]>();
 
+    public List<string[]> StringsData
+    {
+        get;
+        private set;
+    } = new List<string[]>();
+
     #endregion
 
     #region Methods
@@ -83,6 +88,20 @@ public class FileContainerSetup : ScriptableObject
         return string.Empty;
     }
 
+    public string GetStringByLocalizedKey(string localizedKey)
+    {
+        for (int i = 0; i < NamesData.Count; i++)
+        {
+            if (StringsData[i][0] == localizedKey)
+            {
+                return StringsData[i][(int)languageVersion];
+            }
+        }
+
+        Debug.LogFormat("Brak napisu dla klucza {0}!".SetColor(Color.red), localizedKey);
+        return string.Empty;
+    }
+
     public TextAsset GetTextFileByCategory(FileCategory category)
     {
         for(int i = 0; i < FilesCollection.Count; i++)
@@ -100,6 +119,7 @@ public class FileContainerSetup : ScriptableObject
     private void OnEnable() 
     {
         ReadNamesData();
+        ReadStringsData();
     }
 
     private void ReadNamesData()
@@ -123,6 +143,29 @@ public class FileContainerSetup : ScriptableObject
         }
 
         Debug.Log("Nazwy wczytwane poprawie".SetColor(Color.green));
+    }
+
+    private void ReadStringsData()
+    {
+        StringsData.Clear();
+
+        TextAsset file = GetTextFileByCategory(FileCategory.STRINGS);
+        if (file == null)
+        {
+            return;
+        }
+
+        string[] lines = file.text.Split(lineSeparator);
+        if (lines != null)
+        {
+            foreach (string line in lines)
+            {
+                string[] fields = line.Split(fieldSeparator);
+                StringsData.Add(fields);
+            }
+        }
+
+        Debug.Log("Napisy wczytwane poprawie".SetColor(Color.green));
     }
 
     #endregion
@@ -178,7 +221,8 @@ public class FileContainerSetup : ScriptableObject
     public enum FileCategory
     {
         NAMES,
-        DESCRIPTIONS
+        DESCRIPTIONS,
+        STRINGS
     }
 
     public enum Language
