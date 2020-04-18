@@ -91,7 +91,7 @@ public class FileContainerSetup : ScriptableObject
 
     public string GetStringByLocalizedKey(string localizedKey)
     {
-        for (int i = 0; i < NamesData.Count; i++)
+        for (int i = 0; i < StringsData.Count; i++)
         {
             if (StringsData[i][0] == localizedKey)
             {
