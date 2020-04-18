@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using UnityEngine;
 using TMPro;
 
-public class LocalizedTexMeshPro : TextMeshProUGUI
+public class LocalizedTexMeshPro : MonoBehaviour
 {
 
     #region Fields
 
     [Space(10)]
+    [Header("Klucz lokalizacyjny")]
     [SerializeField]
-    private string localizedKey;
+    public string localizedKey;
 
     #endregion
 
@@ -24,16 +25,20 @@ public class LocalizedTexMeshPro : TextMeshProUGUI
         private set => localizedKey = value; 
     }
 
+    public TextMeshProUGUI TextMeshPro
+    {
+        get;
+        private set;
+    }
+
     #endregion
 
     #region Methods
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
-        string localizedText = FileContainerSetup.Instance.GetStringByLocalizedKey(LocalizedKey);
-        text = localizedText;
+        TextMeshPro = GetComponent<TextMeshProUGUI>();
+        TextMeshPro.text = FileContainerSetup.Instance.GetStringByLocalizedKey(LocalizedKey);
     }
 
     #endregion

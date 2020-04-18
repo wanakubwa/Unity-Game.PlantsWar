@@ -14,12 +14,13 @@ public class FileContainerSetup : ScriptableObject
     private const char lineSeparator = '\n';
     private const char fieldSeparator = ',';
 
+    [Space]
+    [SerializeField]
+    private Language languageVersion = Language.PL;
+
     [Space (10)]
     [SerializeField]
     private List<FileElement> filesCollection = new List<FileElement>();
-
-    [SerializeField, HideInInspector]
-    private Language languageVersion = Language.EN;
 
     #endregion
 
