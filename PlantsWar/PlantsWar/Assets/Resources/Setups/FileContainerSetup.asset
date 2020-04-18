@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff3d8ece67346b43beaeab8a894a3aa, type: 3}
   m_Name: FileContainerSetup
   m_EditorClassIdentifier: 
+  languageVersion: 2
   filesCollection:
-  - fileType: 0
+  - category: 0
     csvFile: {fileID: 4900000, guid: 6ecf8cf6927711d4b9b6edc53aac5885, type: 3}
+  - category: 2
+    csvFile: {fileID: 4900000, guid: b13a29388f817c3438bbec138f8ab80a, type: 3}

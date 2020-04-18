@@ -345,6 +345,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4498215555512262056, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_text
+      value: New Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498215555512262056, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498215555512262056, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498215555512262056, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498215555512262056, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498215555512262056, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1277506254684384550, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
         type: 3}
       propertyPath: m_Name
@@ -558,17 +588,22 @@ PrefabInstance:
     - target: {fileID: 1277506254635484854, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
         type: 3}
       propertyPath: m_fontSize
-      value: 33.75
+      value: 31.45
       objectReference: {fileID: 0}
     - target: {fileID: 1277506254635484854, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1277506254635484854, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
         type: 3}
       propertyPath: m_textInfo.wordCount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277506256384196602, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 7991
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47384b0ce4430cd47aa4fd56f1ead4e4, type: 3}
