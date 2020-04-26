@@ -357,6 +357,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1277506254684384550, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
+        type: 3}
+      propertyPath: m_Name
+      value: MainMenuPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 8123722076102776294, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -506,11 +511,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1277506254684384550, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
-        type: 3}
-      propertyPath: m_Name
-      value: MainMenuPanel
       objectReference: {fileID: 0}
     - target: {fileID: 1277506254684384553, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
         type: 3}
@@ -715,7 +715,7 @@ PrefabInstance:
     - target: {fileID: 1277506254635484854, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
         type: 3}
       propertyPath: m_text
-      value: 'Build: 18042020.1'
+      value: 'Build: 26042020.1'
       objectReference: {fileID: 0}
     - target: {fileID: 1277506254635484854, guid: 47384b0ce4430cd47aa4fd56f1ead4e4,
         type: 3}
