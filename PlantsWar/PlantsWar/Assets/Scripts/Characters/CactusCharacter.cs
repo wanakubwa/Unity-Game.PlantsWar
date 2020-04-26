@@ -45,7 +45,7 @@ public class CactusCharacter : CharacterBase
 
     public override void ReciveDamage(float damage)
     {
-        //AddHealthPoints(-damage);
+        AddHealthPoints(-damage);
         if(HealthPoints <= 0f)
         {
             PositiveCharactersManager.Instance?.KillSpawnedCharacter(this);

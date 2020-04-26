@@ -16,7 +16,7 @@ public class FileContainerSetup : ScriptableObject
 
     [Space]
     [SerializeField]
-    private Language languageVersion = Language.PL;
+    private Language languageVersion = Language.EN;
 
     [Space (10)]
     [SerializeField]
