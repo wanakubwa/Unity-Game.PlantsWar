@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fileName: PlayerWalletManager.dat
   money: 0
-  startMoney: 1500
+  startMoney: 3000
