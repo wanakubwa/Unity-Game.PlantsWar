@@ -166,7 +166,6 @@ public class CharactersContainerSetup : ScriptableObject
         private List<CharacterElement> characters;
 
         #endregion
-
         #region Propeties
 
         public CharacterType Type { 
