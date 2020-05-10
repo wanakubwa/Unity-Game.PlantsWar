@@ -45,7 +45,7 @@ public class AudioManager : ManagerSingletonBase<AudioManager>
                 }
                 else
                 {
-                    CurrentSoundTrack.ResetAudio();
+                    PlayAudioSoundTrack(audioElement, label);
                 }
             }
             else
@@ -57,6 +57,11 @@ public class AudioManager : ManagerSingletonBase<AudioManager>
 
     private void PlayAudioSoundTrack(AudioElement audio, AudioContainerSetup.AudioLabel label)
     {
+        if(CurrentSoundTrack != null)
+        {
+            CurrentSoundTrack.DestroyAudio();
+        }
+
         AudioElement audioElement = Instantiate(audio);
         audioElement.transform.SetParent(transform);
         CurrentSoundTrack = new AudioTrack(audioElement, label);

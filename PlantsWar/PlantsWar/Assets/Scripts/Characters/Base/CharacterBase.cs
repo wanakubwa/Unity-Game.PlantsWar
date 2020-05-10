@@ -184,6 +184,10 @@ public class CharacterBase : SerializedMonoBehaviour
     protected virtual void OnAttackAction(float time)
     {
         CharacterAnimator.PlayAttackAnimation();
+        if(AudioSelectingManager.Instance != null)
+        {
+            AudioSelectingManager.Instance.OnCharacterAttack(this);
+        }
     }
 
     protected virtual void OnEnable()

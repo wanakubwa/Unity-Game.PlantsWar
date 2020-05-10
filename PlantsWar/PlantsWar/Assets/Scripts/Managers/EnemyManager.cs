@@ -12,6 +12,7 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
     #region Propeties
 
     public event Action OnSpawnedEnemiesChanged = delegate { };
+    public event Action<CharacterBase> OnEnemieSpawned = delegate { };
 
     public List<SingleCharacter> EnemyCharactersDefinitions { 
         get; 
@@ -45,6 +46,7 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
             EnemyCharactersSpawned.Add(spawnedCharacter);
 
             OnSpawnedEnemiesChanged.Invoke();
+            OnEnemieSpawned(spawnedCharacter);
         }
         else
         {

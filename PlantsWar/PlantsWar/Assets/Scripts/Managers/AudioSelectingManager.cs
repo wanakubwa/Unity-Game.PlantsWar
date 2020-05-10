@@ -20,23 +20,34 @@ public class AudioSelectingManager : ManagerSingletonBase<AudioSelectingManager>
 
     #region Methods
 
+    public void OnCharacterAttack(CharacterBase character)
+    {
+        AudioManager audioManager = AudioManager.Instance;
+        if (audioManager != null)
+        {
+            audioManager.PlayAudioSoundByLabel(AudioContainerSetup.AudioLabel.SHOOT);
+        }
+    }
+
     protected override void AttachEvents()
     {
         base.AttachEvents();
 
-        PositiveCharactersManager.Instance.OnCharacterSpawn += OnPositiveCharacterSpawn;
-        PositiveCharactersManager.Instance.OnCharacterKill += OnPositiveCharacterKill;
+        PositiveCharactersManager.Instance.OnCharacterSpawn += OnPositiveCharacterSpawnHandler;
+        PositiveCharactersManager.Instance.OnCharacterKill += OnPositiveCharacterKillHandler;
+        EnemyManager.Instance.OnEnemieSpawned += OnEnemieSpawnedHandler;
     }
 
     protected override void DetachEvents()
     {
         base.DetachEvents();
 
-        PositiveCharactersManager.Instance.OnCharacterSpawn -= OnPositiveCharacterSpawn;
-        PositiveCharactersManager.Instance.OnCharacterKill -= OnPositiveCharacterKill;
+        PositiveCharactersManager.Instance.OnCharacterSpawn -= OnPositiveCharacterSpawnHandler;
+        PositiveCharactersManager.Instance.OnCharacterKill -= OnPositiveCharacterKillHandler;
+        EnemyManager.Instance.OnEnemieSpawned -= OnEnemieSpawnedHandler;
     }
 
-    private void OnPositiveCharacterSpawn(CharacterBase character)
+    private void OnPositiveCharacterSpawnHandler(CharacterBase character)
     {
         AudioManager audioManager = AudioManager.Instance;
         if (audioManager != null)
@@ -45,12 +56,21 @@ public class AudioSelectingManager : ManagerSingletonBase<AudioSelectingManager>
         }
     }
 
-    private void OnPositiveCharacterKill(CharacterBase character)
+    private void OnPositiveCharacterKillHandler(CharacterBase character)
     {
         AudioManager audioManager = AudioManager.Instance;
         if (audioManager != null)
         {
             audioManager.PlayAudioSoundByLabel(AudioContainerSetup.AudioLabel.DEAD);
+        }
+    }
+
+    private void OnEnemieSpawnedHandler(CharacterBase character)
+    {
+        AudioManager audioManager = AudioManager.Instance;
+        if (audioManager != null)
+        {
+            audioManager.PlayAudioSoundByLabel(AudioContainerSetup.AudioLabel.SPAWN_ENEMIE);
         }
     }
 

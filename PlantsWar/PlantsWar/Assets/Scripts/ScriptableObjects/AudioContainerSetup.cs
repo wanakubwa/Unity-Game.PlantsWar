@@ -118,7 +118,7 @@ public class AudioContainerSetup : ScriptableObject
         SPAWN_POSITIVE,
         SPAWN_ENEMIE,
         DEAD,
-        SHOT,
+        SHOOT,
         UI_BUTTON_PRESS
     }
 }
