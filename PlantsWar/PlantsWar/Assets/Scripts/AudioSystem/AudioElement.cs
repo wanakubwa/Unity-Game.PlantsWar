@@ -33,6 +33,11 @@ public class AudioElement : MonoBehaviour
 
     #region Methods
 
+    public void SetVolume(float volume)
+    {
+        Audio.volume = volume;
+    }
+
     public void PlayOneShotAudio()
     {
         Audio.PlayOneShot(Audio.clip);

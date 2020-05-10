@@ -14,6 +14,8 @@ public class CheatsManager : ManagerSingletonBase<CheatsManager>
     private Button saveData;
     [SerializeField]
     private Button loadData;
+    [SerializeField]
+    private Slider ambientVolumeSlider;
 
     #endregion
 
@@ -29,9 +31,21 @@ public class CheatsManager : ManagerSingletonBase<CheatsManager>
         private set => loadData = value;
     }
 
+    public Slider AmbientVolumeSlider { 
+        get => ambientVolumeSlider; 
+        private set => ambientVolumeSlider = value; 
+    }
+
     #endregion
 
     #region Methods
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        AmbientVolumeSlider.value = AmbientVolumeSlider.maxValue * 0.5f;
+    }
 
     public void OnSaveDataButton()
     {
@@ -46,6 +60,11 @@ public class CheatsManager : ManagerSingletonBase<CheatsManager>
     public void OnMainMenuButton()
     {
         GameManager.Instance.LoadMenuScene();
+    }
+
+    public void OnAmbientVolumeChanged()
+    {
+        AudioManager.Instance.SetAmbientVolume(AmbientVolumeSlider.value);
     }
 
     #endregion
