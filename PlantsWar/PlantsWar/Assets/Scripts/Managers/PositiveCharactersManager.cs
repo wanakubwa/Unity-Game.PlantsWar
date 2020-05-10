@@ -12,6 +12,10 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
     #endregion
 
     #region Propeties
+
+    public event Action<CharacterBase> OnCharacterSpawn = delegate { };
+    public event Action<CharacterBase> OnCharacterKill = delegate { };
+
     public List<CharacterBase> SpawnedCharacters {
         get;
         private set;
@@ -40,6 +44,8 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
 
         cell.IsEmpty = false;
         SpawnedCharacters.Add(newCharacter);
+
+        OnCharacterSpawn(newCharacter);
     }
 
     public void SpawnCharacterInCellId(CharacterBase character, int cellId)
@@ -122,6 +128,8 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
             //character?.kill
             RemoveSpawnedCharacter(character);
             Destroy(character.gameObject);
+
+            OnCharacterKill(character);
         }
     }
 

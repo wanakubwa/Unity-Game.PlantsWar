@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-
 public class AudioManager : ManagerSingletonBase<AudioManager>
 {
     #region Fields
 
-    [SerializeField]
-    private AudioTrack currentSoundTrack;
+    [ShowInInspector ,NonSerialized]
+    private AudioTrack currentSoundTrack = null;
 
     #endregion
 
