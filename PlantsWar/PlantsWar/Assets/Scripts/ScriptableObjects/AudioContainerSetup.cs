@@ -1,10 +1,14 @@
 ﻿using Boo.Lang.Environments;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 [CreateAssetMenu(fileName = "AudioContainerSetup.asset", menuName = "Settings/AudioContainerSetup")]
@@ -16,6 +20,10 @@ public class AudioContainerSetup : ScriptableObject
 
     [SerializeField]
     private List<SingleAudio> audioCollection = new List<SingleAudio>();
+
+    [Space(10)]
+    [SerializeField]
+    private List<SingleSceneAudio> sceneAudioCollection = new List<SingleSceneAudio>();
 
     #endregion
 
@@ -43,6 +51,11 @@ public class AudioContainerSetup : ScriptableObject
         private set => audioCollection = value; 
     }
 
+    public List<SingleSceneAudio> SceneAudioCollection { 
+        get => sceneAudioCollection; 
+        private set => sceneAudioCollection = value; 
+    }
+
     #endregion
 
     #region Methods
@@ -66,7 +79,34 @@ public class AudioContainerSetup : ScriptableObject
         return null;
     }
 
-    #endregion
+#if UNITY_EDITOR
+
+    private void OnValidate()
+    {
+        if(SceneAudioCollection != null)
+        {
+            RefreshSceneAudioCollection();
+        }
+    }
+
+    private void RefreshSceneAudioCollection()
+    {
+        EditorBuildSettingsScene[] scenes =  EditorBuildSettings.scenes;
+        
+        for(int i = 0; i < scenes.Length; i++)
+        {
+            string sceneName = Path.GetFileNameWithoutExtension(scenes[i].path);
+            SingleSceneAudio sceneAudio = SceneAudioCollection.Find(x => x.SceneId == i);
+            if(sceneAudio != null)
+            {
+                sceneAudio.SetSceneName(sceneName);
+            }
+        }
+    }
+
+#endif
+
+#endregion
 
     #region Handlers
 
@@ -103,6 +143,54 @@ public class AudioContainerSetup : ScriptableObject
         #region Methods
 
 
+
+        #endregion
+
+        #region Handlers
+
+
+
+        #endregion
+    }
+
+    [Serializable]
+    public class SingleSceneAudio
+    {
+        #region Fields
+        [SerializeField, ReadOnly]
+        private string sceneName;
+        [SerializeField]
+        private int sceneId;
+        [SerializeField]
+        private AudioElement audio;
+
+        #endregion
+
+        #region Propeties
+
+        public int SceneId { 
+            get => sceneId; 
+            private set => sceneId = value; 
+        }
+
+        public AudioElement Audio { 
+            get => audio; 
+            private set => audio = value; 
+        }
+
+        public string SceneName { 
+            get => sceneName; 
+            private set => sceneName = value; 
+        }
+
+        #endregion
+
+        #region Methods
+
+        public void SetSceneName(string name)
+        {
+            SceneName = name;
+        }
 
         #endregion
 
