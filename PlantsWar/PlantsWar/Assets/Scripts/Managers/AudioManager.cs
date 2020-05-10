@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : ManagerSingletonBase<AudioManager>
 {
@@ -12,6 +13,8 @@ public class AudioManager : ManagerSingletonBase<AudioManager>
 
     [ShowInInspector ,NonSerialized]
     private AudioTrack currentSoundTrack = null;
+    [ShowInInspector, NonSerialized]
+    private AudioTrack currentAmbientTrack = null;
 
     #endregion
 
@@ -20,6 +23,11 @@ public class AudioManager : ManagerSingletonBase<AudioManager>
     public AudioTrack CurrentSoundTrack { 
         get => currentSoundTrack; 
         private set => currentSoundTrack = value; 
+    }
+
+    public AudioTrack CurrentAmbientTrack { 
+        get => currentAmbientTrack; 
+        private set => currentAmbientTrack = value; 
     }
 
     #endregion
@@ -55,6 +63,42 @@ public class AudioManager : ManagerSingletonBase<AudioManager>
         }
     }
 
+    public void PlayAmbientSoundBySceneId(int sceneId)
+    {
+        AudioContainerSetup audioContainer = AudioContainerSetup.Instance;
+        if (audioContainer == null)
+        {
+            return;
+        }
+
+        AudioElement audioElement = audioContainer.GetAudioElementBySceneId(sceneId);
+        if (audioElement != null)
+        {
+            PlayAmbientSoundTrack(audioElement);
+        }
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        PlayAmbientSoundBySceneId(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    protected override void AttachEvents()
+    {
+        base.AttachEvents();
+
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+    }
+
+    protected override void DetachEvents()
+    {
+        base.DetachEvents();
+
+        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+    }
+
     private void PlayAudioSoundTrack(AudioElement audio, AudioContainerSetup.AudioLabel label)
     {
         if(CurrentSoundTrack != null)
@@ -67,11 +111,26 @@ public class AudioManager : ManagerSingletonBase<AudioManager>
         CurrentSoundTrack = new AudioTrack(audioElement, label);
     }
 
+    private void PlayAmbientSoundTrack(AudioElement audio)
+    {
+        if (CurrentAmbientTrack != null)
+        {
+            CurrentAmbientTrack.DestroyAudio();
+        }
+
+        AudioElement audioElement = Instantiate(audio);
+        audioElement.transform.SetParent(transform);
+        CurrentAmbientTrack = new AudioTrack(audioElement);
+    }
+
     #endregion
 
     #region Handlers
 
-
+    void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+    {
+        PlayAmbientSoundBySceneId(scene.buildIndex);
+    }
 
     #endregion
 
@@ -107,6 +166,11 @@ public class AudioManager : ManagerSingletonBase<AudioManager>
         {
             AudioElement = audio;
             Label = label;
+        }
+
+        public AudioTrack(AudioElement audio)
+        {
+            AudioElement = audio;
         }
 
         public bool IsTrackEqual(AudioContainerSetup.AudioLabel Label)

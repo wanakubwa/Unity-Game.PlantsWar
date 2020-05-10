@@ -79,6 +79,25 @@ public class AudioContainerSetup : ScriptableObject
         return null;
     }
 
+    public AudioElement GetAudioElementBySceneId(int sceneId)
+    {
+        if (SceneAudioCollection == null)
+        {
+            Debug.Log("Brak elementow dzwiekow podpietych do kolekcji scen".SetColor(Color.red));
+            return null;
+        }
+
+        for (int i = 0; i < SceneAudioCollection.Count; i++)
+        {
+            if (SceneAudioCollection[i].SceneId == sceneId)
+            {
+                return SceneAudioCollection[i].Audio;
+            }
+        }
+
+        return null;
+    }
+
 #if UNITY_EDITOR
 
     private void OnValidate()

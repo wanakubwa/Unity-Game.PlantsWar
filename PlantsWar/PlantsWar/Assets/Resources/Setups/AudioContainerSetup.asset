@@ -22,7 +22,9 @@ MonoBehaviour:
   - label: 2
     audio: {fileID: 2520169985944338159, guid: ac2b9d6c61947314d87a511f24cb780c, type: 3}
   sceneAudioCollection:
-  - sceneId: 0
+  - sceneName: MainMenu
+    sceneId: 0
     audio: {fileID: 2520169985944338159, guid: 8748f4513d21623409fd5de17fe8bcca, type: 3}
-  - sceneId: 1
+  - sceneName: MainGame
+    sceneId: 1
     audio: {fileID: 2520169985944338159, guid: 31997e63673e624448cf802646f8e79c, type: 3}
