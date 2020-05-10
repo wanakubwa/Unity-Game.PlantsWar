@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AudioElement : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class AudioElement : MonoBehaviour
 
     [SerializeField]
     private AudioSource audio;
+    [SerializeField]
+    private bool playOnAwake;
 
     #endregion
 
@@ -21,11 +24,38 @@ public class AudioElement : MonoBehaviour
         private set => audio = value; 
     }
 
+    public bool PlayOnAwake { 
+        get => playOnAwake; 
+        private set => playOnAwake = value; 
+    }
+
     #endregion
 
     #region Methods
 
+    public void PlayOneShotAudio()
+    {
+        Audio.PlayOneShot(Audio.clip);
+    }
 
+    public void StopAudio()
+    {
+        Audio.Stop();
+    }
+
+    public void DestroyAudio()
+    {
+        StopAudio();
+        Destroy(gameObject);
+    }
+
+    private void Awake()
+    {
+        if (PlayOnAwake == true)
+        {
+            PlayOneShotAudio();
+        }
+    }
 
     #endregion
 

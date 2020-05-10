@@ -43,9 +43,15 @@ public class AudioManager : ManagerSingletonBase<AudioManager>
                 {
                     CurrentSoundTrack.ResetAudio();
                 }
+                else
+                {
+                    CurrentSoundTrack.ResetAudio();
+                }
             }
-
-            PlayAudioSoundTrack(audioElement, label);
+            else
+            {
+                PlayAudioSoundTrack(audioElement, label);
+            }
         }
     }
 
@@ -116,12 +122,17 @@ public class AudioManager : ManagerSingletonBase<AudioManager>
 
         public void StopAudio()
         {
-
+            AudioElement.StopAudio();
         }
 
         public void PlayAudio()
         {
+            AudioElement.PlayOneShotAudio();
+        }
 
+        public void DestroyAudio()
+        {
+            AudioElement.DestroyAudio();
         }
 
         #endregion
