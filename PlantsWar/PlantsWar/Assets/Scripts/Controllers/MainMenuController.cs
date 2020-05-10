@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour 
 {
@@ -9,6 +10,8 @@ public class MainMenuController : MonoBehaviour
 
     [SerializeField]
     private TMP_Dropdown languageDropdown;
+    [SerializeField]
+    private Slider ambientVolumeSlider;
 
     #endregion
 
@@ -17,6 +20,10 @@ public class MainMenuController : MonoBehaviour
     public TMP_Dropdown LanguageDropdown { 
         get => languageDropdown; 
         private set => languageDropdown = value; 
+    }
+    public Slider AmbientVolumeSlider { 
+        get => ambientVolumeSlider; 
+        private set => ambientVolumeSlider = value; 
     }
 
     #endregion
@@ -54,6 +61,11 @@ public class MainMenuController : MonoBehaviour
         FileContainerSetup.Instance.SetLanguageVersion(language);
     }
 
+    public void OnAmbientVolumeSliderChanged()
+    {
+        AudioManager.Instance.SetAmbientVolume(AmbientVolumeSlider.value);
+    }
+
     private void OnEnable()
     {
         LanguageDropdown.ClearOptions();
@@ -62,6 +74,7 @@ public class MainMenuController : MonoBehaviour
         LanguageDropdown.AddOptions(new List<string>(enumNames));
 
         LanguageDropdown.SetValueWithoutNotify((int)FileContainerSetup.Instance.LanguageVersion - 1);
+        AmbientVolumeSlider.value = AmbientVolumeSlider.maxValue * 0.5f;
     }
 
     #endregion
