@@ -12,4 +12,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068a460af75f59144990eb6a333c4d76, type: 3}
   m_Name: ManagersContentSetup
   m_EditorClassIdentifier: 
-  managersCollection: []
+  managersCollection:
+  - managerType: AudioManager
+    sceneExist: 0
+    localizedKey: 
+  - managerType: AudioSelectingManager
+    sceneExist: 2
+    localizedKey: 
+  - managerType: CheatsManager
+    sceneExist: 2
+    localizedKey: 
+  - managerType: EnemyManager
+    sceneExist: 2
+    localizedKey: 
+  - managerType: GameEventsManager
+    sceneExist: 2
+    localizedKey: 
+  - managerType: GameManager
+    sceneExist: 0
+    localizedKey: 
+  - managerType: GameplayManager
+    sceneExist: 2
+    localizedKey: 
+  - managerType: GridManager
+    sceneExist: 2
+    localizedKey: 
+  - managerType: GridSelectorManager
+    sceneExist: 2
+    localizedKey: 
+  - managerType: MapManager
+    sceneExist: 2
+    localizedKey: 
+  - managerType: PlayerWalletManager
+    sceneExist: 0
+    localizedKey: 
+  - managerType: PopUpManager
+    sceneExist: 0
+    localizedKey: 
+  - managerType: PositiveCharactersManager
+    sceneExist: 2
+    localizedKey: 
+  - managerType: SaveLoadManager
+    sceneExist: 0
+    localizedKey: 
+  - managerType: ShopManager
+    sceneExist: 2
+    localizedKey: 
+  - managerType: UIManager
+    sceneExist: 2
+    localizedKey: 
+  - managerType: WavesManager
+    sceneExist: 2
+    localizedKey: 

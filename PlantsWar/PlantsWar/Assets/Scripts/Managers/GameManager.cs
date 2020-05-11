@@ -135,7 +135,7 @@ public class GameManager : ManagerSingletonBase<GameManager>
 
     private void CheckLoadedScene ()
     {
-        if (SceneManager.GetActiveScene ().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             // Menu.
             if (SpawnedElementsCollection != null)
@@ -146,16 +146,34 @@ public class GameManager : ManagerSingletonBase<GameManager>
                 }
             }
         }
-        else if (SceneManager.GetActiveScene ().buildIndex == 1)
+        else if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             // GameScene
             SpawnObjects();
 
-            if(IsContinueRequired == true)
+            if (IsContinueRequired == true)
             {
                 SaveLoadManager.Instance.CallLoadGame();
             }
         }
+
+        //SpawnObjects();
+        //Debug.Log(SpawnedElementsCollection.Count);
+
+        //int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        //foreach (GameObject @object in SpawnedElementsCollection)
+        //{
+        //    ManagerSingletonBase<MonoBehaviour> manager = @object.GetComponent<ManagerSingletonBase<MonoBehaviour>>();
+
+        //    if(manager.IsEnableOnScene(sceneIndex) == false)
+        //    {
+        //        @object.SetActive(false);
+        //    }
+        //    else
+        //    {
+        //        @object.SetActive(true);
+        //    }
+        //}
     }
 
     #endregion

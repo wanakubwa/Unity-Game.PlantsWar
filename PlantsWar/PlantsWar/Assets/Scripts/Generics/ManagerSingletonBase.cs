@@ -40,6 +40,23 @@ public class ManagerSingletonBase<T> : MonoBehaviour where T : MonoBehaviour
 	#endregion
 	#region Methods
 
+	public bool IsEnableOnScene(int sceneIndex)
+	{
+		ManagersContentSetup managersContentSetup = ManagersContentSetup.Instance;
+		if(managersContentSetup == null)
+		{
+			return true;
+		}
+
+		SceneLabel label = managersContentSetup.GetSceneLabelByType(this.GetType());
+		if((int)label == -1 || (int)label == sceneIndex)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 	protected virtual void Awake()
 	{
 		instance = GetComponent<T>();

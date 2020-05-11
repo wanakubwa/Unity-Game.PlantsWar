@@ -51,11 +51,40 @@ public class ManagersContentSetup : ScriptableObject
 
     #region Methods
 
-#if UNITY_EDITOR
-
-    public void RefreshManagersCollection(List<Type> managersTypes)
+    public SceneLabel GetSceneLabelByType(Type managerType)
     {
         if(ManagersCollection == null)
+        {
+            return SceneLabel.NO_SET;
+        }
+
+        for (int i = 0; i < ManagersCollection.Count; i++)
+        {
+            if(ManagersCollection[i].ManagerType == managerType.ToString())
+            {
+                return ManagersCollection[i].SceneExist;
+            }
+        }
+
+        return SceneLabel.NO_SET;
+    }
+
+    private void OnEnable()
+    {
+
+#if UNITY_EDITOR
+        RefreshManagersCollection();
+#endif
+
+    }
+
+#if UNITY_EDITOR
+
+    private void RefreshManagersCollection()
+    {
+        List<Type> managersTypes = GetManagerTypesInAssembly();
+
+        if (ManagersCollection == null)
         {
             foreach (Type managerType in managersTypes)
             {
@@ -74,25 +103,12 @@ public class ManagersContentSetup : ScriptableObject
 
             foreach (ManagerElement element in ManagersCollection)
             {
-                if(managersTypes.Exists(x => x.ToString() == element.ManagerType) == false)
+                if (managersTypes.Exists(x => x.ToString() == element.ManagerType) == false)
                 {
                     ManagersCollection.Remove(element);
                 }
             }
         }
-    }
-
-#endif
-
-    private void OnEnable()
-    {
-
-#if UNITY_EDITOR
-        List<Type> managersTypes = GetManagerTypesInAssembly();
-        Debug.Log(managersTypes.Count);
-        RefreshManagersCollection(managersTypes);
-#endif
-
     }
 
     private static List<Type> GetManagerTypesInAssembly()
@@ -107,6 +123,8 @@ public class ManagersContentSetup : ScriptableObject
 
         return output;
     }
+
+#endif
 
     #endregion
 
@@ -124,6 +142,8 @@ public class ManagersContentSetup : ScriptableObject
         [SerializeField, Sirenix.OdinInspector.ReadOnly]
         private string managerType;
         [SerializeField]
+        SceneLabel sceneExist;
+        [SerializeField]
         private string localizedKey = string.Empty;
 
         #endregion
@@ -138,6 +158,11 @@ public class ManagersContentSetup : ScriptableObject
         public string LocalizedKey { 
             get => localizedKey; 
             private set => localizedKey = value; 
+        }
+
+        public SceneLabel SceneExist { 
+            get => sceneExist; 
+            private set => sceneExist = value; 
         }
 
         #endregion
