@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static CharactersContainerSetup;
 
-public class ShopManager : ManagerSingletonBase<ShopManager>
+public class ShopManager : ManagerSingletonBase<ShopManager>, IContentLoadable
 {
     #region Fields
 
@@ -60,11 +60,19 @@ public class ShopManager : ManagerSingletonBase<ShopManager>
         return canBuy;
     }
 
+    public void LoadGameContent()
+    {
+        InitializeShopUI();
+    }
+
+    public void FreeGameContent()
+    {
+        Destroy(ShopUIController);
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
-
-        InitializeShopUI();
 
         Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), GetType());
     }

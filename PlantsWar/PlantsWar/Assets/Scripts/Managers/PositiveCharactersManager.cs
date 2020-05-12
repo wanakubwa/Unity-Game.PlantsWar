@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharactersManager>, ISaveable
+public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharactersManager>, ISaveable, IContentLoadable
 {
     #region Fields
 
@@ -21,10 +21,11 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         private set;
     }
 
-    public List<SingleCharacter> InGameCharacters {
+    public List<SingleCharacter> InGameCharacters
+    {
         get;
         private set;
-    }
+    } = new List<SingleCharacter>();
 
     public bool IsGameFreezed {
         get;
@@ -191,15 +192,23 @@ public class PositiveCharactersManager : ManagerSingletonBase<PositiveCharacters
         SaveLoadManager.Instance.SaveManagerClass(this);
     }
 
+    public void LoadGameContent()
+    {
+        // Pobranie wszystkich dostepnych characterow.
+        InGameCharacters = GetPositiveCharacters();
+    }
+
+    public void FreeGameContent()
+    {
+        KillAllCharacters();
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
 
         // todo: przerobic na normalne wywoalnie.
         SpawnedCharacters = new List<CharacterBase>();
-
-        // Pobranie wszystkich dostepnych characterow.
-        InGameCharacters = GetPositiveCharacters();
 
         Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
     }

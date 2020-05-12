@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
+public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable, IContentLoadable
 {
     #region Fields
 
@@ -14,10 +14,11 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
     public event Action OnSpawnedEnemiesChanged = delegate { };
     public event Action<CharacterBase> OnEnemieSpawned = delegate { };
 
-    public List<SingleCharacter> EnemyCharactersDefinitions { 
-        get; 
-        private set; 
-    }
+    public List<SingleCharacter> EnemyCharactersDefinitions
+    {
+        get;
+        private set;
+    } = new List<SingleCharacter>();
 
     public List<CharacterBase> EnemyCharactersSpawned { 
         get; 
@@ -119,16 +120,29 @@ public class EnemyManager : ManagerSingletonBase<EnemyManager>, ISaveable
         SaveLoadManager.Instance.SaveManagerClass(this);
     }
 
+    public void LoadGameContent()
+    {
+        EnemyCharactersDefinitions = CharactersContainerSetup.Instance?.GetAllAwaibleEnemiesCharacters();
+        if (EnemyCharactersDefinitions == null)
+        {
+            Debug.LogError("UWAGA! - Brak przeciwnikow do pobrania!");
+        }
+    }
+
+    public void FreeGameContent()
+    {
+        for (int i = 0; i < EnemyCharactersSpawned.Count; i++)
+        {
+            Destroy(EnemyCharactersSpawned[i].gameObject);
+        }
+
+        EnemyCharactersSpawned.Clear();
+    }
+
     protected override void OnEnable () {
         base.OnEnable ();
 
         EnemyCharactersSpawned = new List<CharacterBase>();
-        
-        EnemyCharactersDefinitions = CharactersContainerSetup.Instance?.GetAllAwaibleEnemiesCharacters();
-        if(EnemyCharactersDefinitions == null)
-        {
-            Debug.LogError("UWAGA! - Brak przeciwnikow do pobrania!");
-        }
 
         Debug.LogFormat ("[{0}] Zainicjalizowany.".SetColor (Color.green), this.GetType ());
     }

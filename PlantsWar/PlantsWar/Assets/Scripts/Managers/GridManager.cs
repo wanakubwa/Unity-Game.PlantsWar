@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-class GridManager : ManagerSingletonBase<GridManager>, ISaveable
+class GridManager : ManagerSingletonBase<GridManager>, ISaveable, IContentLoadable
 {
     #region Fields
 
@@ -138,14 +138,14 @@ class GridManager : ManagerSingletonBase<GridManager>, ISaveable
         return SpawnPositions[index];
     }
 
-    public Vector3 GetSpawnPositionByIndex(int index)
+    public Vector3? GetSpawnPositionByIndex(int index)
     {
-        if(index < SpawnPositions.Count && index > 0)
+        if(index < SpawnPositions.Count && index >= 0)
         {
             return SpawnPositions[index];
         }
 
-        return SpawnPositions.First();
+        return null;
     }
 
     public void FreeCellById(int id)
@@ -159,6 +159,11 @@ class GridManager : ManagerSingletonBase<GridManager>, ISaveable
 
     public List<int> GetAllCellsId()
     {
+        if(Grid == null)
+        {
+            return null;
+        }
+
         List<int> output = new List<int>();
 
         for(int i = 0; i < Grid.GetLength(0); i++)
@@ -277,17 +282,36 @@ class GridManager : ManagerSingletonBase<GridManager>, ISaveable
         //TODO
     }
 
-    protected override void OnEnable () {
-        base.OnEnable ();
+    public void LoadGameContent()
+    {
+        SetGridStartPostion();
 
-        SetGridStartPostion ();
-
-        SetGridCellSize ();
-        CreateGridOnMap ();
+        SetGridCellSize();
+        CreateGridOnMap();
 
         // Inicjalizacja pozycji spawnowania przeciwnikow.
-        List<Vector3> lastCellsPosition = GetLastCellsForEachRow ();
-        InitializeSpawnPositions (lastCellsPosition);
+        List<Vector3> lastCellsPosition = GetLastCellsForEachRow();
+        InitializeSpawnPositions(lastCellsPosition);
+    }
+
+    public void FreeGameContent()
+    {
+        if(Grid == null)
+        {
+            return;
+        }
+
+        for(int i = Grid.GetLength(0) - 1; i >= 0; i--)
+        {
+            for (int k = Grid.GetLength(1) - 1; k >= 0; k--)
+            {
+                Destroy(Grid[i,k].gameObject);
+            }
+        }
+    }
+
+    protected override void OnEnable () {
+        base.OnEnable ();
 
         Debug.LogFormat ("[{0}] Zainicjalizowany.".SetColor (Color.green), this.GetType ());
     }

@@ -26,6 +26,64 @@ public class SaveLoadManager : ManagerSingletonBase<SaveLoadManager>
 
     #region Methods
 
+    public void RefreshContentForSceneWithLoad(int sceneIndex, List<IManager> managers)
+    {
+        foreach (IManager manager in managers)
+        {
+            if(manager.IsEnableOnScene(sceneIndex) == true)
+            {
+                IContentLoadable loadable = manager as IContentLoadable;
+                if(loadable != null)
+                {
+                    loadable.LoadGameContent();
+                }
+
+                ISaveable saveable = manager as ISaveable;
+                if(saveable != null)
+                {
+                    saveable.Load();
+                }
+            }
+            else
+            {
+                IContentLoadable loadable = manager as IContentLoadable;
+                if (loadable != null)
+                {
+                    loadable.FreeGameContent();
+                }
+            }
+        }
+    }
+
+    public void RefreshContentForScene(int sceneIndex, List<IManager> managers)
+    {
+        foreach (IManager manager in managers)
+        {
+            if (manager.IsEnableOnScene(sceneIndex) == true)
+            {
+                IContentLoadable loadable = manager as IContentLoadable;
+                if (loadable != null)
+                {
+                    loadable.LoadGameContent();
+                }
+
+                ISaveable saveable = manager as ISaveable;
+                if (saveable != null)
+                {
+                    saveable.ResetFields();
+                }
+            }
+            else
+            {
+                IContentLoadable loadable = manager as IContentLoadable;
+                if (loadable != null)
+                {
+                    loadable.FreeGameContent();
+                }
+            }
+        }
+    }
+
     public void CallResetGame()
     {
         OnResetGame.Invoke();

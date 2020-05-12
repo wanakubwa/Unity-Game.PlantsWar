@@ -14,53 +14,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   managersCollection:
   - managerType: AudioManager
-    sceneExist: 0
+    sceneExist: -1
     localizedKey: 
   - managerType: AudioSelectingManager
-    sceneExist: 2
+    sceneExist: -1
     localizedKey: 
   - managerType: CheatsManager
-    sceneExist: 2
+    sceneExist: 1
     localizedKey: 
   - managerType: EnemyManager
-    sceneExist: 2
+    sceneExist: 1
     localizedKey: 
   - managerType: GameEventsManager
-    sceneExist: 2
+    sceneExist: 1
     localizedKey: 
   - managerType: GameManager
     sceneExist: 0
     localizedKey: 
   - managerType: GameplayManager
-    sceneExist: 2
+    sceneExist: 1
     localizedKey: 
   - managerType: GridManager
-    sceneExist: 2
+    sceneExist: 1
     localizedKey: 
   - managerType: GridSelectorManager
-    sceneExist: 2
+    sceneExist: 1
     localizedKey: 
   - managerType: MapManager
-    sceneExist: 2
+    sceneExist: 1
     localizedKey: 
   - managerType: PlayerWalletManager
-    sceneExist: 0
+    sceneExist: -1
     localizedKey: 
   - managerType: PopUpManager
-    sceneExist: 0
+    sceneExist: -1
     localizedKey: 
   - managerType: PositiveCharactersManager
-    sceneExist: 2
+    sceneExist: 1
     localizedKey: 
   - managerType: SaveLoadManager
-    sceneExist: 0
+    sceneExist: -1
     localizedKey: 
   - managerType: ShopManager
-    sceneExist: 2
+    sceneExist: 1
     localizedKey: 
   - managerType: UIManager
-    sceneExist: 2
+    sceneExist: 1
     localizedKey: 
   - managerType: WavesManager
-    sceneExist: 2
+    sceneExist: 1
     localizedKey: 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class ManagerSingletonBase<T> : MonoBehaviour where T : MonoBehaviour
+public class ManagerSingletonBase<T> : MonoBehaviour, IManager where T : MonoBehaviour
 {
 	#region Fields
 
@@ -26,7 +26,7 @@ public class ManagerSingletonBase<T> : MonoBehaviour where T : MonoBehaviour
 			}
 			return instance;
 		}
-		private set
+		set
 		{
 			instance = value;
 		}

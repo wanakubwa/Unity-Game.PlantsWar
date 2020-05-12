@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class MapManager : ManagerSingletonBase<MapManager>
+public class MapManager : ManagerSingletonBase<MapManager>, IContentLoadable
 {
     #region Fields
     [SerializeField]
@@ -35,19 +35,30 @@ public class MapManager : ManagerSingletonBase<MapManager>
     {
         base.OnEnable();
 
-        GameObject map = Instantiate(GameMap, GameMap.transform.position, Quaternion.identity);
-        map.transform.SetParent(this.transform);
-
-        // Pobranie kontrollera z aktualnie usatwionej mapy.
-        MapController = map.GetComponent<MapController>();
-        MapController.MapCanvas.worldCamera = Camera.main;
-
         Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
     }
 
     public Transform GetGridStartPosition()
     {
         return MapController.GridStartPosition;
+    }
+
+    public void LoadGameContent()
+    {
+        GameObject map = Instantiate(GameMap, GameMap.transform.position, Quaternion.identity);
+        map.transform.SetParent(this.transform);
+
+        // Pobranie kontrollera z aktualnie usatwionej mapy.
+        MapController = map.GetComponent<MapController>();
+        MapController.MapCanvas.worldCamera = Camera.main;
+    }
+
+    public void FreeGameContent()
+    {
+        if(MapController != null)
+        {
+            Destroy(MapController?.gameObject);
+        }
     }
 
     #endregion

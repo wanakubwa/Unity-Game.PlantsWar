@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using OdinSerializer;
 using System;
 
-public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
+public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable, IContentLoadable
 {
     #region Fields
 
@@ -112,6 +112,12 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         private set => wavesCollection = value; 
     }
 
+    public bool IsInGame
+    {
+        get;
+        private set;
+    } = false;
+
     #endregion
 
     #region Methods
@@ -179,6 +185,16 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
         IsWaitingForWaveRequest = false;
     }
 
+    public void LoadGameContent()
+    {
+        IsInGame = true;
+    }
+
+    public void FreeGameContent()
+    {
+        IsInGame = false;
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -242,6 +258,11 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
 
     private void Update()
     {
+        if(IsInGame == false)
+        {
+            return;
+        }
+
         if (IsGameFreezed == false)
         {
             if (StartDelayCounter >= FirstWaveDelay)
@@ -278,11 +299,14 @@ public class WavesManager : ManagerSingletonBase<WavesManager>, ISaveable
                         RowElement row = wave.RowsCollection[RowsCounter];
                         EnemyElement enemyToSpawn = row.EnemiesCollection[CharactersInRowCounter];
 
-                        Vector3 position = GridManager.Instance.GetSpawnPositionByIndex(enemyToSpawn.SpawnIndex);
-                        EnemyManager.Instance.SpawnCharacterOfTypeAtPosition(enemyToSpawn.CharacterType, position);
+                        Vector3? position = GridManager.Instance.GetSpawnPositionByIndex(enemyToSpawn.SpawnIndex);
+                        if(position != null)
+                        {
+                            EnemyManager.Instance.SpawnCharacterOfTypeAtPosition(enemyToSpawn.CharacterType, position.Value);
 
-                        SpawnCharacterDelayCounter = 0f;
-                        SetCharactersInRowCounter(CharactersInRowCounter + 1);
+                            SpawnCharacterDelayCounter = 0f;
+                            SetCharactersInRowCounter(CharactersInRowCounter + 1);
+                        }
                     }
                     else
                     {

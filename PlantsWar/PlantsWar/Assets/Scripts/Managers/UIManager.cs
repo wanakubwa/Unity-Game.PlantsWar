@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class UIManager : ManagerSingletonBase<UIManager>
+public class UIManager : ManagerSingletonBase<UIManager>, IContentLoadable
 {
     #region Fields
     
@@ -15,35 +15,66 @@ public class UIManager : ManagerSingletonBase<UIManager>
     #endregion
 
     #region Propeties
-
-    public TopBarUIController TopBarController { 
-        get => topBarController; 
-        private set => topBarController = value; 
-    }
-    public EndGameScreenController GameOverScreenController { 
-        get => gameOverScreenController; 
-        private set => gameOverScreenController = value; 
+    public TopBarUIController TopBarControllerPrefab
+    {
+        get => topBarController;
+        private set => topBarController = value;
     }
 
-    public EndGameScreenController GameWinScreenController { 
-        get => gameWinScreenController; 
-        private set => gameWinScreenController = value; 
+    public EndGameScreenController GameOverScreenControllerPrefab
+    {
+        get => gameOverScreenController;
+        private set => gameOverScreenController = value;
+    }
+
+    public EndGameScreenController GameWinScreenControllerPrefab
+    {
+        get => gameWinScreenController;
+        private set => gameWinScreenController = value;
+    }
+
+    public TopBarUIController TopBarController
+    {
+        get;
+        private set;
+    }
+
+    public EndGameScreenController GameOverScreenController
+    {
+        get;
+        private set; 
+    }
+
+    public EndGameScreenController GameWinScreenController
+    {
+        get;
+        private set;
     }
 
     #endregion
 
     #region Methods
 
-    protected override void OnEnable()
+    public void LoadGameContent()
     {
-        base.OnEnable();
-
         // Inicjalizacja kontrollerow.
         InitializeTopBarUI();
         InitializeGameOverScreen();
         InitializeGameWinScreen();
         TopBarController.SetCoinsNumber(PlayerWalletManager.Instance.Money);
         TopBarController.UpdateLivesStatistics();
+    }
+
+    public void FreeGameContent()
+    {
+        Destroy(TopBarController);
+        Destroy(GameOverScreenController);
+        Destroy(GameWinScreenController);
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
 
         Debug.LogFormat("[{0}] Zainicjalizowany.".SetColor(Color.green), this.GetType());
     }
@@ -89,20 +120,20 @@ public class UIManager : ManagerSingletonBase<UIManager>
     
     private void InitializeTopBarUI()
     {
-        TopBarController = Instantiate(TopBarController);
+        TopBarController = Instantiate(TopBarControllerPrefab);
         TopBarController.SetCanvasCamera(Camera.main);
     }
 
     private void InitializeGameOverScreen()
     {
-        GameOverScreenController = Instantiate(GameOverScreenController);
+        GameOverScreenController = Instantiate(GameOverScreenControllerPrefab);
         GameOverScreenController.SetCanvasCamera(Camera.main);
         GameOverScreenController.ToggleView();
     }
 
     private void InitializeGameWinScreen()
     {
-        GameWinScreenController = Instantiate(GameWinScreenController);
+        GameWinScreenController = Instantiate(GameWinScreenControllerPrefab);
         GameWinScreenController.SetCanvasCamera(Camera.main);
         GameWinScreenController.ToggleView();
     }
@@ -113,7 +144,10 @@ public class UIManager : ManagerSingletonBase<UIManager>
 
     private void OnMoneyChangeHandler(int value)
     {
-        TopBarController.SetCoinsNumber(value);
+        if(TopBarController != null)
+        {
+            TopBarController.SetCoinsNumber(value);
+        }
     }
 
     private void OnGameOverHandler()
@@ -128,14 +162,17 @@ public class UIManager : ManagerSingletonBase<UIManager>
 
     private void OnEnemiesCounterChangedHandler(int value)
     {
-        TopBarController.UpdateLivesStatistics();
+        if(TopBarController != null)
+        {
+            TopBarController.UpdateLivesStatistics();
+        }
     }
-    
+
     #endregion
-    
+
     #region Enums
-    
-    
-    
+
+
+
     #endregion
 }

@@ -39,18 +39,24 @@ public class GameManager : ManagerSingletonBase<GameManager>
         private set;
     }
 
+    public List<IManager> SpawnedManagers
+    {
+        get;
+        private set;
+    }
+
     #endregion
     #region Methods
 
     public void LoadMenuScene ()
     {
-        SceneManager.LoadScene (0, LoadSceneMode.Single);
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 
     public void LoadGameScene (bool isContinueRequired)
     {
-        SceneManager.LoadScene (1, LoadSceneMode.Single);
         IsContinueRequired = isContinueRequired;
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
     protected override void OnEnable ()
@@ -81,14 +87,18 @@ public class GameManager : ManagerSingletonBase<GameManager>
         base.Awake ();
 
         GameManager[] objs = FindObjectsOfType<GameManager> ();
+        if(objs.Length == 1)
+        {
+            SpawnObjects();
+        }
 
         if (objs.Length > 1)
         {
-            gameObject.SetActive (false);
-            Destroy (gameObject);
+            //gameObject.SetActive(false);
+            Destroy(gameObject);
         }
 
-        DontDestroyOnLoad (gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     private void SpawnObjects ()
@@ -124,56 +134,36 @@ public class GameManager : ManagerSingletonBase<GameManager>
             return;
         }
 
+        SpawnedManagers = new List<IManager>();
         foreach (GameObject toSpawn in toSpawnObjects)
         {
             GameObject spawnedObject = Instantiate (toSpawn);
             spawnedObject.transform.SetParent (this.transform);
 
+            IManager imanager = spawnedObject.GetComponent<IManager>();
+            if (imanager != null)
+            {
+                SpawnedManagers.Add(imanager);
+            }
+
             SpawnedElementsCollection.Add (spawnedObject);
         }
+
+        Debug.Log(SpawnedManagers.Count);
     }
 
     private void CheckLoadedScene ()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if(IsContinueRequired == true)
         {
-            // Menu.
-            if (SpawnedElementsCollection != null)
-            {
-                foreach (GameObject element in SpawnedElementsCollection)
-                {
-                    Destroy(element);
-                }
-            }
+            int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SaveLoadManager.Instance.RefreshContentForSceneWithLoad(sceneIndex, SpawnedManagers);
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 1)
+        else
         {
-            // GameScene
-            SpawnObjects();
-
-            if (IsContinueRequired == true)
-            {
-                SaveLoadManager.Instance.CallLoadGame();
-            }
+            int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SaveLoadManager.Instance.RefreshContentForScene(sceneIndex, SpawnedManagers);
         }
-
-        //SpawnObjects();
-        //Debug.Log(SpawnedElementsCollection.Count);
-
-        //int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        //foreach (GameObject @object in SpawnedElementsCollection)
-        //{
-        //    ManagerSingletonBase<MonoBehaviour> manager = @object.GetComponent<ManagerSingletonBase<MonoBehaviour>>();
-
-        //    if(manager.IsEnableOnScene(sceneIndex) == false)
-        //    {
-        //        @object.SetActive(false);
-        //    }
-        //    else
-        //    {
-        //        @object.SetActive(true);
-        //    }
-        //}
     }
 
     #endregion

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-interface ISaveable
+public interface ISaveable
 {
 
     #region Fields
